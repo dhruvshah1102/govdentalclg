@@ -1,27 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary: #0A1F44;
+  --primary-light: #162E5B;
+  --secondary: #1B5E3B;
+  --secondary-light: #247C4E;
+  --accent: #D4870A;
+  --accent-light: #EAA023;
+  --bg-main: #F8F9FA;
+  --text-main: #2D2D2D;
+  --text-muted: #5A5A5A;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Source Sans 3', 'Noto Sans', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-ui, button, nav, .font-sans {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Accessibility - High Contrast Mode overrides */
+.high-contrast {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+.high-contrast body {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+.high-contrast * {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border-color: #FFFF00 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.high-contrast a,
+.high-contrast a * {
+  color: #FFFF00 !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast a:hover {
+  color: #00FFFF !important;
+}
+
+.high-contrast button {
+  background-color: #000000 !important;
+  color: #FFFF00 !important;
+  border: 2px solid #FFFF00 !important;
+}
+
+.high-contrast button:hover {
+  background-color: #FFFF00 !important;
+  color: #000000 !important;
+}
+
+.high-contrast input,
+.high-contrast select,
+.high-contrast textarea {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #FFFF00 !important;
+}
+
+/* Animations */
+@keyframes ticker {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-ticker {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: ticker 35s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+@keyframes pulse-fast {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.animate-pulse-fast {
+  animation: pulse-fast 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom Scrollbar for professional widgets */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #E5E7EB;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #9CA3AF;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6B7280;
+}
+
+/* Mega Menu transitions */
+.mega-menu-content {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mega-menu-trigger:hover .mega-menu-content,
+.mega-menu-content:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
