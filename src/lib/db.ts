@@ -559,4 +559,18 @@ async function initTables(db: Database) {
       ]);
     }
   }
+
+  // Force update old/unprofessional gallery images to beautiful, professional versions
+  await db.run(
+    "UPDATE gallery SET image_url = 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&h=400&q=80' WHERE album_name = 'Smart Preclinical Lab'"
+  );
+  await db.run(
+    "UPDATE gallery SET image_url = 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=600&h=400&q=80' WHERE album_name = 'OPD Clinical Theater'"
+  );
+  await db.run(
+    "UPDATE gallery SET image_url = 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&h=400&q=80' WHERE album_name = 'Academic College Campus'"
+  );
+  await db.run(
+    "UPDATE gallery SET image_url = 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&h=400&q=80' WHERE album_name = 'College Cultural Festival'"
+  );
 }
