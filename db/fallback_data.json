@@ -1,0 +1,552 @@
+{
+  "settings": [
+    {
+      "key": "site_name_en",
+      "value": "Government Dental College & Hospital, Dibrugarh"
+    },
+    {
+      "key": "site_name_as",
+      "value": "চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয় আৰু চিকিৎসালয়, ডিব্ৰুগড়"
+    },
+    {
+      "key": "site_name_hi",
+      "value": "सरकारी दंत चिकित्सा महाविद्यालय और अस्पताल, डिब्रूगढ़"
+    },
+    {
+      "key": "tagline_en",
+      "value": "Affiliated with Dibrugarh University & Recognized by Dental Council of India"
+    },
+    {
+      "key": "address",
+      "value": "Near AMCH Campus, Dibrugarh, Assam - 786002"
+    },
+    {
+      "key": "phone",
+      "value": "+91 373 2300123"
+    },
+    {
+      "key": "email",
+      "value": "gdchdibrugarh@gmail.com"
+    },
+    {
+      "key": "helpline_emergency",
+      "value": "+91 373 2300999"
+    },
+    {
+      "key": "helpline_tele",
+      "value": "+91 373 2300888"
+    },
+    {
+      "key": "social_facebook",
+      "value": "https://facebook.com/gdchd"
+    },
+    {
+      "key": "social_twitter",
+      "value": "https://twitter.com/gdchd"
+    },
+    {
+      "key": "social_instagram",
+      "value": "https://instagram.com/gdchd"
+    },
+    {
+      "key": "social_youtube",
+      "value": "https://youtube.com/gdchd"
+    },
+    {
+      "key": "seo_title",
+      "value": "Government Dental College & Hospital, Dibrugarh - Assam"
+    },
+    {
+      "key": "seo_description",
+      "value": "Official portal of Government Dental College and Hospital, Dibrugarh. Premium dental education and tertiary healthcare in Assam."
+    },
+    {
+      "key": "seo_keywords",
+      "value": "Dental college Dibrugarh, GDC Dibrugarh, BDS Assam, MDS Assam, Dentist Dibrugarh, Dental council India"
+    },
+    {
+      "key": "about_summary_en",
+      "value": "Government Dental College & Hospital, Dibrugarh is a premier government institution dedicated to quality dental education, advanced patient care, and community outreach in Upper Assam."
+    },
+    {
+      "key": "dean_photo",
+      "value": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&h=400&q=80"
+    },
+    {
+      "key": "superintendent_name",
+      "value": "Dr. Pranab Jyoti Baruah, MDS"
+    },
+    {
+      "key": "superintendent_message",
+      "value": "Our hospital wing offers comprehensive clinical diagnostics and treatments spanning all major specialities. We serve hundreds of patients daily with empathy and technical excellence."
+    },
+    {
+      "key": "superintendent_photo",
+      "value": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&h=400&q=80"
+    },
+    {
+      "key": "google_map_embed",
+      "value": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3539.5103445582313!2d94.89679237617173!3d27.48443917631165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374097e3f8905bbf%3A0xc48de1786c57f0eb!2sAssam%20Medical%20College!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+    },
+    {
+      "key": "new_badge_days",
+      "value": "7"
+    },
+    {
+      "key": "dean_name",
+      "value": "Dr. Ramesh Chandra Das, MDS"
+    },
+    {
+      "key": "dean_designation",
+      "value": "Principal & Dean"
+    },
+    {
+      "key": "dean_message",
+      "value": "hello"
+    },
+    {
+      "key": "bds_curriculum_html",
+      "value": ""
+    }
+  ],
+  "hero_slides": [
+    {
+      "id": 1,
+      "image_url": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&h=500&q=80",
+      "title": "Pioneering Dental Pedagogy & Clinical Excellence",
+      "subtitle": "Equipping next-generation dental surgeons with state-of-the-art preclinical laboratories and expert mentors.",
+      "cta_text": "Explore BDS Programme",
+      "cta_link": "/academics/bds",
+      "sort_order": 1,
+      "enabled": 1
+    },
+    {
+      "id": 2,
+      "image_url": "https://images.unsplash.com/photo-1579684389782-64d84b5e905d?auto=format&fit=crop&w=1200&h=500&q=80",
+      "title": "State-of-the-Art Tertiary Dental Hospital",
+      "subtitle": "Serving over 150 patients daily with subsidized restorative, operative, and reconstructive surgeries.",
+      "cta_text": "View OPD Timings",
+      "cta_link": "/hospital",
+      "sort_order": 2,
+      "enabled": 1
+    },
+    {
+      "id": 3,
+      "image_url": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1200&h=500&q=80",
+      "title": "Ethically Vetted Research Frontiers",
+      "subtitle": "Conducting clinical diagnostics trials, fluoride surveys, and academic publications of global repute.",
+      "cta_text": "Research Overview",
+      "cta_link": "/research",
+      "sort_order": 3,
+      "enabled": 1
+    }
+  ],
+  "announcements": [
+    {
+      "id": 1,
+      "title": "Admissions Open for BDS Programme 2026-27 - Apply via State Counselling",
+      "link": "/admissions",
+      "category": "NoticeBoard",
+      "date": "2026-05-27",
+      "is_new": 1,
+      "enabled": 1
+    },
+    {
+      "id": 2,
+      "title": "Academic Calendar for BDS Term Session 2026-2027 released",
+      "link": "/downloads",
+      "category": "StudentNotice",
+      "date": "2026-05-27",
+      "is_new": 1,
+      "enabled": 1
+    },
+    {
+      "id": 3,
+      "title": "Tender Notice: Procurement of High-End Dental Operative Microscopes",
+      "link": "/tenders",
+      "category": "NoticeBoard",
+      "date": "2026-05-27",
+      "is_new": 1,
+      "enabled": 1
+    },
+    {
+      "id": 4,
+      "title": "Anti-Ragging Committee Notification & Safe Helpline numbers",
+      "link": "/student-portal/anti-ragging",
+      "category": "Scrolling",
+      "date": "2026-05-27",
+      "is_new": 1,
+      "enabled": 1
+    },
+    {
+      "id": 5,
+      "title": "Free Mega Dental Camp organized in Dibrugarh Rural Centers on World Oral Health Day",
+      "link": "/news-events",
+      "category": "Scrolling",
+      "date": "2026-05-27",
+      "is_new": 0,
+      "enabled": 1
+    }
+  ],
+  "stats": [
+    {
+      "id": 1,
+      "label": "Established",
+      "value": "2018",
+      "icon": "Calendar",
+      "sort_order": 1
+    },
+    {
+      "id": 2,
+      "label": "BDS Annual Seats",
+      "value": "50",
+      "icon": "GraduationCap",
+      "sort_order": 2
+    },
+    {
+      "id": 3,
+      "label": "MDS Annual Seats",
+      "value": "18",
+      "icon": "Award",
+      "sort_order": 3
+    },
+    {
+      "id": 4,
+      "label": "Specialist Departments",
+      "value": "9",
+      "icon": "Layers",
+      "sort_order": 4
+    },
+    {
+      "id": 5,
+      "label": "Annual Hospital OPD",
+      "value": "45,000+",
+      "icon": "Activity",
+      "sort_order": 5
+    },
+    {
+      "id": 6,
+      "label": "Years of Excellence",
+      "value": "8",
+      "icon": "Star",
+      "sort_order": 6
+    }
+  ],
+  "departments": [
+    {
+      "id": "omr",
+      "name": "Oral Medicine & Radiology",
+      "banner_image": "https://images.unsplash.com/photo-1579684389782-64d84b5e905d?auto=format&fit=crop&w=1200&h=450&q=80",
+      "about": "Welcome to the Department of Oral Medicine & Radiology. We are dedicated to providing state-of-the-art dental clinical care alongside high-quality training and education for both undergraduate and postgraduate scholars. Specializing in oral diagnostics, advanced imaging (CBCT, digital radiography), and non-surgical management of head and neck conditions.",
+      "hod_name": "Dr. Ananya Sarma, MDS",
+      "hod_qualifications": "MDS (Oral Medicine & Radiology), PhD",
+      "hod_designation": "Professor & Head of Department",
+      "hod_photo": "https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&w=400&h=400&q=80",
+      "infrastructure": "Our department is equipped with modern dental chairs, digital radiography, specialized clinics, and dedicated student laboratories.",
+      "clinical_services": "Specialist consultation, therapeutic clinical services, minor surgical therapies, and follow-ups.",
+      "research_activities": "Active clinical trials, molecular research publications, and department-level thesis presentations.",
+      "contact_email": "dept.omr@gdcdibrugarh.edu.in",
+      "contact_phone": "+91 373 2300123 ext 381"
+    },
+    {
+      "id": "omfs",
+      "name": "Oral and Maxillofacial Surgery",
+      "banner_image": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&h=450&q=80",
+      "about": "Welcome to the Department of Oral and Maxillofacial Surgery. We are dedicated to providing state-of-the-art dental clinical care alongside high-quality training and education for both undergraduate and postgraduate scholars. Expert trauma, orthognathic, reconstructive surgery, cleft lip/palate repairs, and specialized minor surgical interventions.",
+      "hod_name": "Dr. Bikramjit Phukan, MDS",
+      "hod_qualifications": "MDS (Oral & Maxillofacial Surgery), FIOOMS",
+      "hod_designation": "Professor & Head of Department",
+      "hod_photo": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&h=400&q=80",
+      "infrastructure": "Our department is equipped with modern dental chairs, digital radiography, specialized clinics, and dedicated student laboratories.",
+      "clinical_services": "Specialist consultation, therapeutic clinical services, minor surgical therapies, and follow-ups.",
+      "research_activities": "Active clinical trials, molecular research publications, and department-level thesis presentations.",
+      "contact_email": "dept.omfs@gdcdibrugarh.edu.in",
+      "contact_phone": "+91 373 2300123 ext 144"
+    },
+    {
+      "id": "ompath",
+      "name": "Oral and Maxillofacial Pathology & Oral Microbiology",
+      "banner_image": "https://images.unsplash.com/photo-1532187643603-ba119ca4109e?auto=format&fit=crop&w=1200&h=450&q=80",
+      "about": "Welcome to the Department of Oral and Maxillofacial Pathology & Oral Microbiology. We are dedicated to providing state-of-the-art dental clinical care alongside high-quality training and education for both undergraduate and postgraduate scholars. Advanced diagnostics in histopathology, cytology, and microbial research covering systemic oral lesions.",
+      "hod_name": "Dr. Swapna Dutta, MDS",
+      "hod_qualifications": "MDS (Oral Pathology)",
+      "hod_designation": "Professor & Head of Department",
+      "hod_photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=400&q=80",
+      "infrastructure": "Our department is equipped with modern dental chairs, digital radiography, specialized clinics, and dedicated student laboratories.",
+      "clinical_services": "Specialist consultation, therapeutic clinical services, minor surgical therapies, and follow-ups.",
+      "research_activities": "Active clinical trials, molecular research publications, and department-level thesis presentations.",
+      "contact_email": "dept.ompath@gdcdibrugarh.edu.in",
+      "contact_phone": "+91 373 2300123 ext 659"
+    },
+    {
+      "id": "perio",
+      "name": "Periodontology",
+      "banner_image": "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1200&h=450&q=80",
+      "about": "Welcome to the Department of Periodontology. We are dedicated to providing state-of-the-art dental clinical care alongside high-quality training and education for both undergraduate and postgraduate scholars. Dedicated to gingival health, scaling, root planing, laser-guided periodontal surgeries, and advanced implantology.",
+      "hod_name": "Dr. Ranjit Konwar, MDS",
+      "hod_qualifications": "MDS (Periodontics), Laser Specialist",
+      "hod_designation": "Professor & Head of Department",
+      "hod_photo": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&h=400&q=80",
+      "infrastructure": "Our department is equipped with modern dental chairs, digital radiography, specialized clinics, and dedicated student laboratories.",
+      "clinical_services": "Specialist consultation, therapeutic clinical services, minor surgical therapies, and follow-ups.",
+      "research_activities": "Active clinical trials, molecular research publications, and department-level thesis presentations.",
+      "contact_email": "dept.perio@gdcdibrugarh.edu.in",
+      "contact_phone": "+91 373 2300123 ext 937"
+    },
+    {
+      "id": "community",
+      "name": "Community Dentistry",
+      "banner_image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&h=450&q=80",
+      "about": "Welcome to the Department of Community Dentistry. We are dedicated to providing state-of-the-art dental clinical care alongside high-quality training and education for both undergraduate and postgraduate scholars. Pioneering rural outreach, dental health camps, fluoride programs, and public health awareness across Dibrugarh district.",
+      "hod_name": "Dr. Deepjyoti Gogoi, MDS",
+      "hod_qualifications": "MDS (Public Health Dentistry)",
+      "hod_designation": "Professor & Head of Department",
+      "hod_photo": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=400&h=400&q=80",
+      "infrastructure": "Our department is equipped with modern dental chairs, digital radiography, specialized clinics, and dedicated student laboratories.",
+      "clinical_services": "Specialist consultation, therapeutic clinical services, minor surgical therapies, and follow-ups.",
+      "research_activities": "Active clinical trials, molecular research publications, and department-level thesis presentations.",
+      "contact_email": "dept.community@gdcdibrugarh.edu.in",
+      "contact_phone": "+91 373 2300123 ext 193"
+    },
+    {
+      "id": "conservative",
+      "name": "Conservative Dentistry & Endodontics",
+      "banner_image": "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1200&h=450&q=80",
+      "about": "Welcome to the Department of Conservative Dentistry & Endodontics. We are dedicated to providing state-of-the-art dental clinical care alongside high-quality training and education for both undergraduate and postgraduate scholars. Focusing on micro-endodontics, root canal therapy, aesthetic dental restorations, and veneers.",
+      "hod_name": "Dr. Himadri Borah, MDS",
+      "hod_qualifications": "MDS (Conservative Dentistry & Endodontics)",
+      "hod_designation": "Professor & Head of Department",
+      "hod_photo": "https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&w=400&h=400&q=80",
+      "infrastructure": "Our department is equipped with modern dental chairs, digital radiography, specialized clinics, and dedicated student laboratories.",
+      "clinical_services": "Specialist consultation, therapeutic clinical services, minor surgical therapies, and follow-ups.",
+      "research_activities": "Active clinical trials, molecular research publications, and department-level thesis presentations.",
+      "contact_email": "dept.conservative@gdcdibrugarh.edu.in",
+      "contact_phone": "+91 373 2300123 ext 140"
+    },
+    {
+      "id": "pediatric",
+      "name": "Pediatric & Preventive Dentistry",
+      "banner_image": "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=1200&h=450&q=80",
+      "about": "Welcome to the Department of Pediatric & Preventive Dentistry. We are dedicated to providing state-of-the-art dental clinical care alongside high-quality training and education for both undergraduate and postgraduate scholars. Creating child-friendly clinical settings, sealants, childhood dental care, and behavior management.",
+      "hod_name": "Dr. Moushumi Sen, MDS",
+      "hod_qualifications": "MDS (Pediatric Dentistry)",
+      "hod_designation": "Professor & Head of Department",
+      "hod_photo": "https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?auto=format&fit=crop&w=400&h=400&q=80",
+      "infrastructure": "Our department is equipped with modern dental chairs, digital radiography, specialized clinics, and dedicated student laboratories.",
+      "clinical_services": "Specialist consultation, therapeutic clinical services, minor surgical therapies, and follow-ups.",
+      "research_activities": "Active clinical trials, molecular research publications, and department-level thesis presentations.",
+      "contact_email": "dept.pediatric@gdcdibrugarh.edu.in",
+      "contact_phone": "+91 373 2300123 ext 108"
+    },
+    {
+      "id": "orthodontics",
+      "name": "Orthodontics & Dentofacial Orthopedics",
+      "banner_image": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&h=450&q=80",
+      "about": "Welcome to the Department of Orthodontics & Dentofacial Orthopedics. We are dedicated to providing state-of-the-art dental clinical care alongside high-quality training and education for both undergraduate and postgraduate scholars. Delivering dental alignment services, clear aligners, dynamic braces, and dentofacial growth modulation.",
+      "hod_name": "Dr. Saurav Kakoti, MDS",
+      "hod_qualifications": "MDS (Orthodontics)",
+      "hod_designation": "Professor & Head of Department",
+      "hod_photo": "https://images.unsplash.com/photo-1637059824899-a441006a6875?auto=format&fit=crop&w=400&h=400&q=80",
+      "infrastructure": "Our department is equipped with modern dental chairs, digital radiography, specialized clinics, and dedicated student laboratories.",
+      "clinical_services": "Specialist consultation, therapeutic clinical services, minor surgical therapies, and follow-ups.",
+      "research_activities": "Active clinical trials, molecular research publications, and department-level thesis presentations.",
+      "contact_email": "dept.orthodontics@gdcdibrugarh.edu.in",
+      "contact_phone": "+91 373 2300123 ext 338"
+    },
+    {
+      "id": "prosthodontics",
+      "name": "Prosthodontics & Crown & Bridge",
+      "banner_image": "https://images.unsplash.com/photo-1579684389782-64d84b5e905d?auto=format&fit=crop&w=1200&h=450&q=80",
+      "about": "Welcome to the Department of Prosthodontics & Crown & Bridge. We are dedicated to providing state-of-the-art dental clinical care alongside high-quality training and education for both undergraduate and postgraduate scholars. Focusing on complete/partial dentures, crown restoration, bridges, and advanced full-mouth implant rehabilitations.",
+      "hod_name": "Dr. Parag Saikia, MDS",
+      "hod_qualifications": "MDS (Prosthodontics)",
+      "hod_designation": "Professor & Head of Department",
+      "hod_photo": "https://images.unsplash.com/photo-1531590878845-12627191e687?auto=format&fit=crop&w=400&h=400&q=80",
+      "infrastructure": "Our department is equipped with modern dental chairs, digital radiography, specialized clinics, and dedicated student laboratories.",
+      "clinical_services": "Specialist consultation, therapeutic clinical services, minor surgical therapies, and follow-ups.",
+      "research_activities": "Active clinical trials, molecular research publications, and department-level thesis presentations.",
+      "contact_email": "dept.prosthodontics@gdcdibrugarh.edu.in",
+      "contact_phone": "+91 373 2300123 ext 840"
+    }
+  ],
+  "faculty": [
+    {
+      "id": 2,
+      "name": "Dr. Ramesh Chandra Das",
+      "photo_url": null,
+      "qualifications": "MDS (Prosthodontics)",
+      "designation": "Principal & Dean",
+      "specialization": "Implantology & Crown-Bridge",
+      "email": "dean.gdc@gdcdibrugarh.edu.in",
+      "publications": "Published over 10 national and international papers.",
+      "cv_url": null,
+      "department_id": "prosthodontics",
+      "sort_order": 1,
+      "is_teaching": 1
+    },
+    {
+      "id": 3,
+      "name": "Dr. Pranab Jyoti Baruah",
+      "photo_url": null,
+      "qualifications": "MDS (Oral & Maxillofacial Surgery)",
+      "designation": "Associate Professor & HOD",
+      "specialization": "Trauma & Cleft Reconstructions",
+      "email": "dept.omfs@gdcdibrugarh.edu.in",
+      "publications": "Published over 10 national and international papers.",
+      "cv_url": null,
+      "department_id": "omfs",
+      "sort_order": 2,
+      "is_teaching": 1
+    },
+    {
+      "id": 4,
+      "name": "Dr. Ananya Sarma",
+      "photo_url": null,
+      "qualifications": "MDS (Oral Medicine & Radiology), PhD",
+      "designation": "Professor & HOD",
+      "specialization": "CBCT Imaging & Oral Diagnostics",
+      "email": "dept.omr@gdcdibrugarh.edu.in",
+      "publications": "Published over 10 national and international papers.",
+      "cv_url": null,
+      "department_id": "omr",
+      "sort_order": 3,
+      "is_teaching": 1
+    },
+    {
+      "id": 5,
+      "name": "Dr. Swapna Dutta",
+      "photo_url": null,
+      "qualifications": "MDS (Oral Pathology)",
+      "designation": "Professor & HOD",
+      "specialization": "Oral Cancer Screening",
+      "email": "dept.ompath@gdcdibrugarh.edu.in",
+      "publications": "Published over 10 national and international papers.",
+      "cv_url": null,
+      "department_id": "ompath",
+      "sort_order": 4,
+      "is_teaching": 1
+    },
+    {
+      "id": 6,
+      "name": "Dr. Ranjit Konwar",
+      "photo_url": null,
+      "qualifications": "MDS (Periodontics)",
+      "designation": "Associate Professor",
+      "specialization": "Laser Periodontal Surgery",
+      "email": "dept.perio@gdcdibrugarh.edu.in",
+      "publications": "Published over 10 national and international papers.",
+      "cv_url": null,
+      "department_id": "perio",
+      "sort_order": 5,
+      "is_teaching": 1
+    }
+  ],
+  "news_events": [
+    {
+      "id": 1,
+      "title": "National Oral Health & Hygiene Workshop 2026",
+      "slug": "national-oral-health-workshop-2026",
+      "content": "GDC Dibrugarh successfully hosted the National Oral Health Workshop. The event saw participation from dental specialists across North-East India focusing on modern community outreach techniques, pediatric prophylaxis, and tea garden fluoride mapping.",
+      "date": "2026-06-15",
+      "time": "10:00 AM",
+      "venue": "College Main Auditorium",
+      "category": "Event",
+      "image_url": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80",
+      "attachment_url": null,
+      "is_featured": 1,
+      "status": "Published"
+    },
+    {
+      "id": 2,
+      "title": "Advanced CBCT Dental Imaging Wing Inaugurated",
+      "slug": "cbct-imaging-wing-inaugurated",
+      "content": "The Department of Oral Medicine & Radiology has officially inaugurated its new 3D Cone Beam Computed Tomography (CBCT) imaging suite. This facility will provide premium diagnostic accuracy for implant placements, root canal anatomies, and maxillofacial fractures at highly subsidized rates.",
+      "date": "2026-06-05",
+      "time": "11:30 AM",
+      "venue": "OPD Building Ground Floor",
+      "category": "News",
+      "image_url": "https://images.unsplash.com/photo-1579684389782-64d84b5e905d?auto=format&fit=crop&w=800&q=80",
+      "attachment_url": null,
+      "is_featured": 0,
+      "status": "Published"
+    },
+    {
+      "id": 3,
+      "title": "BDS Annual Term Exam Registration Dates Announced",
+      "slug": "bds-annual-term-exam-dates-2026",
+      "content": "Affiliating University (Dibrugarh University) has announced exam registration schedules for the BDS professional exams. Online forms can be submitted from June 12 onwards. Students must clear library dues before obtaining admit cards.",
+      "date": "2026-06-08",
+      "time": "09:00 AM",
+      "venue": "Academic Office Board",
+      "category": "Announcement",
+      "image_url": null,
+      "attachment_url": null,
+      "is_featured": 0,
+      "status": "Published"
+    }
+  ],
+  "tenders": [
+    {
+      "id": 1,
+      "title": "Tender for Supply of Preclinical Phantoms and Operational Dental Chairs",
+      "published_date": "2026-06-01",
+      "last_date": "2026-06-30",
+      "document_url": "#",
+      "status": "Active",
+      "is_new": 1
+    },
+    {
+      "id": 2,
+      "title": "Procurement of High-End Clinical Operating Microscopes for Endodontic Wing",
+      "published_date": "2026-06-04",
+      "last_date": "2026-06-25",
+      "document_url": "#",
+      "status": "Active",
+      "is_new": 1
+    }
+  ],
+  "downloads": [
+    {
+      "id": 1,
+      "title": "fefwsef",
+      "category": "Schedules",
+      "upload_date": "2026-05-29",
+      "file_url": "C:\\Users\\shahd\\Downloads",
+      "enabled": 1
+    }
+  ],
+  "gallery": [
+    {
+      "id": 1,
+      "album_name": "Smart Preclinical Lab",
+      "category": "Academic",
+      "image_url": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&h=400&q=80",
+      "is_video": 0,
+      "video_url": null
+    },
+    {
+      "id": 2,
+      "album_name": "OPD Clinical Theater",
+      "category": "Clinical",
+      "image_url": "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=600&h=400&q=80",
+      "is_video": 0,
+      "video_url": null
+    },
+    {
+      "id": 3,
+      "album_name": "Academic College Campus",
+      "category": "Infrastructure",
+      "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&h=400&q=80",
+      "is_video": 0,
+      "video_url": null
+    },
+    {
+      "id": 4,
+      "album_name": "College Cultural Festival",
+      "category": "Cultural",
+      "image_url": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&h=400&q=80",
+      "is_video": 0,
+      "video_url": null
+    }
+  ]
+}

@@ -1,25 +1,134 @@
-import sqlite3 from 'sqlite3';
-import { open, Database } from 'sqlite';
+import type { Database } from 'sqlite';
 import path from 'path';
 import bcrypt from 'bcryptjs';
+import fs from 'fs';
+
+// Try to dynamically load sqlite/sqlite3 only if NOT running in Vercel serverless environment
+let sqlite3: any = null;
+let sqliteOpen: any = null;
+
+if (!process.env.VERCEL) {
+  try {
+    sqlite3 = require('sqlite3');
+    sqliteOpen = require('sqlite').open;
+  } catch (err) {
+    console.warn("Failed to load native sqlite3. Falling back to JSON database reader.", err);
+  }
+}
 
 let dbInstance: Database | null = null;
+
+let fallbackData: any = null;
+
+function getFallbackData() {
+  if (fallbackData) return fallbackData;
+  try {
+    const filePath = path.join(process.cwd(), 'db', 'fallback_data.json');
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf8');
+      fallbackData = JSON.parse(content);
+    }
+  } catch (err) {
+    console.error("Failed to load fallback data:", err);
+  }
+  return fallbackData || {};
+}
+
+function fallbackAll(sql: string, params: any[] = []): any[] {
+  const data = getFallbackData();
+  const fromMatch = sql.match(/FROM\s+([a-zA-Z0-9_]+)/i);
+  if (!fromMatch) return [];
+  const table = fromMatch[1].toLowerCase();
+  let rows = data[table] || [];
+
+  // Implement simple filters
+  if (sql.includes('WHERE id = ?') || sql.includes('WHERE id=?')) {
+    const val = params[0];
+    rows = rows.filter((r: any) => String(r.id) === String(val));
+  } else if (sql.includes('WHERE key = ?') || sql.includes('WHERE key=?')) {
+    const val = params[0];
+    rows = rows.filter((r: any) => String(r.key) === String(val));
+  } else if (sql.includes('WHERE department_id = ?') || sql.includes('WHERE department_id=?')) {
+    const val = params[0];
+    rows = rows.filter((r: any) => String(r.department_id) === String(val));
+  } else if (sql.includes('WHERE username = ?') || sql.includes('WHERE username=?')) {
+    const val = params[0];
+    rows = rows.filter((r: any) => String(r.username) === String(val));
+  } else if (sql.includes('WHERE category = ?') || sql.includes('WHERE category=?')) {
+    const val = params[0];
+    rows = rows.filter((r: any) => String(r.category) === String(val));
+  }
+
+  // Count matches
+  if (sql.toLowerCase().includes('count(*)')) {
+    let filteredRows = [...rows];
+    if (sql.includes("status = 'New'")) {
+      filteredRows = filteredRows.filter((r: any) => r.status === 'New');
+    }
+    if (sql.includes("status = 'Active'")) {
+      filteredRows = filteredRows.filter((r: any) => r.status === 'Active');
+    }
+    if (sql.includes("enabled = 1")) {
+      filteredRows = filteredRows.filter((r: any) => r.enabled === 1 || r.enabled === '1');
+    }
+    return [{ count: filteredRows.length }];
+  }
+
+  // Order sorting
+  if (sql.toLowerCase().includes('order by sort_order')) {
+    rows = [...rows].sort((a, b) => (Number(a.sort_order) || 0) - (Number(b.sort_order) || 0));
+  } else if (sql.toLowerCase().includes('order by timestamp desc')) {
+    rows = [...rows].sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+  }
+
+  // Limit support
+  const limitMatch = sql.match(/LIMIT\s+(\d+)/i);
+  if (limitMatch) {
+    const limit = parseInt(limitMatch[1], 10);
+    rows = rows.slice(0, limit);
+  }
+
+  return rows;
+}
+
+function createFallbackDb(): Database {
+  return {
+    all: async (sql: string, params: any[] = []) => {
+      return fallbackAll(sql, params);
+    },
+    get: async (sql: string, params: any[] = []) => {
+      const rows = fallbackAll(sql, params);
+      return rows.length > 0 ? rows[0] : null;
+    },
+    run: async (sql: string, params: any[] = []) => {
+      return { changes: 0, lastID: 0 };
+    },
+    exec: async (sql: string) => {
+      return;
+    }
+  } as unknown as Database;
+}
 
 export async function getDb(): Promise<Database> {
   if (dbInstance) {
     return dbInstance;
   }
 
+  // If we are in Vercel or native sqlite failed to load, return mock fallback db
+  if (!sqlite3 || !sqliteOpen) {
+    dbInstance = createFallbackDb();
+    return dbInstance;
+  }
+
   const dbPath = path.join(process.cwd(), 'db', 'govclg.sqlite');
   
   // Ensure the directory exists
-  const fs = require('fs');
   const dir = path.dirname(dbPath);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
 
-  dbInstance = await open({
+  dbInstance = await sqliteOpen({
     filename: dbPath,
     driver: sqlite3.Database,
   });
