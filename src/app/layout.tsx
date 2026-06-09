@@ -1,25 +1,13 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Poppins, Source_Sans_3 } from "next/font/google";
+import { Lora } from "next/font/google";
 import "./globals.css";
 import { LayoutClientWrapper } from "./LayoutClientWrapper";
 
-const playfair = Playfair_Display({
+const lora = Lora({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-playfair",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-poppins",
-});
-
-const sourceSans = Source_Sans_3({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-source-sans",
+  variable: "--font-lora",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${poppins.variable} ${sourceSans.variable}`}>
+    <html lang="en" className={`${lora.variable}`}>
       <body className="antialiased">
         <LayoutClientWrapper>
           {children}

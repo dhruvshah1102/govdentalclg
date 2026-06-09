@@ -15,17 +15,13 @@
 }
 
 body {
-  font-family: var(--font-source-sans), 'Source Sans 3', 'Noto Sans', sans-serif;
+  font-family: var(--font-lora), Georgia, 'Times New Roman', serif;
   background-color: var(--bg-main);
   color: var(--text-main);
 }
 
-h1, h2, h3, h4, h5, h6, .font-serif {
-  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
-}
-
-.font-ui, button, nav, .font-sans {
-  font-family: var(--font-poppins), 'Poppins', sans-serif;
+h1, h2, h3, h4, h5, h6, .font-serif, .font-ui, button, nav, .font-sans {
+  font-family: var(--font-lora), Georgia, 'Times New Roman', serif;
 }
 
 /* Accessibility - High Contrast Mode overrides */
@@ -136,3 +132,23 @@ h1, h2, h3, h4, h5, h6, .font-serif {
   visibility: visible;
   transform: translateY(0);
 }
+
+/* Global Accessibility & Responsive Safeguards */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe, embed, object {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  table {
+    display: block;
+    width: 100% !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+

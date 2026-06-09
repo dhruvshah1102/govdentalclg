@@ -70,7 +70,7 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
 
   const insertGreenBox = () => {
     const boxHtml = `
-      <div style="background-color: #EBFDF5; border: 1px solid #A7F3D0; border-radius: 8px; padding: 16px; margin: 15px 0; font-family: sans-serif;">
+      <div style="background-color: #EBFDF5; border: 1px solid #A7F3D0; border-radius: 8px; padding: 16px; margin: 15px 0;">
         <strong style="color: #065F46; font-size: 13px;">✔ Key Facts: Program Overview</strong>
         <ul style="color: #047857; padding-left: 16px; margin-top: 8px; list-style-type: disc;">
           <li><strong>Intake Capacity:</strong> 50 Students</li>
@@ -84,7 +84,7 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
 
   const insertRedAlert = () => {
     const boxHtml = `
-      <div style="background-color: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px; padding: 16px; margin: 15px 0; font-family: sans-serif;">
+      <div style="background-color: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px; padding: 16px; margin: 15px 0;">
         <strong style="color: #991B1B; font-size: 13px;">⚠ Strict Regulatory Warning: Compliance Policy</strong>
         <p style="color: #7F1D1D; margin-top: 6px; font-size: 12px; line-height: 1.5; margin-bottom: 0;">
           Ragging is completely banned on campus. Under UGC & DCI guidelines, any student found guilty of ragging or abetting ragging is liable for immediate expulsion and legal prosecution.
@@ -96,7 +96,7 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
 
   const insertFactSheet = () => {
     const sheetHtml = `
-      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 16px; margin: 15px 0; font-family: sans-serif; display: flex; flex-direction: column; gap: 8px;">
+      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 16px; margin: 15px 0; display: flex; flex-direction: column; gap: 8px;">
         <div style="font-weight: bold; color: #0A1F44; font-size: 13px; border-bottom: 1px solid #E2E8F0; padding-bottom: 6px;">📋 Academic Specifications</div>
         <div style="display: flex; justify-content: space-between; font-size: 12px; border-bottom: 1px dashed #E2E8F0; padding: 4px 0;">
           <span style="color: #64748B;">Degree Name:</span>
@@ -110,7 +110,7 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
           <span style="color: #64748B;">Selection Merits:</span>
           <strong style="color: #0F172A;">NEET-UG Examination</strong>
         </div>
-        <div style="display: flex; justify-content: space-between; font-size: 12px; padding-top: 4px;">
+        <div style="display: flex; justify-content: justify-content; font-size: 12px; padding-top: 4px;">
           <span style="color: #64748B;">University Affiliation:</span>
           <strong style="color: #0F172A;">Dibrugarh University, Assam</strong>
         </div>
@@ -121,7 +121,7 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
 
   const insertAccordion = () => {
     const faqHtml = `
-      <details style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 12px 16px; margin: 10px 0; font-family: sans-serif; cursor: pointer;">
+      <details style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 12px 16px; margin: 10px 0; cursor: pointer;">
         <summary style="font-weight: 600; color: #0A1F44; font-size: 13px; outline: none; list-style: none;">
           ❓ Accordion/Policy Question: Click here to expand
         </summary>
@@ -135,7 +135,7 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
 
   const insertChecklist = () => {
     const checkHtml = `
-      <ul style="list-style-type: none; padding-left: 0; margin: 15px 0; font-family: sans-serif;">
+      <ul style="list-style-type: none; padding-left: 0; margin: 15px 0;">
         <li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 12px; color: #334155;">
           <span style="color: #10B981; font-weight: bold;">✔</span>
           <span><strong>DCI Accreditation</strong>: Recognized for standard academic practices.</span>
