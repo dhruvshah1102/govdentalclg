@@ -93,6 +93,17 @@ export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ sett
   const dynamicOpdHtml = settings['opd_services_html'];
   const dynamicChargesHtml = settings['hospital_charges_html'];
 
+  // Helper to verify if dynamic HTML actually has user content
+  const hasContent = (html: string | null | undefined): boolean => {
+    if (!html) return false;
+    const cleanText = html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+    const hasMedia = html.includes('<img') || html.includes('<iframe') || html.includes('<table') || html.includes('<details');
+    return cleanText.length > 0 || hasMedia;
+  };
+
+  const showOpdHtml = dynamicOpdHtml && hasContent(dynamicOpdHtml);
+  const showChargesHtml = dynamicChargesHtml && hasContent(dynamicChargesHtml);
+
   return (
     <div className="space-y-6 font-sans">
       
@@ -142,7 +153,7 @@ export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ sett
               <Clock className="text-[#D4870A]" size={18} /> Outpatient Department (OPD) Rosters
             </h3>
             
-            {dynamicOpdHtml ? (
+            {showOpdHtml ? (
               <div 
                 className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans mt-4"
                 dangerouslySetInnerHTML={{ __html: dynamicOpdHtml }}
@@ -359,7 +370,7 @@ export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ sett
               <FileText className="text-[#0A1F44]" size={18} /> Government Subsidized Dental Treatment Fees
             </h3>
             
-            {dynamicChargesHtml ? (
+            {showChargesHtml ? (
               <div 
                 className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans mt-4"
                 dangerouslySetInnerHTML={{ __html: dynamicChargesHtml }}

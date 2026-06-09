@@ -138,9 +138,13 @@ export const FacultyDirectoryClient: React.FC<FacultyDirectoryClientProps> = ({
               className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm hover:border-[#1B5E3B] hover:shadow-md transition flex flex-col justify-between"
             >
               <div>
-                {/* Visual Avatar fallback */}
-                <div className="h-20 w-20 rounded-full bg-gradient-to-tr from-[#0A1F44] to-[#1B5E3B] flex items-center justify-center text-white font-serif font-bold text-xl shadow mb-4">
-                  {f.name.split(' ').filter(n => n !== 'Dr.' && n !== 'Sri' && n !== 'Smt')[0]?.charAt(0) || 'U'}
+                {/* Visual Avatar fallback or real photo */}
+                <div className="h-20 w-20 rounded-full bg-gradient-to-tr from-[#0A1F44] to-[#1B5E3B] overflow-hidden shadow mb-4 flex items-center justify-center text-white font-serif font-bold text-xl">
+                  {f.photo_url && !f.photo_url.includes('placeholders') ? (
+                    <img src={f.photo_url} alt={f.name} className="h-full w-full object-cover" />
+                  ) : (
+                    f.name.split(' ').filter(n => n !== 'Dr.' && n !== 'Sri' && n !== 'Smt')[0]?.charAt(0) || 'U'
+                  )}
                 </div>
                 
                 <span className={`inline-block text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded mb-2 ${

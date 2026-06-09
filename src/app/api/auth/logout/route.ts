@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getCookieConfig, getSession } from '@/lib/auth';
 import { getDb } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+
+
 export async function POST(req: NextRequest) {
   try {
     const session = getSession(req);

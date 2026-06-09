@@ -291,9 +291,19 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     const savedFont = localStorage.getItem('gdch_font') as FontScale;
     if (savedFont) setFontScale(savedFont);
 
-    const savedContrast = localStorage.getItem('gdch_contrast') === 'true';
-    setIsHighContrast(savedContrast);
+    // Dark mode/high contrast is removed, force it to false
+    setIsHighContrast(false);
   }, []);
+
+  // Sync fontScale with document root font-size
+  useEffect(() => {
+    let size = '16px';
+    if (fontScale === 'sm') size = '14px';
+    if (fontScale === 'lg') size = '18px';
+    if (typeof document !== 'undefined') {
+      document.documentElement.style.fontSize = size;
+    }
+  }, [fontScale]);
 
   const changeLanguage = (lang: Language) => {
     setLanguage(lang);
@@ -306,21 +316,15 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   };
 
   const toggleContrast = () => {
-    setIsHighContrast((prev) => {
-      const newVal = !prev;
-      localStorage.setItem('gdch_contrast', String(newVal));
-      return newVal;
-    });
+    // Dark mode / high contrast toggle is disabled
   };
 
   const t = (key: string): string => {
     return translations[language][key] || translations['en'][key] || key;
   };
 
-  // Compute CSS classes based on accessibility selections
-  let fontClass = 'text-[16px]';
-  if (fontScale === 'sm') fontClass = 'text-[14px]';
-  if (fontScale === 'lg') fontClass = 'text-[18px]';
+  // Base font class is standard text-base (1rem), which scales relative to root font-size
+  const fontClass = 'text-base';
 
   return (
     <UIContext.Provider

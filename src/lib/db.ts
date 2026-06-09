@@ -258,10 +258,10 @@ async function initTables(db: Database) {
       dean_name: 'Dr. Ramesh Chandra Das, MDS',
       dean_designation: 'Principal & Dean',
       dean_message: 'Welcome to GDC Dibrugarh. Since our inception, we have strived to build a powerhouse of academic excellence and top-tier patient care. Our state-of-the-art clinics, dedicated faculty, and vibrant student body are the pillars of our prestige.',
-      dean_photo: '/assets/placeholders/dean.jpg',
+      dean_photo: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&h=400&q=80',
       superintendent_name: 'Dr. Pranab Jyoti Baruah, MDS',
       superintendent_message: 'Our hospital wing offers comprehensive clinical diagnostics and treatments spanning all major specialities. We serve hundreds of patients daily with empathy and technical excellence.',
-      superintendent_photo: '/assets/placeholders/superintendent.jpg',
+      superintendent_photo: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&h=400&q=80',
       google_map_embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3539.5103445582313!2d94.89679237617173!3d27.48443917631165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374097e3f8905bbf%3A0xc48de1786c57f0eb!2sAssam%20Medical%20College!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin',
       new_badge_days: '7'
     };
@@ -340,7 +340,47 @@ async function initTables(db: Database) {
       }
     ];
 
+    const deptsImages: Record<string, { banner: string; hod: string }> = {
+      omr: {
+        banner: 'https://images.unsplash.com/photo-1579684389782-64d84b5e905d?auto=format&fit=crop&w=1200&h=450&q=80',
+        hod: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&w=400&h=400&q=80'
+      },
+      omfs: {
+        banner: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&h=450&q=80',
+        hod: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&h=400&q=80'
+      },
+      ompath: {
+        banner: 'https://images.unsplash.com/photo-1532187643603-ba119ca4109e?auto=format&fit=crop&w=1200&h=450&q=80',
+        hod: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=400&q=80'
+      },
+      perio: {
+        banner: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1200&h=450&q=80',
+        hod: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&h=400&q=80'
+      },
+      community: {
+        banner: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&h=450&q=80',
+        hod: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=400&h=400&q=80'
+      },
+      conservative: {
+        banner: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1200&h=450&q=80',
+        hod: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&w=400&h=400&q=80'
+      },
+      pediatric: {
+        banner: 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=1200&h=450&q=80',
+        hod: 'https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?auto=format&fit=crop&w=400&h=400&q=80'
+      },
+      orthodontics: {
+        banner: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&h=450&q=80',
+        hod: 'https://images.unsplash.com/photo-1637059824899-a441006a6875?auto=format&fit=crop&w=400&h=400&q=80'
+      },
+      prosthodontics: {
+        banner: 'https://images.unsplash.com/photo-1579684389782-64d84b5e905d?auto=format&fit=crop&w=1200&h=450&q=80',
+        hod: 'https://images.unsplash.com/photo-1531590878845-12627191e687?auto=format&fit=crop&w=400&h=400&q=80'
+      }
+    };
+
     for (const d of defaultDepts) {
+      const img = deptsImages[d.id] || { banner: '', hod: '' };
       await db.run(
         `INSERT INTO departments (
           id, name, banner_image, about, 
@@ -350,12 +390,12 @@ async function initTables(db: Database) {
         [
           d.id,
           d.name,
-          `/assets/placeholders/depts/${d.id}_banner.jpg`,
+          img.banner,
           `Welcome to the Department of ${d.name}. We are dedicated to providing state-of-the-art dental clinical care alongside high-quality training and education for both undergraduate and postgraduate scholars. ${d.desc}`,
           d.hod,
           d.qual,
           'Professor & Head of Department',
-          `/assets/placeholders/faculty/${d.id}_hod.jpg`,
+          img.hod,
           'Our department is equipped with modern dental chairs, digital radiography, specialized clinics, and dedicated student laboratories.',
           'Specialist consultation, therapeutic clinical services, minor surgical therapies, and follow-ups.',
           'Active clinical trials, molecular research publications, and department-level thesis presentations.',

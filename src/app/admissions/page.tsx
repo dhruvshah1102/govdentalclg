@@ -29,6 +29,17 @@ export default async function AdmissionsPage() {
   const admissionsHtml = settings['bds_admissions_html'];
   const hostelHtml = settings['hostel_accommodations_html'];
 
+  // Helper to verify if dynamic HTML actually has user content
+  const hasContent = (html: string | null | undefined): boolean => {
+    if (!html) return false;
+    const cleanText = html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+    const hasMedia = html.includes('<img') || html.includes('<iframe') || html.includes('<table') || html.includes('<details');
+    return cleanText.length > 0 || hasMedia;
+  };
+
+  const showAdmissionsHtml = admissionsHtml && hasContent(admissionsHtml);
+  const showHostelHtml = hostelHtml && hasContent(hostelHtml);
+
   return (
     <div className="bg-gray-50 min-h-screen py-10 px-4 md:px-8 font-sans">
       <div className="max-w-6xl mx-auto">
@@ -65,7 +76,7 @@ export default async function AdmissionsPage() {
                 <GraduationCap className="text-[#D4870A]" size={20} /> BDS Course Outline & Seat Allocations
               </h3>
               
-              {admissionsHtml ? (
+              {showAdmissionsHtml ? (
                 <div 
                   className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans mt-4"
                   dangerouslySetInnerHTML={{ __html: admissionsHtml }}
@@ -142,7 +153,7 @@ export default async function AdmissionsPage() {
                 <Bed className="text-[#0A1F44]" size={20} /> Hostel Accommodations
               </h3>
               
-              {hostelHtml ? (
+              {showHostelHtml ? (
                 <div 
                   className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans mt-4"
                   dangerouslySetInnerHTML={{ __html: hostelHtml }}

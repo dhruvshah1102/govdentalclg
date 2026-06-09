@@ -53,6 +53,16 @@ export default async function AcademicsSubPage({ params }: PageProps) {
 
   const dynamicHtml = dbHtmlKey ? settings[dbHtmlKey] : null;
 
+  // Helper to verify if dynamic HTML actually has user content
+  const hasContent = (html: string | null | undefined): boolean => {
+    if (!html) return false;
+    const cleanText = html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+    const hasMedia = html.includes('<img') || html.includes('<iframe') || html.includes('<table') || html.includes('<details');
+    return cleanText.length > 0 || hasMedia;
+  };
+
+  const showDynamicHtml = dynamicHtml && hasContent(dynamicHtml);
+
   return (
     <div className="bg-gray-50 min-h-screen py-10 px-4 md:px-8">
       <div className="max-w-5xl mx-auto">
@@ -79,7 +89,7 @@ export default async function AcademicsSubPage({ params }: PageProps) {
 
           {/* PAGE CONTENT RENDERING */}
 
-          {dynamicHtml ? (
+          {showDynamicHtml ? (
             <div 
               className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans space-y-4"
               dangerouslySetInnerHTML={{ __html: dynamicHtml }}
@@ -90,7 +100,7 @@ export default async function AcademicsSubPage({ params }: PageProps) {
               {page === 'bds' && (
                 <div className="space-y-6 font-sans text-xs md:text-sm text-gray-700 leading-relaxed">
                   <p>
-                    The **Bachelor of Dental Surgery (BDS)** is a premier undergraduate professional program of 5 years duration (4 years academic coursework + 1 year mandatory rotating internship). It is affiliated to **Dibrugarh University** and recognized by the **Dental Council of India (DCI)**.
+                    The **Bachelor of Dental Surgery (BDS)** is a premier undergraduate professional program of 5 years' duration (4 years academic coursework + 1 year mandatory rotating internship). It is affiliated with **Dibrugarh University** and recognized by the **Dental Council of India (DCI)**.
                   </p>
 
                   <div className="bg-emerald-50 border border-emerald-200 p-4 rounded text-xs flex gap-3 text-[#2D2D2D]">
@@ -106,13 +116,13 @@ export default async function AcademicsSubPage({ params }: PageProps) {
                   <h3 className="font-serif text-lg font-bold text-[#0A1F44] pt-4">Eligibility Criteria</h3>
                   <ul className="space-y-2 list-disc pl-5">
                     <li>Candidate must have completed 17 years of age on or before 31st December of the admission year.</li>
-                    <li>Must have passed 10+2 Higher Secondary with Physics, Chemistry, Biology, and English individually, securing at least 50% cumulative marks (40% for SC/ST/OBC categories).</li>
+                    <li>Must have passed 10+2 Higher Secondary with Physics, Chemistry, Biology, and English individually, securing at least 50% aggregate marks in Physics, Chemistry, and Biology (40% for SC/ST/OBC categories).</li>
                     <li>Must have qualified the national level NEET-UG conducted by NTA in the current academic session.</li>
                   </ul>
 
                   <h3 className="font-serif text-lg font-bold text-[#0A1F44] pt-4">BDS Syllabus Overview</h3>
                   <p>
-                    The curriculum follows the strict guidelines of the DCI, covering basic medical sciences (Anatomy, Physiology, Biochemistry, Pharmacology, General Pathology, Microbiology) alongside dental sciences (Dental Anatomy, Histology, Oral Pathology, Conservative Dentistry, Prosthodontics, Orthodontics, Periodontics, Pedodontics, and Oral & Maxillofacial Surgery) inside extensive preclinical labs and clinical clinics.
+                    The curriculum follows the strict guidelines of the DCI, covering basic medical sciences (Anatomy, Physiology, Biochemistry, Pharmacology, General Pathology, Microbiology) alongside dental sciences (Dental Anatomy, Histology, Oral Pathology, Conservative Dentistry, Prosthodontics, Orthodontics, Periodontics, Pedodontics, and Oral & Maxillofacial Surgery) inside extensive preclinical laboratories and clinical postings.
                   </p>
 
                   <div className="pt-6 border-t border-gray-100 flex flex-wrap gap-4">
@@ -130,7 +140,7 @@ export default async function AcademicsSubPage({ params }: PageProps) {
               {page === 'mds' && (
                 <div className="space-y-6 font-sans text-xs md:text-sm text-gray-700 leading-relaxed">
                   <p>
-                    The **Master of Dental Surgery (MDS)** is a highly specialized postgraduate professional program of 3 years duration. GDC Dibrugarh is actively expanding its academic capacities to support 18 PG seats across various core clinical specialities.
+                    The **Master of Dental Surgery (MDS)** is a highly specialized postgraduate professional program of 3 years' duration. GDC Dibrugarh is actively expanding its academic capacities to support 18 PG seats across various core clinical specialties.
                   </p>
 
                   <div className="bg-amber-50 border border-amber-200 p-4 rounded text-xs flex gap-3 text-[#2D2D2D]">
@@ -150,7 +160,7 @@ export default async function AcademicsSubPage({ params }: PageProps) {
 
                   <h3 className="font-serif text-lg font-bold text-[#0A1F44] pt-4">Residency Requirements</h3>
                   <p>
-                    Residency program demands rigorous clinical rotations, publication of research-vetted papers, presenting scientific paper/posters, and submitting a detailed experimental research thesis before final examinations.
+                    The residency program demands rigorous clinical rotations, publication of peer-reviewed papers, presentation of scientific papers/posters, and submission of a detailed research thesis before final examinations.
                   </p>
                 </div>
               )}

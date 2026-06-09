@@ -21,6 +21,17 @@ export default async function ResearchPage() {
   const researchHtml = settings['research_overview_html'];
   const ethicalHtml = settings['ethical_committee_html'];
 
+  // Helper to verify if dynamic HTML actually has user content
+  const hasContent = (html: string | null | undefined): boolean => {
+    if (!html) return false;
+    const cleanText = html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+    const hasMedia = html.includes('<img') || html.includes('<iframe') || html.includes('<table') || html.includes('<details');
+    return cleanText.length > 0 || hasMedia;
+  };
+
+  const showResearchHtml = researchHtml && hasContent(researchHtml);
+  const showEthicalHtml = ethicalHtml && hasContent(ethicalHtml);
+
   return (
     <div className="bg-gray-50 min-h-screen py-10 px-4 md:px-8 font-sans">
       <div className="max-w-6xl mx-auto">
@@ -57,7 +68,7 @@ export default async function ResearchPage() {
                 <Globe className="text-[#D4870A]" size={20} /> Research Oversight & Ethics
               </h3>
               
-              {researchHtml ? (
+              {showResearchHtml ? (
                 <div 
                   className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans mt-4"
                   dangerouslySetInnerHTML={{ __html: researchHtml }}
@@ -142,7 +153,7 @@ export default async function ResearchPage() {
             <div className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
               <h4 className="font-serif text-base font-bold text-[#0A1F44] border-b border-gray-100 pb-2 mb-4">Ethical Committee</h4>
               
-              {ethicalHtml ? (
+              {showEthicalHtml ? (
                 <div 
                   className="text-xs text-gray-600 leading-relaxed font-sans"
                   dangerouslySetInnerHTML={{ __html: ethicalHtml }}

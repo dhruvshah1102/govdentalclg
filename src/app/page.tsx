@@ -27,7 +27,7 @@ export default async function HomePage() {
   const finalSlides = slides.length > 0 ? slides : [
     {
       id: 1,
-      image_url: '/assets/placeholders/hero_1.jpg',
+      image_url: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=80',
       title: 'Excellence in Dental Pedagogy & Tertiary Healthcare',
       subtitle: 'Recognized by the Dental Council of India (DCI) and providing clinical teaching for advanced oral surgeries and conservative dentistry.',
       cta_text: 'Explore Academics',
@@ -35,7 +35,7 @@ export default async function HomePage() {
     },
     {
       id: 2,
-      image_url: '/assets/placeholders/hero_2.jpg',
+      image_url: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1600&q=80',
       title: 'Advanced Diagnostic & Clinical Patient OPD Care',
       subtitle: 'Equipped with digital radiography, specialized cosmetic clinics, and trauma surgeries serving Upper Assam.',
       cta_text: 'OPD Schedule & Registration',
@@ -43,7 +43,7 @@ export default async function HomePage() {
     },
     {
       id: 3,
-      image_url: '/assets/placeholders/hero_3.jpg',
+      image_url: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80',
       title: 'State of the Art Research & Outreach Programs',
       subtitle: 'Empowering communities through rural dental health programs, clinical diagnostic research, and collaborative studies.',
       cta_text: 'Active Tenders & News',
@@ -129,8 +129,12 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-            <div className="h-12 w-12 rounded-full bg-gradient-to-tr from-[#0A1F44] to-[#1B5E3B] flex items-center justify-center text-white font-serif font-bold text-lg overflow-hidden border border-gray-200 shadow-sm">
-              DEAN
+            <div className="h-12 w-12 rounded-full bg-gradient-to-tr from-[#0A1F44] to-[#1B5E3B] overflow-hidden border border-gray-200 shadow-sm flex items-center justify-center text-white font-serif font-bold text-xs">
+              {settings.dean_photo && !settings.dean_photo.includes('placeholders') ? (
+                <img src={settings.dean_photo} alt="Principal & Dean" className="h-full w-full object-cover" />
+              ) : (
+                'DEAN'
+              )}
             </div>
             <div>
               <span className="text-[10px] text-gray-400 font-semibold block uppercase">AUTOGRAPH SIGNED</span>
@@ -192,7 +196,7 @@ export default async function HomePage() {
       </section>
 
       {/* Clinical Departments Section */}
-      <section className="py-12 md:py-16 px-4 md:px-8 max-w-7xl mx-auto">
+      <section id="specialties" className="py-12 md:py-16 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <span className="text-[10px] bg-[#1B5E3B]/5 text-[#1B5E3B] font-bold uppercase tracking-widest px-3 py-1 rounded">Our Specialties</span>
           <h2 className="font-serif text-2xl md:text-3xl font-extrabold text-[#0A1F44] mt-3.5 mb-2.5 tracking-tight">

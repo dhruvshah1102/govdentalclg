@@ -45,7 +45,15 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
         </div>
 
         {/* Banner Hero Card */}
-        <div className="bg-gradient-to-r from-[#0A1F44] to-[#1B5E3B] text-white rounded-lg p-8 md:p-12 mb-8 shadow relative overflow-hidden">
+        {/* Banner Hero Card */}
+        <div 
+          className="bg-gradient-to-r from-[#0A1F44] to-[#1B5E3B] text-white rounded-lg p-8 md:p-12 mb-8 shadow relative overflow-hidden bg-cover bg-center"
+          style={{
+            backgroundImage: department.banner_image && !department.banner_image.includes('placeholders')
+              ? `url(${department.banner_image})`
+              : undefined
+          }}
+        >
           <div className="relative z-10 max-w-3xl">
             <span className="inline-block bg-[#D4870A] text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3.5 rounded mb-4 shadow">
               Clinical Speciality
@@ -58,7 +66,7 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
             </p>
           </div>
           {/* Overlay graphics */}
-          <div className="absolute inset-0 bg-black/35"></div>
+          <div className="absolute inset-0 bg-black/55"></div>
           <svg className="absolute right-0 bottom-0 opacity-15 text-white h-48 w-48" fill="currentColor" viewBox="0 0 100 100">
             <circle cx="80%" cy="80%" r="50%" fill="none" stroke="white" strokeWidth="2" />
             <circle cx="80%" cy="80%" r="35%" fill="none" stroke="white" strokeWidth="1" />
@@ -162,8 +170,12 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
               <span className="text-[9px] bg-[#D4870A]/5 text-[#D4870A] font-bold uppercase tracking-widest px-3 py-1 rounded">
                 Head of Department
               </span>
-              <div className="h-28 w-28 rounded-full bg-gradient-to-tr from-[#0A1F44] to-[#1B5E3B] mx-auto flex items-center justify-center text-white font-serif font-bold text-2xl shadow border-2 border-white mb-4 mt-6">
-                HOD
+              <div className="h-28 w-28 rounded-full bg-gradient-to-tr from-[#0A1F44] to-[#1B5E3B] mx-auto overflow-hidden shadow border-2 border-white mb-4 mt-6 flex items-center justify-center text-white font-serif font-bold text-2xl">
+                {department.hod_photo && !department.hod_photo.includes('placeholders') ? (
+                  <img src={department.hod_photo} alt="HOD Portrait" className="h-full w-full object-cover" />
+                ) : (
+                  'HOD'
+                )}
               </div>
               <h4 className="font-serif text-base font-bold text-[#0A1F44]">{department.hod_name || 'Specialist Professor'}</h4>
               <p className="text-[10px] text-[#1B5E3B] font-bold uppercase tracking-wider font-ui mt-1">{department.hod_designation || 'Professor & Head'}</p>

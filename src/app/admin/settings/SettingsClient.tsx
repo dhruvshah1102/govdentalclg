@@ -475,17 +475,34 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
           </h3>
           
           <div className="space-y-4">
-            <div>
-              <label className="text-gray-500 font-bold uppercase text-[10px] block mb-1">Select Page to Edit</label>
-              <select
-                value={selectedPage}
-                onChange={(e) => setSelectedPage(e.target.value)}
-                className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition cursor-pointer font-bold"
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div className="flex-1">
+                <label className="text-gray-500 font-bold uppercase text-[10px] block mb-1">Select Page to Edit</label>
+                <select
+                  value={selectedPage}
+                  onChange={(e) => setSelectedPage(e.target.value)}
+                  className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition cursor-pointer font-bold"
+                >
+                  {pageKeys.map((item) => (
+                    <option key={item.key} value={item.key}>{item.label}</option>
+                  ))}
+                </select>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (window.confirm("Are you sure you want to reset this page's content back to the default layout and text? All custom styling, tables, and text saved for this page will be cleared.")) {
+                    setFormData((prev) => ({ ...prev, [selectedPage]: '' }));
+                    if (editorRef.current) {
+                      editorRef.current.innerHTML = '';
+                    }
+                  }
+                }}
+                className="bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold border border-rose-200 py-2.5 px-4 rounded transition shadow-sm flex items-center justify-center gap-1.5 text-xs font-ui shrink-0"
+                title="Clear custom HTML override and restore default page template"
               >
-                {pageKeys.map((item) => (
-                  <option key={item.key} value={item.key}>{item.label}</option>
-                ))}
-              </select>
+                🗑 Reset to Default Content
+              </button>
             </div>
 
             <div>

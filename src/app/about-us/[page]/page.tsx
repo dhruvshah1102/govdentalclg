@@ -60,6 +60,16 @@ export default async function AboutUsSubPage({ params }: PageProps) {
   // Check if admin has customized this page's HTML content in database settings
   const dynamicHtml = dbHtmlKey ? settings[dbHtmlKey] : null;
 
+  // Helper to verify if dynamic HTML actually has user content
+  const hasContent = (html: string | null | undefined): boolean => {
+    if (!html) return false;
+    const cleanText = html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+    const hasMedia = html.includes('<img') || html.includes('<iframe') || html.includes('<table') || html.includes('<details');
+    return cleanText.length > 0 || hasMedia;
+  };
+
+  const showDynamicHtml = dynamicHtml && hasContent(dynamicHtml);
+
   return (
     <div className="bg-gray-50 min-h-screen py-10 px-4 md:px-8">
       <div className="max-w-5xl mx-auto">
@@ -89,7 +99,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
           {/* PAGE CONTENT RENDERING */}
 
           {/* Render custom dynamic HTML if available */}
-          {dynamicHtml ? (
+          {showDynamicHtml ? (
             <div 
               className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans space-y-4"
               dangerouslySetInnerHTML={{ __html: dynamicHtml }}
@@ -133,22 +143,22 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                       <span className="text-[10px] text-gray-500 uppercase font-semibold">Daily OPD Caseload</span>
                     </div>
                     <div className="bg-[#1B5E3B]/5 border border-gray-100 p-4 rounded text-center">
-                      <span className="text-xl font-bold text-[#1B5E3B] block">9 Specialist</span>
-                      <span className="text-[10px] text-gray-500 uppercase font-semibold">Clinical Clinics</span>
+                      <span className="text-xl font-bold text-[#1B5E3B] block">9 Specialty</span>
+                      <span className="text-[10px] text-gray-500 uppercase font-semibold">Dental Clinics</span>
                     </div>
                     <div className="bg-[#D4870A]/5 border border-gray-100 p-4 rounded text-center">
                       <span className="text-xl font-bold text-[#D4870A] block">100% Free</span>
-                      <span className="text-[10px] text-gray-500 uppercase font-semibold">Undergrad Prophylaxis</span>
+                      <span className="text-[10px] text-gray-500 uppercase font-semibold">Undergraduate Prophylaxis</span>
                     </div>
                   </div>
 
                   <h3 className="font-serif text-lg font-bold text-[#0A1F44] pt-4">Key Specialized Clinics</h3>
                   <ul className="space-y-3.5 list-disc pl-5">
-                    <li><strong>Cleft Lip & Reconstructive Clinic</strong>: Guided by Oral & Maxillofacial Surgeons providing extensive facial reconstructions.</li>
-                    <li><strong>Laser Periodontal Suite</strong>: Advanced laser-assisted gum curettage and gum therapies.</li>
-                    <li><strong>Micro-Endodontic Wing</strong>: Precision root canal treatments utilizing operating microscopes.</li>
-                    <li><strong>Implant Rehabilitation Lab</strong>: Advanced screw-retained restorations and sinus lifts.</li>
-                    <li><strong>Geriatric & Special Needs Dentistry</strong>: Safe, accessible dental care for elders.</li>
+                    <li><strong>Cleft Lip & Reconstructive Clinic</strong>: Led by Oral & Maxillofacial Surgeons providing comprehensive facial reconstructions.</li>
+                    <li><strong>Laser Periodontal Suite</strong>: Advanced laser-assisted pocket debridement and gum therapies.</li>
+                    <li><strong>Micro-Endodontic Wing</strong>: Precision root canal treatments utilizing clinical operating microscopes.</li>
+                    <li><strong>Implant Rehabilitation Lab</strong>: Advanced screw-retained implant restorations and sinus-lift procedures.</li>
+                    <li><strong>Geriatric & Special Needs Dentistry</strong>: Safe, accessible dental care for geriatric and medically compromised patients.</li>
                   </ul>
                 </div>
               )}
@@ -157,8 +167,12 @@ export default async function AboutUsSubPage({ params }: PageProps) {
               {page === 'principal-message' && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div className="md:col-span-1 text-center bg-gray-50 p-4 rounded-lg border border-gray-100">
-                    <div className="h-48 w-48 rounded-full bg-gradient-to-tr from-[#0A1F44] to-[#1B5E3B] mx-auto flex items-center justify-center text-white font-serif font-bold text-3xl shadow border-4 border-white mb-4">
-                      DEAN
+                    <div className="h-48 w-48 rounded-full bg-gradient-to-tr from-[#0A1F44] to-[#1B5E3B] mx-auto overflow-hidden shadow border-4 border-white mb-4 flex items-center justify-center text-white font-serif font-bold text-3xl">
+                      {settings.dean_photo && !settings.dean_photo.includes('placeholders') ? (
+                        <img src={settings.dean_photo} alt="Principal & Dean" className="h-full w-full object-cover" />
+                      ) : (
+                        'DEAN'
+                      )}
                     </div>
                     <h4 className="font-serif text-base font-bold text-[#0A1F44]">{settings.dean_name || 'Dr. Ramesh Chandra Das, MDS'}</h4>
                     <p className="text-[10px] text-[#1B5E3B] font-bold uppercase tracking-wider font-ui mt-1">Principal & Dean</p>
@@ -167,10 +181,10 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                   <div className="md:col-span-2 space-y-4 font-sans text-xs md:text-sm text-gray-700 leading-relaxed">
                     <p className="font-semibold text-[#0A1F44]">Dear Students, Scholars, Patients, and Well-wishers,</p>
                     <p>
-                      It is a matter of profound pride to welcome you all to the digital portal of **Government Dental College & Hospital, Dibrugarh**. Since our founding in 2018, our journey has been defined by academic excellence, state-of-the-art infrastructure setups, and empathetic patient clinical services.
+                      It is a matter of profound pride to welcome you all to the digital portal of **Government Dental College & Hospital, Dibrugarh**. Since our founding in 2018, our journey has been defined by academic excellence, state-of-the-art infrastructure, and compassionate patient care.
                     </p>
                     <p>
-                      As a government institution affiliated with Dibrugarh University and recognized by the Dental Council of India, we are committed to building highly skilled, ethical, and community-conscious dental surgeons. Our students learn in advanced, fully-equipped clinics, utilizing state-of-the-art diagnostic materials, CBCT, and surgical micro-endodontics.
+                      As a government institution affiliated with Dibrugarh University and recognized by the Dental Council of India, we are committed to building highly skilled, ethical, and community-conscious dental surgeons. Our students learn in advanced, fully-equipped clinics, utilizing state-of-the-art diagnostic imaging, CBCT scans, and surgical endodontics.
                     </p>
                     <p>
                       Our tertiary hospital caters to Upper Assam with highly subsidized, high-quality dental surgeries. We remain committed to rural community outreach, screening camps, and scientific research. I invite you to explore our portals for admissions, notifications, and clinical services.
@@ -212,17 +226,17 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-4 font-bold">Dr. Bikramjit Phukan</td>
                           <td className="px-6 py-4">Professor & HOD, OMFS</td>
-                          <td className="px-6 py-4">Academic Registrar Member</td>
+                          <td className="px-6 py-4">Academic Registrar</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-4 font-bold">Dr. Ananya Sarma</td>
                           <td className="px-6 py-4">Professor & HOD, OMR</td>
-                          <td className="px-6 py-4">Research Council Chair</td>
+                          <td className="px-6 py-4">Research Council Chairman</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-4 font-bold">Dr. Swapna Dutta</td>
                           <td className="px-6 py-4">Professor & HOD, Oral Pathology</td>
-                          <td className="px-6 py-4">Student Welfare Dean</td>
+                          <td className="px-6 py-4">Dean of Student Welfare</td>
                         </tr>
                       </tbody>
                     </table>
@@ -235,9 +249,9 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {[
                     { name: settings.dean_name || 'Dr. Ramesh Chandra Das', role: 'Principal & Dean', icon: UserCheck, desc: 'Administrative and Academic supreme head of the college.' },
-                    { name: 'Dr. Pranab Jyoti Baruah', role: 'Medical Superintendent', icon: Users, desc: 'Manages clinical operations, diagnostic grids, and patients welfare.' },
+                    { name: 'Dr. Pranab Jyoti Baruah', role: 'Medical Superintendent', icon: Users, desc: 'Manages clinical operations, diagnostics, and patient welfare.' },
                     { name: 'Dr. Bikramjit Phukan', role: 'Academic Coordinator', icon: BookOpen, desc: 'Supervises university schedules, BDS/MDS terms, and curricula.' },
-                    { name: 'Sri Mukul Gogoi', role: 'Administrative Head Clerk', icon: Clock, desc: 'Manages official rosters, tenders registers, and billing systems.' }
+                    { name: 'Sri Mukul Gogoi', role: 'Administrative Head Clerk', icon: Clock, desc: 'Manages administrative operations, tenders documentation, and official records.' }
                   ].map((admin, idx) => (
                     <div key={idx} className="border border-gray-200 rounded-lg p-5 text-center bg-[#F8F9FA] hover:shadow-md transition">
                       <div className="h-12 w-12 rounded-full bg-[#1B5E3B]/10 text-[#1B5E3B] flex items-center justify-center mx-auto mb-4">

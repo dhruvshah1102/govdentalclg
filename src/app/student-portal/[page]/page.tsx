@@ -57,6 +57,16 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
 
   const dynamicHtml = dbHtmlKey ? settings[dbHtmlKey] : null;
 
+  // Helper to verify if dynamic HTML actually has user content
+  const hasContent = (html: string | null | undefined): boolean => {
+    if (!html) return false;
+    const cleanText = html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+    const hasMedia = html.includes('<img') || html.includes('<iframe') || html.includes('<table') || html.includes('<details');
+    return cleanText.length > 0 || hasMedia;
+  };
+
+  const showDynamicHtml = dynamicHtml && hasContent(dynamicHtml);
+
   return (
     <div className="bg-gray-50 min-h-screen py-10 px-4 md:px-8 font-sans">
       <div className="max-w-5xl mx-auto">
@@ -82,7 +92,7 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
 
           {/* PAGE CONTENT RENDERING */}
 
-          {dynamicHtml ? (
+          {showDynamicHtml ? (
             <div 
               className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans space-y-4"
               dangerouslySetInnerHTML={{ __html: dynamicHtml }}
@@ -136,7 +146,7 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
                     <ShieldAlert className="text-red-600 shrink-0" size={24} />
                     <div>
                       <strong className="text-[#0A1F44] block mb-0.5 font-serif text-sm">Strict Zero-Tolerance Anti-Ragging Policy</strong>
-                      As per the mandates of the Supreme Court of India and the DCI, ragging in any form is strictly banned inside college dorms, clinics, and playgrounds. Convicts face immediate rustication and police arrests.
+                      As per the mandates of the Supreme Court of India and the DCI, ragging in any form is strictly banned inside college dormitories, clinics, and all campus premises. Offenders face immediate rustication and legal action.
                     </div>
                   </div>
 
@@ -180,7 +190,7 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-3 font-bold text-[#0A1F44]">Dr. Swapna Dutta</td>
                           <td className="px-6 py-3 text-gray-600">Professor & HOD</td>
-                          <td className="px-6 py-3">Welfare Officer</td>
+                          <td className="px-6 py-3">Student Welfare Officer</td>
                           <td className="px-6 py-3">+91 373 2300125</td>
                         </tr>
                       </tbody>
@@ -193,14 +203,14 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
               {page === 'student-council' && (
                 <div className="space-y-6 font-sans text-xs md:text-sm text-gray-700 leading-relaxed">
                   <p>
-                    The **Student Council** is an elected union body coordinating cultural weeks, scientific forums, sports grids, and represents campus academic dialogues.
+                    The **Student Council** is an elected student union body coordinating cultural weeks, scientific forums, sports tournaments, and representing student interests in campus academic dialogues.
                   </p>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {[
-                      { name: 'Satyajit Saikia', role: 'President (BDS 4th Year)', desc: 'Coordinates union meetings and general academic representations.' },
-                      { name: 'Nayanmoni Borah', role: 'General Secretary (BDS 3rd Year)', desc: 'Supervises college sports festivals, journals, and cultural schedules.' },
-                      { name: 'Juri Gogoi', role: 'Academic Secretary (BDS 2nd Year)', desc: 'Facilitates study groups and acts as liaison with the library board.' }
+                      { name: 'Satyajit Saikia', role: 'President (BDS 4th Year)', desc: 'Coordinates union meetings, student events, and represents the student body.' },
+                      { name: 'Nayanmoni Borah', role: 'General Secretary (BDS 3rd Year)', desc: 'Supervises college sports festivals, student publications, and cultural activities.' },
+                      { name: 'Juri Gogoi', role: 'Academic Secretary (BDS 2nd Year)', desc: 'Organizes academic seminars and acts as a liaison with the library committee.' }
                     ].map((council, idx) => (
                       <div key={idx} className="border border-gray-200 rounded-lg p-5 text-center bg-[#F8F9FA] hover:shadow-md transition">
                         <div className="h-10 w-10 rounded-full bg-[#1B5E3B]/10 text-[#1B5E3B] flex items-center justify-center mx-auto mb-3">

@@ -147,14 +147,6 @@ const NavbarContent = () => {
             </button>
           </div>
 
-          {/* High Contrast Toggle */}
-          <button 
-            onClick={toggleHighContrast} 
-            title={t('high_contrast')}
-            className="p-1 rounded bg-white/10 hover:bg-white/20 text-[#D4870A]"
-          >
-            {isHighContrast ? <Sun size={12} /> : <Moon size={12} />}
-          </button>
 
           {/* Language Switcher */}
           <div className="flex items-center gap-1 text-[10px] uppercase font-bold tracking-wider">
@@ -342,10 +334,6 @@ const NavbarContent = () => {
         </Link>
         
         <div className="flex items-center gap-2">
-          {/* Contrast Mode & Language switcher shortcut */}
-          <button onClick={toggleHighContrast} className="p-1 rounded bg-white/10 hover:bg-white/20 text-[#D4870A]">
-            {isHighContrast ? <Sun size={12} /> : <Moon size={12} />}
-          </button>
           
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
