@@ -15,6 +15,7 @@ interface GalleryItem {
   video_url: string | null;
 }
 
+
 interface GalleryClientProps {
   initialItems: GalleryItem[];
 }
@@ -99,7 +100,7 @@ export const GalleryClient: React.FC<GalleryClientProps> = ({ initialItems }) =>
                 <img 
                   src={item.image_url} 
                   alt={item.album_name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
                 
                 {/* Dark Hover overlay */}
