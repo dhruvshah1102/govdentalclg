@@ -21,7 +21,7 @@ const FOLDER_RULES: Record<UploadFolder, { types: string[]; maxBytes: number }> 
 
 export async function POST(req: NextRequest) {
   try {
-    const session = getSession(req);
+    const session = await getSession();
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized administrative access.' }, { status: 401 });
     }

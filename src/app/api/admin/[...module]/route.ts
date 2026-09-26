@@ -16,7 +16,7 @@ async function logAudit(db: any, username: string, action: string, section: stri
 // 1. PATCH: Update operations
 export async function PATCH(req: NextRequest, { params }: { params: { module: string[] } }) {
   try {
-    const session = getSession(req);
+    const session = await getSession();
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized administrative access.' }, { status: 401 });
     }
@@ -148,7 +148,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { module: st
 // 2. DELETE: Deletion operations
 export async function DELETE(req: NextRequest, { params }: { params: { module: string[] } }) {
   try {
-    const session = getSession(req);
+    const session = await getSession();
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized administrative access.' }, { status: 401 });
     }
@@ -239,7 +239,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { module: s
 // 3. POST: Additions operations
 export async function POST(req: NextRequest, { params }: { params: { module: string[] } }) {
   try {
-    const session = getSession(req);
+    const session = await getSession();
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized administrative access.' }, { status: 401 });
     }

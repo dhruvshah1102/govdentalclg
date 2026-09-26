@@ -37,7 +37,7 @@ export default function AdminLoginPage() {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email: username, password })
       });
 
       if (response.ok) {
@@ -90,12 +90,12 @@ export default function AdminLoginPage() {
             </div>
           )}
 
-          {/* Username */}
+          {/* Email */}
           <div className="relative">
-            <label className="text-gray-400 font-bold uppercase text-[9px] block mb-1">Admin Username</label>
+            <label className="text-gray-400 font-bold uppercase text-[9px] block mb-1">Admin Email</label>
             <input
-              type="text"
-              placeholder="Enter username..."
+              type="email"
+              placeholder="Enter email..."
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 pl-9 rounded transition"

@@ -1,33 +1,25 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getCookieConfig, getSession } from '@/lib/auth';
+import { NextResponse } from 'next/server';
+import { getSession, getSupabaseServerClient } from '@/lib/auth';
 import { getDb } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
-
-export async function POST(req: NextRequest) {
+export async function POST() {
   try {
-    const session = getSession(req);
-    const db = await getDb();
+    const session = await getSession();
+    const supabase = getSupabaseServerClient();
 
     if (session) {
-      // Write audit log before deleting
+      const db = await getDb();
       await db.run(
         'INSERT INTO audit_logs (timestamp, admin_username, action, section, details) VALUES (?, ?, ?, ?, ?)',
         [new Date().toISOString(), session.username, 'Logout', 'Authentication', 'Admin logged out.']
       );
     }
 
-    const cookieConfig = getCookieConfig();
-    const response = NextResponse.json({ success: true, message: 'Logged out.' });
-    
-    // Wipe cookie
-    response.cookies.set(cookieConfig.name, '', {
-      ...cookieConfig.options,
-      maxAge: 0
-    });
+    await supabase.auth.signOut();
 
-    return response;
+    return NextResponse.json({ success: true, message: 'Logged out.' });
 
   } catch (error) {
     console.error('Logout API Error:', error);

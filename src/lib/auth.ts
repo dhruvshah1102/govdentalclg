@@ -1,42 +1,38 @@
-import jwt from 'jsonwebtoken';
-import { NextRequest } from 'next/server';
-
-const JWT_SECRET = process.env.JWT_SECRET || 'GDCH_DIBRUGARH_SUPER_SECRET_TOKEN_KEY_2026';
-const COOKIE_NAME = 'admin_session';
+import { cookies } from 'next/headers';
+import { createServerClient } from '@supabase/ssr';
 
 export interface AdminSession {
-  id: number;
+  id: string;
   username: string;
-  role: string;
 }
 
-export function signToken(payload: Omit<AdminSession, 'iat' | 'exp'>): string {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: '8h' });
-}
-
-export function verifyToken(token: string): AdminSession | null {
-  try {
-    return jwt.verify(token, JWT_SECRET) as AdminSession;
-  } catch (error) {
-    return null;
-  }
-}
-
-export function getSession(req: NextRequest): AdminSession | null {
-  const token = req.cookies.get(COOKIE_NAME)?.value;
-  if (!token) return null;
-  return verifyToken(token);
-}
-
-export function getCookieConfig() {
-  return {
-    name: COOKIE_NAME,
-    options: {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict' as const,
-      maxAge: 60 * 60 * 8, // 8 Hours
-      path: '/',
+function getSupabaseServerClient() {
+  const cookieStore = cookies();
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options));
+          } catch {
+            // Called from a context where cookies can't be mutated (e.g. during render) - safe to ignore.
+          }
+        },
+      },
     }
-  };
+  );
+}
+
+export { getSupabaseServerClient };
+
+export async function getSession(): Promise<AdminSession | null> {
+  const supabase = getSupabaseServerClient();
+  const { data: { user }, error } = await supabase.auth.getUser();
+  if (error || !user || !user.email) return null;
+  return { id: user.id, username: user.email };
 }

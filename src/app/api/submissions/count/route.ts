@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
-    const session = getSession(req);
+    const session = await getSession();
 
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized administrative session.' }, { status: 401 });

@@ -19,7 +19,7 @@ export default function AdminLayout({
   const router = useRouter();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [adminUser, setAdminUser] = useState<{ username: string; role: string } | null>(null);
+  const [adminUser, setAdminUser] = useState<{ username: string } | null>(null);
   const [unreadSubmissions, setUnreadSubmissions] = useState(0);
 
   const isLoginPage = pathname === '/admin/login';
@@ -149,7 +149,7 @@ export default function AdminLayout({
                 {adminUser?.username || 'Administrator'}
               </span>
               <span className="text-[9px] text-gray-400 block font-sans font-semibold capitalize">
-                {adminUser?.role || 'Super Admin'}
+                Administrator
               </span>
             </div>
           </div>

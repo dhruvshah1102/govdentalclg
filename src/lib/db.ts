@@ -1,5 +1,4 @@
 import { Pool } from 'pg';
-import bcrypt from 'bcryptjs';
 
 let pool: Pool | null = null;
 
@@ -84,18 +83,7 @@ export async function execute(sql: string, params: any[] = []): Promise<any> {
 }
 
 async function initTables(db: DbLike) {
-  // 1. Users Table
-  await db.exec(`
-    CREATE TABLE IF NOT EXISTS users (
-      id SERIAL PRIMARY KEY,
-      username TEXT UNIQUE NOT NULL,
-      password TEXT NOT NULL,
-      role TEXT NOT NULL,
-      created_at TEXT NOT NULL
-    )
-  `);
-
-  // 2. Settings Table
+  // Settings Table
   await db.exec(`
     CREATE TABLE IF NOT EXISTS settings (
       key TEXT PRIMARY KEY,
@@ -261,14 +249,4 @@ async function initTables(db: DbLike) {
       details TEXT
     )
   `);
-
-  // Seed Default Admin User only if the users table is completely empty
-  const userCount = await db.get('SELECT COUNT(*) as count FROM users');
-  if (userCount && Number((userCount as any).count) === 0) {
-    const hashedPassword = await bcrypt.hash('admin123', 10);
-    await db.run(
-      'INSERT INTO users (username, password, role, created_at) VALUES (?, ?, ?, ?)',
-      ['admin', hashedPassword, 'Super Admin', new Date().toISOString()]
-    );
-  }
 }
