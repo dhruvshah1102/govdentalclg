@@ -7,9 +7,22 @@ import { UIProvider, useUI } from '@/context/UIContext';
 import {
   Phone, Mail, Accessibility, Sun, Moon, Search,
   Menu, X, ChevronDown, ArrowUp, MessageCircle, HelpCircle,
-  FileText, Calendar, Shield, Users, Layers,
-  Facebook, Twitter, Instagram, Youtube
+  FileText, Calendar, Shield, Users, Layers
 } from 'lucide-react';
+
+// lucide-react removed brand/logo icons in v1 — use small inline SVGs instead
+const Facebook = ({ size = 14 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z"/></svg>
+);
+const Twitter = ({ size = 14 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.68L23.4 22H16.9l-5.1-6.67L6 22H2.9l8.13-9.29L1.6 2h6.65l4.6 6.1L18.9 2Zm-1.15 18h1.7L7.3 3.9H5.5L17.75 20Z"/></svg>
+);
+const Instagram = ({ size = 14 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+);
+const Youtube = ({ size = 14 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg>
+);
 
 // Custom sharp SVG for Indian National Emblem
 const NationalEmblemSVG = () => (
