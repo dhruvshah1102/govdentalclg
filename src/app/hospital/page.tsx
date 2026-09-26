@@ -15,6 +15,8 @@ export default async function HospitalPage() {
     settings[row.key] = row.value;
   });
 
+  const departments = await db.all('SELECT id, name FROM departments ORDER BY name ASC');
+
   return (
     <div className="bg-gray-50 min-h-screen py-10 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
@@ -42,12 +44,12 @@ export default async function HospitalPage() {
           <div className="bg-white/10 px-4 py-3 rounded border border-white/20 text-xs shrink-0 w-full md:w-auto">
             <strong className="text-[#D4870A] block uppercase mb-1">OPD HELPLINE</strong>
             <span className="block font-bold font-ui text-sm">{settings.helpline_tele || '+91 373 2300123'}</span>
-            <span className="block text-[10px] text-gray-300">Timings: 8:00 AM - 2:00 PM</span>
+            <span className="block text-[10px] text-gray-300">Timings: 9:00 AM - 3:10 PM (Mon-Sat)</span>
           </div>
         </div>
 
         {/* Mounting Interactive Client portal */}
-        <HospitalPortalClient settings={settings} />
+        <HospitalPortalClient settings={settings} departments={departments} />
 
       </div>
     </div>

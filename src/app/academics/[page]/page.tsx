@@ -107,7 +107,7 @@ export default async function AcademicsSubPage({ params }: PageProps) {
                     <CheckCircle className="text-[#1B5E3B] shrink-0" size={20} />
                     <div>
                       <strong className="text-[#0A1F44] block mb-0.5 font-serif text-sm">Key Facts: BDS Program</strong>
-                      - <strong>Annual Intake Capacity</strong>: 50 Students<br />
+                      - <strong>Annual Intake Capacity</strong>: 63 Students<br />
                       - <strong>Admission Channel</strong>: NEET-UG State & All India Counselling<br />
                       - <strong>Course Duration</strong>: 4 Years Academics + 1 Year Internship
                     </div>
@@ -140,16 +140,17 @@ export default async function AcademicsSubPage({ params }: PageProps) {
               {page === 'mds' && (
                 <div className="space-y-6 font-sans text-xs md:text-sm text-gray-700 leading-relaxed">
                   <p>
-                    The **Master of Dental Surgery (MDS)** is a highly specialized postgraduate professional program of 3 years' duration. GDC Dibrugarh is actively expanding its academic capacities to support 18 PG seats across various core clinical specialties.
+                    The **Master of Dental Surgery (MDS)** is a highly specialized postgraduate professional program of 3 years' duration. GDC Dibrugarh has applied for MDS recognition and is awaiting approval to commence postgraduate specialty programmes.
                   </p>
 
                   <div className="bg-amber-50 border border-amber-200 p-4 rounded text-xs flex gap-3 text-[#2D2D2D]">
                     <Award className="text-[#D4870A] shrink-0" size={20} />
                     <div>
                       <strong className="text-[#0A1F44] block mb-0.5 font-serif text-sm">Key Facts: MDS Program</strong>
-                      - <strong>Admission Channel</strong>: NEET-MDS National Counselling<br />
+                      - <strong>Status</strong>: Applied for Recognition (not yet commenced)<br />
+                      - <strong>Admission Channel</strong>: NEET-MDS National Counselling (upon recognition)<br />
                       - <strong>Course Duration</strong>: 3 Years Residency & Thesis<br />
-                      - <strong>Specialties Planned</strong>: Conservative Dentistry, Oral & Maxillofacial Surgery, Prosthodontics, and OMR.
+                      - <strong>Specialties</strong>: To be announced upon recognition.
                     </div>
                   </div>
 

@@ -9,9 +9,10 @@ import {
 
 interface HospitalPortalClientProps {
   settings: Record<string, string>;
+  departments: { id: string; name: string }[];
 }
 
-export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ settings }) => {
+export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ settings, departments }) => {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<'opd' | 'clinics' | 'registration' | 'charges'>('opd');
 
@@ -77,17 +78,7 @@ export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ sett
     }
   };
 
-  const departmentsList = [
-    { id: 'omr', name: 'Oral Medicine & Radiology' },
-    { id: 'omfs', name: 'Oral & Maxillofacial Surgery' },
-    { id: 'ompath', name: 'Oral Pathology & Microbiology' },
-    { id: 'perio', name: 'Periodontology' },
-    { id: 'community', name: 'Community Dentistry' },
-    { id: 'conservative', name: 'Conservative Dentistry' },
-    { id: 'pediatric', name: 'Pediatric Dentistry' },
-    { id: 'orthodontics', name: 'Orthodontics' },
-    { id: 'prosthodontics', name: 'Prosthodontics' },
-  ];
+  const departmentsList = departments;
 
   // Retrieve dynamic HTML blocks from database overrides
   const dynamicOpdHtml = settings['opd_services_html'];
@@ -161,7 +152,7 @@ export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ sett
             ) : (
               <>
                 <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  Patient registrations are processed at the ground-floor counters between **8:00 AM and 1:30 PM**. Specialty diagnostic consultations and preclinical reviews are scheduled daily.
+                  OPD services run from **9:00 AM to 3:10 PM**, Monday to Saturday. The department is closed on Sundays and select Government holidays.
                 </p>
 
                 <div className="overflow-x-auto border border-gray-200 rounded-lg text-xs md:text-sm">
@@ -169,7 +160,6 @@ export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ sett
                     <thead className="bg-[#0A1F44] text-white font-ui uppercase tracking-wider text-[10px] font-semibold">
                       <tr>
                         <th className="px-6 py-4">Day</th>
-                        <th className="px-6 py-4">Registration Timings</th>
                         <th className="px-6 py-4">Clinical OPD Hours</th>
                         <th className="px-6 py-4">Status</th>
                       </tr>
@@ -178,8 +168,7 @@ export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ sett
                       {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((day) => (
                         <tr key={day} className="hover:bg-gray-50/50">
                           <td className="px-6 py-4 font-bold text-[#0A1F44]">{day}</td>
-                          <td className="px-6 py-4 font-medium">8:00 AM - 1:30 PM</td>
-                          <td className="px-6 py-4 text-gray-500">8:30 AM - 2:00 PM</td>
+                          <td className="px-6 py-4 text-gray-500">9:00 AM - 3:10 PM</td>
                           <td className="px-6 py-4">
                             <span className="bg-emerald-50 text-emerald-600 text-[10px] font-bold py-0.5 px-2.5 rounded-full border border-emerald-100 uppercase tracking-wide">
                               Active
@@ -189,7 +178,6 @@ export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ sett
                       ))}
                       <tr className="bg-gray-50/50">
                         <td className="px-6 py-4 font-bold text-gray-400">Sunday</td>
-                        <td className="px-6 py-4 text-gray-400">Closed</td>
                         <td className="px-6 py-4 text-gray-400">Closed</td>
                         <td className="px-6 py-4">
                           <span className="bg-rose-50 text-rose-600 text-[10px] font-bold py-0.5 px-2.5 rounded-full border border-rose-100 uppercase tracking-wide">

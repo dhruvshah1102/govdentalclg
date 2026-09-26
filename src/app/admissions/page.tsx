@@ -20,7 +20,7 @@ export default async function AdmissionsPage() {
   });
 
   const faqs = [
-    { q: 'What is the annual intake capacity for BDS at GDC Dibrugarh?', a: 'The college has a recognized annual intake capacity of 50 students for the BDS programme.' },
+    { q: 'What is the annual intake capacity for BDS at GDC Dibrugarh?', a: 'The college has a recognized annual intake capacity of 63 students for the BDS programme.' },
     { q: 'Is the college recognized by the Dental Council of India (DCI)?', a: 'Yes, Government Dental College & Hospital, Dibrugarh is fully recognized by the Dental Council of India, New Delhi and affiliated with Dibrugarh University.' },
     { q: 'What are the eligibility criteria for BDS admissions?', a: 'Candidates must qualify the national level NEET-UG conducted by NTA and secure a seat through the state level counselling conducted by the DME, Assam or through the All India Quota.' },
     { q: 'Are hostel facilities available for students?', a: 'Yes, fully-equipped separate boys and girls hostels are available on the campus, backed by safe dining mess halls, security wardrobes, and recreation yards.' }
@@ -101,17 +101,17 @@ export default async function AdmissionsPage() {
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-3">Assam State Quota (DME)</td>
                           <td className="px-6 py-3">85%</td>
-                          <td className="px-6 py-3 text-[#1B5E3B]">42 Seats</td>
+                          <td className="px-6 py-3 text-[#1B5E3B]">54 Seats</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-3">All India Quota (MCC)</td>
                           <td className="px-6 py-3">15%</td>
-                          <td className="px-6 py-3 text-[#1B5E3B]">8 Seats</td>
+                          <td className="px-6 py-3 text-[#1B5E3B]">9 Seats</td>
                         </tr>
                         <tr className="bg-gray-50/50 font-bold">
                           <td className="px-6 py-3 text-[#0A1F44]">Cumulative BDS Seats</td>
                           <td className="px-6 py-3">100%</td>
-                          <td className="px-6 py-3 text-[#0A1F44]">50 Seats</td>
+                          <td className="px-6 py-3 text-[#0A1F44]">63 Seats</td>
                         </tr>
                       </tbody>
                     </table>
@@ -161,7 +161,7 @@ export default async function AdmissionsPage() {
               ) : (
                 <>
                   <p className="text-xs md:text-sm text-gray-600 leading-relaxed font-sans mb-4">
-                    Separate residential hostel quarters are located inside the security perimeter of the college. Each hostel possesses study halls, dining tables, water filtering setups, and recreation amenities.
+                    Separate residential hostel accommodation is available for both boys and girls, with a combined capacity of 110 seats. Each hostel possesses study halls, dining tables, water filtering setups, and recreation amenities.
                   </p>
                   <ul className="space-y-2.5 text-xs text-gray-500 list-disc pl-5">
                     <li>Hostel allocations are processed based on state merit rankings upon admissions validation.</li>

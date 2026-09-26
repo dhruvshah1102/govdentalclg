@@ -4,10 +4,11 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { UIProvider, useUI } from '@/context/UIContext';
-import { 
-  Phone, Mail, Accessibility, Sun, Moon, Search, 
+import {
+  Phone, Mail, Accessibility, Sun, Moon, Search,
   Menu, X, ChevronDown, ArrowUp, MessageCircle, HelpCircle,
-  FileText, Calendar, Shield, Users, Layers
+  FileText, Calendar, Shield, Users, Layers,
+  Facebook, Twitter, Instagram, Youtube
 } from 'lucide-react';
 
 // Custom sharp SVG for Indian National Emblem
@@ -51,7 +52,16 @@ const CollegeCrestSVG = () => (
   </svg>
 );
 
-const NavbarContent = () => {
+interface SiteSettings {
+  [key: string]: string;
+}
+
+interface DepartmentLink {
+  id: string;
+  name: string;
+}
+
+const NavbarContent: React.FC<{ settings: SiteSettings; departments: DepartmentLink[] }> = ({ settings, departments }) => {
   const { t, language, setLanguage, fontScale, setFontScale, isHighContrast, toggleHighContrast } = useUI();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
@@ -80,37 +90,37 @@ const NavbarContent = () => {
     }
   };
 
-  const departmentsList = [
-    { id: 'omr', name: 'Oral Medicine & Radiology' },
-    { id: 'omfs', name: 'Oral & Maxillofacial Surgery' },
-    { id: 'ompath', name: 'Oral Pathology & Microbiology' },
-    { id: 'perio', name: 'Periodontology' },
-    { id: 'community', name: 'Community Dentistry' },
-    { id: 'conservative', name: 'Conservative Dentistry' },
-    { id: 'pediatric', name: 'Pediatric Dentistry' },
-    { id: 'orthodontics', name: 'Orthodontics' },
-    { id: 'prosthodontics', name: 'Prosthodontics' },
-  ];
+  const departmentsList = departments;
 
   return (
     <>
       {/* Top Utility Bar */}
       <div className="bg-[#0A1F44] text-white border-b border-white/10 text-xs py-2 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-2">
         <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
-          <span className="flex items-center gap-1">
-            <Phone size={12} className="text-[#D4870A]" />
-            {t('emergency_helpline')}: <strong>+91 373 2300999</strong>
-          </span>
-          <span className="h-3 w-px bg-white/20 hidden md:block"></span>
-          <span className="flex items-center gap-1">
-            <Phone size={12} className="text-[#1B5E3B]" />
-            {t('tele_consultation')}: <strong>+91 373 2300888</strong>
-          </span>
-          <span className="h-3 w-px bg-white/20 hidden md:block"></span>
-          <span className="flex items-center gap-1">
-            <Mail size={12} className="text-[#D4870A]" />
-            gdchdibrugarh@gmail.com
-          </span>
+          {settings.helpline_emergency && (
+            <span className="flex items-center gap-1">
+              <Phone size={12} className="text-[#D4870A]" />
+              {t('emergency_helpline')}: <strong>{settings.helpline_emergency}</strong>
+            </span>
+          )}
+          {settings.helpline_tele && (
+            <>
+              <span className="h-3 w-px bg-white/20 hidden md:block"></span>
+              <span className="flex items-center gap-1">
+                <Phone size={12} className="text-[#1B5E3B]" />
+                {t('tele_consultation')}: <strong>{settings.helpline_tele}</strong>
+              </span>
+            </>
+          )}
+          {settings.email && (
+            <>
+              <span className="h-3 w-px bg-white/20 hidden md:block"></span>
+              <span className="flex items-center gap-1">
+                <Mail size={12} className="text-[#D4870A]" />
+                {settings.email}
+              </span>
+            </>
+          )}
         </div>
         
         {/* Accessibility & Language Bar */}
@@ -180,15 +190,15 @@ const NavbarContent = () => {
             <CollegeCrestSVG />
             <div>
               <h1 className="font-serif text-lg md:text-xl xl:text-2xl font-bold text-[#0A1F44] tracking-tight leading-tight">
-                {language === 'en' && 'Government Dental College & Hospital, Dibrugarh'}
-                {language === 'as' && 'চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয় আৰু চিকিৎসালয়, ডিব্ৰুগড়'}
-                {language === 'hi' && 'सरकारी दंत चिकित्सा महाविद्यालय और अस्पताल, डिब्रूगढ़'}
+                {language === 'en' && (settings.site_name_en || 'Government Dental College & Hospital, Dibrugarh')}
+                {language === 'as' && (settings.site_name_as || 'চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয় আৰু চিকিৎসালয়, ডিব্ৰুগড়')}
+                {language === 'hi' && (settings.site_name_hi || 'सरकारी दंत चिकित्सा महाविद्यालय और अस्पताल, डिब्रूगढ़')}
               </h1>
               <p className="text-xs text-[#1B5E3B] font-bold font-ui uppercase mt-0.5 tracking-wider flex items-center gap-1.5">
                 <span className="inline-block h-2 w-2 rounded-full bg-[#D4870A]"></span>
                 {t('govt_assam')} &bull; {t('dci_rec')}
               </p>
-              <p className="text-[10px] text-gray-500 italic mt-0.5 font-sans leading-none">{t('aff_rec')}</p>
+              <p className="text-[10px] text-gray-500 italic mt-0.5 font-sans leading-none">{settings.tagline_en || t('aff_rec')}</p>
             </div>
           </div>
           <div className="hidden lg:flex items-center gap-4 ml-6 border-l border-gray-200 pl-6">
@@ -438,7 +448,11 @@ const NavbarContent = () => {
   );
 };
 
-export const LayoutClientWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const LayoutClientWrapper: React.FC<{
+  children: React.ReactNode;
+  settings?: SiteSettings;
+  departments?: DepartmentLink[];
+}> = ({ children, settings = {}, departments = [] }) => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const pathname = usePathname();
 
@@ -465,8 +479,8 @@ export const LayoutClientWrapper: React.FC<{ children: React.ReactNode }> = ({ c
   return (
     <UIProvider>
       <div className="flex flex-col min-h-screen">
-        <NavbarContent />
-        
+        <NavbarContent settings={settings} departments={departments} />
+
         {/* Main Content Area */}
         <main className="flex-grow">{children}</main>
 
@@ -483,12 +497,36 @@ export const LayoutClientWrapper: React.FC<{ children: React.ReactNode }> = ({ c
                 </div>
               </div>
               <p className="text-gray-300 text-xs leading-relaxed mb-4">
-                A leading government institution in North-East India dedicated to offering quality dental education, dental operative specialities, and state-of-the-art public clinical treatment.
+                {settings.about_summary_en || 'A leading government institution in North-East India dedicated to offering quality dental education, dental operative specialities, and state-of-the-art public clinical treatment.'}
               </p>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mb-4">
                 <NationalEmblemSVG />
                 <AssamGovSVG />
               </div>
+              {(settings.social_facebook || settings.social_twitter || settings.social_instagram || settings.social_youtube) && (
+                <div className="flex items-center gap-2.5">
+                  {settings.social_facebook && (
+                    <a href={settings.social_facebook} target="_blank" rel="noopener noreferrer" className="h-8 w-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#D4870A] transition" title="Facebook">
+                      <Facebook size={14} />
+                    </a>
+                  )}
+                  {settings.social_twitter && (
+                    <a href={settings.social_twitter} target="_blank" rel="noopener noreferrer" className="h-8 w-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#D4870A] transition" title="Twitter / X">
+                      <Twitter size={14} />
+                    </a>
+                  )}
+                  {settings.social_instagram && (
+                    <a href={settings.social_instagram} target="_blank" rel="noopener noreferrer" className="h-8 w-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#D4870A] transition" title="Instagram">
+                      <Instagram size={14} />
+                    </a>
+                  )}
+                  {settings.social_youtube && (
+                    <a href={settings.social_youtube} target="_blank" rel="noopener noreferrer" className="h-8 w-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#D4870A] transition" title="YouTube">
+                      <Youtube size={14} />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Column 2: Quick Links */}
@@ -510,17 +548,16 @@ export const LayoutClientWrapper: React.FC<{ children: React.ReactNode }> = ({ c
               <ul className="space-y-3.5 text-xs text-gray-300">
                 <li className="leading-relaxed">
                   <strong className="text-white block mb-0.5">Address:</strong>
-                  Near Assam Medical College Campus,<br />
-                  Dibrugarh, Assam - 786002, India.
+                  {settings.address || 'I Lane, AMCH Campus, Borbari, Dibrugarh, Assam - 786002, India.'}
                 </li>
                 <li>
                   <strong className="text-white block mb-0.5">Helpline Contacts:</strong>
-                  OPD Desk: +91 373 2300123<br />
-                  Emergency: +91 373 2300999
+                  {settings.phone && <>OPD Desk: {settings.phone}<br /></>}
+                  {settings.helpline_emergency && <>Emergency: {settings.helpline_emergency}</>}
                 </li>
                 <li>
                   <strong className="text-white block mb-0.5">Email Support:</strong>
-                  gdchdibrugarh@gmail.com
+                  {settings.email || 'gdcdibrugarh@gmail.com'}
                 </li>
               </ul>
             </div>
@@ -529,12 +566,12 @@ export const LayoutClientWrapper: React.FC<{ children: React.ReactNode }> = ({ c
             <div>
               <h3 className="font-serif text-lg font-bold border-b border-[#D4870A] pb-2 mb-4 tracking-wide text-white">Locate Us</h3>
               <div className="rounded overflow-hidden border border-white/10 h-36 relative bg-gray-900 shadow-inner">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3539.5103445582313!2d94.89679237617173!3d27.48443917631165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374097e3f8905bbf%3A0xc48de1786c57f0eb!2sAssam%20Medical%20College!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen={false} 
+                <iframe
+                  src={settings.google_map_embed || "https://www.google.com/maps?q=27.4898743,94.9444949&output=embed"}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
                   loading="lazy"
                   title="GDC Dibrugarh Map"
                 ></iframe>
@@ -571,15 +608,17 @@ export const LayoutClientWrapper: React.FC<{ children: React.ReactNode }> = ({ c
         )}
 
         {/* Floating WhatsApp Helper Button */}
-        <a 
-          href="https://wa.me/913732300123" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          title="WhatsApp Helpline"
-          className="fixed bottom-6 left-6 p-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full shadow-lg hover:scale-105 transition-all z-40 flex items-center justify-center"
-        >
-          <MessageCircle size={20} fill="currentColor" />
-        </a>
+        {settings.whatsapp_number && (
+          <a
+            href={`https://wa.me/${settings.whatsapp_number}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="WhatsApp Helpline"
+            className="fixed bottom-6 left-6 p-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full shadow-lg hover:scale-105 transition-all z-40 flex items-center justify-center"
+          >
+            <MessageCircle size={20} fill="currentColor" />
+          </a>
+        )}
       </div>
     </UIProvider>
   );

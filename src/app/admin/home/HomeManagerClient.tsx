@@ -97,6 +97,10 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
     setSlideTitle(slide.title);
     setSlideSubtitle(slide.subtitle || '');
     setSlideImage(slide.image_url);
+    if (slideImagePreview) URL.revokeObjectURL(slideImagePreview);
+    setSlideImagePreview('');
+    setSlideImageFile(null);
+    if (slideFileInputRef.current) slideFileInputRef.current.value = '';
     setSlideCtaText(slide.cta_text || '');
     setSlideCtaLink(slide.cta_link || '');
     setSlideSort(String(slide.sort_order));
@@ -152,12 +156,25 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
   // 1. Sliders Add / Update
   const handleAddSlide = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!slideTitle || !slideImage) {
-      alert('Please fill in required fields (Slide Title and Image URL).');
+    if (!slideTitle || (!slideImage && !slideImageFile)) {
+      alert('Please fill in required fields (Slide Title and Backdrop Image).');
       return;
     }
     setStatus('loading');
     try {
+      let uploadedImageUrl = slideImage;
+      if (slideImageFile) {
+        const formData = new FormData();
+        formData.append('file', slideImageFile);
+        formData.append('folder', 'hero-slides');
+        const uploadRes = await fetch('/api/admin/upload', { method: 'POST', body: formData });
+        const uploadData = await uploadRes.json();
+        if (!uploadRes.ok) {
+          throw new Error(uploadData.error || 'Image upload failed.');
+        }
+        uploadedImageUrl = uploadData.url;
+      }
+
       const isEditing = !!editingSlide;
       const url = isEditing ? `/api/admin/hero_slides?id=${editingSlide.id}` : '/api/admin/hero_slides';
       const method = isEditing ? 'PATCH' : 'POST';
@@ -166,7 +183,7 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          image_url: slideImage,
+          image_url: uploadedImageUrl,
           title: slideTitle,
           subtitle: slideSubtitle || null,
           cta_text: slideCtaText || null,
@@ -180,7 +197,7 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
         if (isEditing) {
           const updatedSlide: Slide = {
             id: editingSlide.id,
-            image_url: slideImage,
+            image_url: uploadedImageUrl,
             title: slideTitle,
             subtitle: slideSubtitle || null,
             cta_text: slideCtaText || null,
@@ -194,7 +211,7 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
           const data = await response.json();
           const newSlide: Slide = {
             id: data.id,
-            image_url: slideImage,
+            image_url: uploadedImageUrl,
             title: slideTitle,
             subtitle: slideSubtitle || null,
             cta_text: slideCtaText || null,
@@ -469,15 +486,28 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">Slide Backdrop Image URL (Required)</label>
+                    <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">
+                      Slide Backdrop Image {editingSlide ? '(Leave empty to keep current)' : '(Required)'}
+                    </label>
                     <input
-                      type="text"
-                      placeholder="e.g. /assets/images/slider_1.jpg..."
-                      value={slideImage}
-                      onChange={(e) => setSlideImage(e.target.value)}
-                      className="w-full bg-white text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition"
-                      required
+                      ref={slideFileInputRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleSlideFileChange}
+                      className="w-full bg-white text-[11px] border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2 rounded transition cursor-pointer file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-[#0A1F44] file:text-white file:text-[9px] file:font-bold file:uppercase file:cursor-pointer"
                     />
+                    {(slideImagePreview || slideImage) && (
+                      <div className="mt-2 flex items-center gap-2">
+                        <img
+                          src={slideImagePreview || slideImage}
+                          alt="Slide preview"
+                          className="h-16 w-28 object-cover rounded border border-gray-200 bg-gray-100"
+                        />
+                        <span className="text-[9px] text-gray-400 flex items-center gap-1">
+                          <UploadCloud size={11} /> {slideImageFile ? 'New image selected (not yet saved)' : 'Current image'}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -539,7 +569,8 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
                     disabled={status === 'loading'}
                     className="bg-[#0A1F44] hover:bg-[#162E5B] text-white text-xs font-bold py-2.5 px-6 rounded uppercase tracking-wider transition shadow-sm flex items-center gap-1.5"
                   >
-                    {editingSlide ? <Save size={14} /> : <Plus size={14} />} {editingSlide ? 'Save Slide' : 'Add Slide'}
+                    {editingSlide ? <Save size={14} /> : <Plus size={14} />}
+                    {status === 'loading' ? 'Uploading & Saving...' : editingSlide ? 'Save Slide' : 'Add Slide'}
                   </button>
                 </div>
               </form>

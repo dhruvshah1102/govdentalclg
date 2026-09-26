@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { FileText, Plus, Trash2, CheckCircle, AlertCircle, FileDown } from 'lucide-react';
 
 interface DownloadItem {
@@ -20,19 +20,40 @@ export const DownloadsManagerClient: React.FC<DownloadsManagerClientProps> = ({ 
   const [downloads, setDownloads] = useState<DownloadItem[]>(initialDownloads);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('Forms');
-  const [fileUrl, setFileUrl] = useState('');
-  
+  const [file, setFile] = useState<File | null>(null);
+
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !fileUrl) {
-      alert('Please fill in required fields (Document Title and File PDF link).');
+    if (!title || !file) {
+      alert('Please fill in required fields (Document Title and PDF File).');
       return;
     }
 
     setStatus('loading');
+    setErrorMessage('');
     try {
+      // Step 1: upload the PDF file to storage
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('folder', 'downloads');
+
+      const uploadRes = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: formData
+      });
+      const uploadData = await uploadRes.json();
+
+      if (!uploadRes.ok) {
+        throw new Error(uploadData.error || 'Failed to upload PDF file.');
+      }
+
+      const fileUrl = uploadData.url;
+
+      // Step 2: create the download record with the uploaded file's URL
       const response = await fetch('/api/admin/downloads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -55,15 +76,20 @@ export const DownloadsManagerClient: React.FC<DownloadsManagerClientProps> = ({ 
         };
         setDownloads((prev) => [newDownload, ...prev]);
         setStatus('success');
-        
+
         // Reset form
         setTitle('');
         setCategory('Forms');
-        setFileUrl('');
+        setFile(null);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
       } else {
-        setStatus('error');
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error || 'Failed to create download record.');
       }
     } catch (err) {
+      setErrorMessage(err instanceof Error ? err.message : 'An unexpected error occurred.');
       setStatus('error');
     }
   };
@@ -101,7 +127,7 @@ export const DownloadsManagerClient: React.FC<DownloadsManagerClientProps> = ({ 
       {status === 'error' && (
         <div className="bg-rose-50 border border-rose-200 text-rose-700 p-3.5 rounded flex items-center gap-2">
           <AlertCircle size={16} />
-          <span>Failed to upload document. Please verify fields and try again.</span>
+          <span>{errorMessage || 'Failed to upload document. Please verify fields and try again.'}</span>
         </div>
       )}
 
@@ -137,13 +163,13 @@ export const DownloadsManagerClient: React.FC<DownloadsManagerClientProps> = ({ 
             </select>
           </div>
           <div className="md:col-span-2">
-            <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">PDF File Link / URL (Required)</label>
+            <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">PDF File (Required)</label>
             <input
-              type="text"
-              placeholder="e.g. /assets/documents/form_fitness.pdf..."
-              value={fileUrl}
-              onChange={(e) => setFileUrl(e.target.value)}
-              className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition"
+              ref={fileInputRef}
+              type="file"
+              accept="application/pdf"
+              onChange={(e) => setFile(e.target.files && e.target.files[0] ? e.target.files[0] : null)}
+              className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:bg-[#0A1F44] file:text-white file:text-[10px] file:font-bold file:uppercase file:cursor-pointer cursor-pointer"
               required
             />
           </div>
@@ -151,9 +177,9 @@ export const DownloadsManagerClient: React.FC<DownloadsManagerClientProps> = ({ 
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full bg-[#0A1F44] hover:bg-[#162E5B] text-white text-xs font-bold py-3 px-6 rounded uppercase tracking-wider transition shadow-sm flex items-center justify-center gap-1 font-ui"
+              className="w-full bg-[#0A1F44] hover:bg-[#162E5B] text-white text-xs font-bold py-3 px-6 rounded uppercase tracking-wider transition shadow-sm flex items-center justify-center gap-1 font-ui disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              <Plus size={14} /> {status === 'loading' ? 'Uploading...' : 'Upload File'}
+              <Plus size={14} /> {status === 'loading' ? 'Uploading PDF...' : 'Upload File'}
             </button>
           </div>
         </form>
@@ -188,7 +214,16 @@ export const DownloadsManagerClient: React.FC<DownloadsManagerClientProps> = ({ 
                         {d.category}
                       </span>
                     </td>
-                    <td className="px-6 py-3 max-w-sm truncate" title={d.title}>{d.title}</td>
+                    <td className="px-6 py-3 max-w-sm truncate" title={d.title}>
+                      <a
+                        href={d.file_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#0A1F44] hover:text-[#D4870A] hover:underline font-semibold"
+                      >
+                        {d.title}
+                      </a>
+                    </td>
                     <td className="px-6 py-3 text-gray-400">{d.upload_date}</td>
                     <td className="px-6 py-3">
                       <button

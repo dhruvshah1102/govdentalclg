@@ -134,21 +134,21 @@ export default async function AboutUsSubPage({ params }: PageProps) {
               {page === 'hospital' && (
                 <div className="space-y-6 font-sans text-xs md:text-sm text-gray-700 leading-relaxed">
                   <p>
-                    The clinical wing of <strong>GDC Dibrugarh</strong> operates as a state-of-the-art dental hospital serving a vast geographical terrain in Upper Assam, parts of Arunachal Pradesh, and Nagaland. Backed by specialist faculty and advanced clinical setups, the hospital serves over 150 patients daily.
+                    The clinical wing of <strong>GDC Dibrugarh</strong> operates as a state-of-the-art dental hospital serving a vast geographical terrain in Upper Assam, parts of Arunachal Pradesh, and Nagaland. Backed by specialist faculty and over 100 operational dental chairs, the hospital runs its OPD from 9:00 AM to 3:10 PM, Monday to Saturday.
                   </p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
                     <div className="bg-[#0A1F44]/5 border border-gray-100 p-4 rounded text-center">
-                      <span className="text-xl font-bold text-[#0A1F44] block">150+</span>
-                      <span className="text-[10px] text-gray-500 uppercase font-semibold">Daily OPD Caseload</span>
+                      <span className="text-xl font-bold text-[#0A1F44] block">100+</span>
+                      <span className="text-[10px] text-gray-500 uppercase font-semibold">Operational Dental Chairs</span>
                     </div>
                     <div className="bg-[#1B5E3B]/5 border border-gray-100 p-4 rounded text-center">
                       <span className="text-xl font-bold text-[#1B5E3B] block">9 Specialty</span>
                       <span className="text-[10px] text-gray-500 uppercase font-semibold">Dental Clinics</span>
                     </div>
                     <div className="bg-[#D4870A]/5 border border-gray-100 p-4 rounded text-center">
-                      <span className="text-xl font-bold text-[#D4870A] block">100% Free</span>
-                      <span className="text-[10px] text-gray-500 uppercase font-semibold">Undergraduate Prophylaxis</span>
+                      <span className="text-xl font-bold text-[#D4870A] block">9 AM - 3:10 PM</span>
+                      <span className="text-[10px] text-gray-500 uppercase font-semibold">OPD Timings (Mon-Sat)</span>
                     </div>
                   </div>
 
@@ -219,24 +219,24 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                           <td className="px-6 py-4 text-[#D4870A] font-bold">Chairman</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-bold">Dr. Pranab Jyoti Baruah</td>
+                          <td className="px-6 py-4 font-bold">To be Notified</td>
                           <td className="px-6 py-4">Medical Superintendent</td>
                           <td className="px-6 py-4">Member Secretary</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-bold">Dr. Bikramjit Phukan</td>
-                          <td className="px-6 py-4">Professor & HOD, OMFS</td>
-                          <td className="px-6 py-4">Academic Registrar</td>
+                          <td className="px-6 py-4 font-bold">Dr. Swarnasmita Pathak</td>
+                          <td className="px-6 py-4">HOD (i/c), Reader, Oral Medicine & Radiology</td>
+                          <td className="px-6 py-4">Member</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-bold">Dr. Ananya Sarma</td>
-                          <td className="px-6 py-4">Professor & HOD, OMR</td>
-                          <td className="px-6 py-4">Research Council Chairman</td>
+                          <td className="px-6 py-4 font-bold">Dr. Liza Pathak</td>
+                          <td className="px-6 py-4">Professor & HOD, Periodontics & Oral Implantology</td>
+                          <td className="px-6 py-4">Member</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-bold">Dr. Swapna Dutta</td>
-                          <td className="px-6 py-4">Professor & HOD, Oral Pathology</td>
-                          <td className="px-6 py-4">Dean of Student Welfare</td>
+                          <td className="px-6 py-4 font-bold">Dr. Jahnabi Dutta</td>
+                          <td className="px-6 py-4">HOD (i/c), Reader, Oral Pathology & Microbiology</td>
+                          <td className="px-6 py-4">Member</td>
                         </tr>
                       </tbody>
                     </table>
@@ -249,9 +249,9 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {[
                     { name: settings.dean_name || 'Dr. Ramesh Chandra Das', role: 'Principal & Dean', icon: UserCheck, desc: 'Administrative and Academic supreme head of the college.' },
-                    { name: 'Dr. Pranab Jyoti Baruah', role: 'Medical Superintendent', icon: Users, desc: 'Manages clinical operations, diagnostics, and patient welfare.' },
-                    { name: 'Dr. Bikramjit Phukan', role: 'Academic Coordinator', icon: BookOpen, desc: 'Supervises university schedules, BDS/MDS terms, and curricula.' },
-                    { name: 'Sri Mukul Gogoi', role: 'Administrative Head Clerk', icon: Clock, desc: 'Manages administrative operations, tenders documentation, and official records.' }
+                    { name: 'To be Notified', role: 'Medical Superintendent', icon: Users, desc: 'Manages clinical operations, diagnostics, and patient welfare.' },
+                    { name: 'Dr. Lalit Chandra Boruah', role: 'Government Nodal Officer', icon: BookOpen, desc: 'Reader, Department of Conservative Dentistry & Endodontics. Coordinates official communication with the Government of Assam.' },
+                    { name: 'To be Notified', role: 'Administrative Head Clerk', icon: Clock, desc: 'Manages administrative operations, tenders documentation, and official records.' }
                   ].map((admin, idx) => (
                     <div key={idx} className="border border-gray-200 rounded-lg p-5 text-center bg-[#F8F9FA] hover:shadow-md transition">
                       <div className="h-12 w-12 rounded-full bg-[#1B5E3B]/10 text-[#1B5E3B] flex items-center justify-center mx-auto mb-4">
@@ -304,7 +304,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                         </tr>
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-4 font-semibold">DCI Recognition Status</td>
-                          <td className="px-6 py-4">Fully Recognized for BDS (50 Annual Seats)</td>
+                          <td className="px-6 py-4">Fully Recognized for BDS (63 Annual Seats)</td>
                           <td className="px-6 py-4">
                             <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
                               <Download size={12} /> DCI Order
@@ -313,7 +313,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                         </tr>
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-4 font-semibold">Annual Admission Capacity</td>
-                          <td className="px-6 py-4">BDS: 50 | MDS: 18 (Planned)</td>
+                          <td className="px-6 py-4">BDS: 63 | MDS: Applied for Recognition</td>
                           <td className="px-6 py-4">
                             <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
                               <Download size={12} /> Seats Matrix
@@ -351,9 +351,9 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                     <span className="text-xs block text-gray-400">Principal & Dean, GDC Dibrugarh</span>
                   </div>
                   <div>
-                    <strong className="text-gray-500 block">Public Information Officer (PIO):</strong>
-                    <span className="font-bold text-[#2D2D2D]">Dr. Pranab Jyoti Baruah</span>
-                    <span className="text-xs block text-gray-400">Associate Professor, GDC Dibrugarh</span>
+                    <strong className="text-gray-500 block">Public Information Officer (RTI Officer):</strong>
+                    <span className="font-bold text-[#2D2D2D]">Dr. Liza Pathak</span>
+                    <span className="text-xs block text-gray-400">Professor & HOD, Department of Periodontics & Oral Implantology</span>
                   </div>
                 </div>
               </div>

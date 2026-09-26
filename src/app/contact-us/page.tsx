@@ -53,9 +53,9 @@ export default async function ContactUsPage() {
                 <MapPin className="text-[#1B5E3B]" /> Locate Us on Google Maps
               </h3>
               <div className="rounded overflow-hidden border border-gray-200 h-96 relative bg-gray-900 shadow-inner">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3539.5103445582313!2d94.89679237617173!3d27.48443917631165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374097e3f8905bbf%3A0xc48de1786c57f0eb!2sAssam%20Medical%20College!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                  width="100%" 
+                <iframe
+                  src={settings.google_map_embed || 'https://www.google.com/maps?q=27.4898743,94.9444949&output=embed'}
+                  width="100%"
                   height="100%" 
                   style={{ border: 0 }} 
                   allowFullScreen={false} 
@@ -78,8 +78,7 @@ export default async function ContactUsPage() {
                   <MapPin size={16} className="text-[#1B5E3B] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-gray-800 block">Postal Address:</strong>
-                    Near Assam Medical College Campus,<br />
-                    Dibrugarh, Assam - 786002, India.
+                    {settings.address || 'I Lane, AMCH Campus, Borbari, Dibrugarh, Assam - 786002'}, India.
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
@@ -94,7 +93,7 @@ export default async function ContactUsPage() {
                   <Mail size={16} className="text-[#0A1F44] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-gray-800 block">Administrative Email:</strong>
-                    {settings.email || 'gdchdibrugarh@gmail.com'}
+                    {settings.email || 'gdcdibrugarh@gmail.com'}
                   </div>
                 </li>
               </ul>

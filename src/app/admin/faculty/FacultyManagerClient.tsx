@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Users, Plus, Trash2, CheckCircle, AlertCircle, User } from 'lucide-react';
 
 interface FacultyMember {
@@ -13,6 +13,8 @@ interface FacultyMember {
   department_id: string | null;
   department_name: string | null;
   is_teaching: number;
+  photo_url: string | null;
+  cv_url: string | null;
 }
 
 interface FacultyManagerClientProps {
@@ -32,8 +34,48 @@ export const FacultyManagerClient: React.FC<FacultyManagerClientProps> = ({
   const [email, setEmail] = useState('');
   const [deptId, setDeptId] = useState('');
   const [isTeaching, setIsTeaching] = useState(1); // 1: Teaching, 0: Administrative
-  
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [cvFile, setCvFile] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [formKey, setFormKey] = useState(0);
+
+  const [status, setStatus] = useState<'idle' | 'loading' | 'uploading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
+  useEffect(() => {
+    return () => {
+      if (photoPreview) {
+        URL.revokeObjectURL(photoPreview);
+      }
+    };
+  }, [photoPreview]);
+
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    if (photoPreview) {
+      URL.revokeObjectURL(photoPreview);
+    }
+    setPhotoFile(file);
+    setPhotoPreview(file ? URL.createObjectURL(file) : null);
+  };
+
+  const handleCvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setCvFile(file);
+  };
+
+  const uploadToStorage = async (file: File, folder: string): Promise<string> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('folder', folder);
+    const res = await fetch('/api/admin/upload', { method: 'POST', body: formData });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || `Failed to upload to ${folder}.`);
+    }
+    return data.url;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,8 +84,23 @@ export const FacultyManagerClient: React.FC<FacultyManagerClientProps> = ({
       return;
     }
 
-    setStatus('loading');
+    setErrorMessage('');
+
     try {
+      let photoUrl: string | null = null;
+      let cvUrl: string | null = null;
+
+      if (photoFile || cvFile) {
+        setStatus('uploading');
+        if (photoFile) {
+          photoUrl = await uploadToStorage(photoFile, 'faculty-photos');
+        }
+        if (cvFile) {
+          cvUrl = await uploadToStorage(cvFile, 'faculty-cvs');
+        }
+      }
+
+      setStatus('loading');
       const response = await fetch('/api/admin/faculty', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -54,7 +111,9 @@ export const FacultyManagerClient: React.FC<FacultyManagerClientProps> = ({
           specialization: spec || null,
           email: email || null,
           department_id: isTeaching === 1 ? (deptId || null) : null,
-          is_teaching: isTeaching
+          is_teaching: isTeaching,
+          photo_url: photoUrl,
+          cv_url: cvUrl
         })
       });
 
@@ -70,11 +129,13 @@ export const FacultyManagerClient: React.FC<FacultyManagerClientProps> = ({
           email: email || null,
           department_id: isTeaching === 1 ? (deptId || null) : null,
           department_name: isTeaching === 1 ? (deptObj ? deptObj.name : null) : null,
-          is_teaching: isTeaching
+          is_teaching: isTeaching,
+          photo_url: photoUrl,
+          cv_url: cvUrl
         };
         setFaculty((prev) => [newMember, ...prev]);
         setStatus('success');
-        
+
         // Reset form
         setName('');
         setQuals('');
@@ -83,10 +144,20 @@ export const FacultyManagerClient: React.FC<FacultyManagerClientProps> = ({
         setEmail('');
         setDeptId('');
         setIsTeaching(1);
+        if (photoPreview) {
+          URL.revokeObjectURL(photoPreview);
+        }
+        setPhotoFile(null);
+        setPhotoPreview(null);
+        setCvFile(null);
+        setFormKey((k) => k + 1);
       } else {
+        const data = await response.json().catch(() => ({}));
+        setErrorMessage(data.error || 'Failed to add profile. Please check inputs and try again.');
         setStatus('error');
       }
     } catch (err) {
+      setErrorMessage(err instanceof Error ? err.message : 'Failed to add profile. Please check inputs and try again.');
       setStatus('error');
     }
   };
@@ -124,7 +195,7 @@ export const FacultyManagerClient: React.FC<FacultyManagerClientProps> = ({
       {status === 'error' && (
         <div className="bg-rose-50 border border-rose-200 text-rose-700 p-3.5 rounded flex items-center gap-2">
           <AlertCircle size={16} />
-          <span>Failed to add profile. Please check inputs and try again.</span>
+          <span>{errorMessage || 'Failed to add profile. Please check inputs and try again.'}</span>
         </div>
       )}
 
@@ -237,13 +308,45 @@ export const FacultyManagerClient: React.FC<FacultyManagerClientProps> = ({
             </div>
           )}
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">Photo (Optional)</label>
+              <div className="flex items-center gap-3">
+                <input
+                  key={`photo-${formKey}`}
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePhotoChange}
+                  className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2 rounded transition file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-[9px] file:font-bold file:uppercase file:tracking-wider file:bg-[#0A1F44] file:text-white file:cursor-pointer cursor-pointer"
+                />
+                {photoPreview && (
+                  <img
+                    src={photoPreview}
+                    alt="Photo preview"
+                    className="w-10 h-10 rounded-full object-cover border border-gray-300 flex-shrink-0"
+                  />
+                )}
+              </div>
+            </div>
+            <div>
+              <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">CV / Resume (Optional, PDF)</label>
+              <input
+                key={`cv-${formKey}`}
+                type="file"
+                accept="application/pdf"
+                onChange={handleCvChange}
+                className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2 rounded transition file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-[9px] file:font-bold file:uppercase file:tracking-wider file:bg-[#0A1F44] file:text-white file:cursor-pointer cursor-pointer"
+              />
+            </div>
+          </div>
+
           <div className="flex justify-end pt-2">
             <button
               type="submit"
-              disabled={status === 'loading'}
-              className="bg-[#0A1F44] hover:bg-[#162E5B] text-white text-xs font-bold py-3 px-6 rounded uppercase tracking-wider transition shadow-sm flex items-center gap-1.5 font-ui"
+              disabled={status === 'loading' || status === 'uploading'}
+              className="bg-[#0A1F44] hover:bg-[#162E5B] text-white text-xs font-bold py-3 px-6 rounded uppercase tracking-wider transition shadow-sm flex items-center gap-1.5 font-ui disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              <Plus size={14} /> {status === 'loading' ? 'Saving profile...' : 'Add Profile'}
+              <Plus size={14} /> {status === 'uploading' ? 'Uploading...' : status === 'loading' ? 'Saving profile...' : 'Add Profile'}
             </button>
           </div>
         </form>
@@ -264,6 +367,7 @@ export const FacultyManagerClient: React.FC<FacultyManagerClientProps> = ({
             <table className="w-full text-left">
               <thead className="bg-gray-50 text-gray-500 font-ui uppercase text-[9px] font-bold tracking-wider">
                 <tr>
+                  <th className="px-6 py-3">Photo</th>
                   <th className="px-6 py-3">Category</th>
                   <th className="px-6 py-3">Full Name</th>
                   <th className="px-6 py-3">Designation</th>
@@ -274,6 +378,19 @@ export const FacultyManagerClient: React.FC<FacultyManagerClientProps> = ({
               <tbody className="divide-y divide-gray-100 text-gray-600 font-medium">
                 {faculty.map((f) => (
                   <tr key={f.id} className="hover:bg-gray-50/50">
+                    <td className="px-6 py-3">
+                      {f.photo_url ? (
+                        <img
+                          src={f.photo_url}
+                          alt={f.name}
+                          className="w-8 h-8 rounded-full object-cover border border-gray-200"
+                        />
+                      ) : (
+                        <div className="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400">
+                          <User size={14} />
+                        </div>
+                      )}
+                    </td>
                     <td className="px-6 py-3">
                       <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-wider border ${
                         f.is_teaching === 1 

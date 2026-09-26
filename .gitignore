@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local working documents (not project source)
+GDCH-Dibrugarh-Website-Status-Report.docx
+GDC_Dibrugarh_Faculty_List-3.xlsx
+Superform_ College Information Collection Form Submissions.xlsx
+Superform_ Department Details Submission Submissions.xlsx

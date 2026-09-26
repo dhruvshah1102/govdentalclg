@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from '@/lib/auth';
 import { getDb } from '@/lib/db';
+import { deleteFileByUrl } from '@/lib/storage';
 
 export const dynamic = 'force-dynamic';
 
@@ -38,17 +39,35 @@ export async function PATCH(req: NextRequest, { params }: { params: { module: st
     // Site settings update
     if (mod === 'settings') {
       for (const [key, value] of Object.entries(body)) {
-        await db.run('INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)', [key, String(value)]);
+        await db.run(
+          'INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value',
+          [key, String(value)]
+        );
       }
       await logAudit(db, session.username, 'Update', 'Site Settings', 'Modified core site configurations.');
       return NextResponse.json({ success: true });
     }
 
-    // Faculty sort order update
+    // Faculty update (sort order only, or a full profile edit when more fields are present)
     if (mod === 'faculty' && id) {
-      const { sort_order } = body;
-      await db.run('UPDATE faculty SET sort_order = ? WHERE id = ?', [sort_order, id]);
-      await logAudit(db, session.username, 'Update', 'Faculty Directory', `Updated sort order for faculty ID #${id}`);
+      const { sort_order, name, qualifications, designation, specialization, email, department_id, is_teaching, photo_url, cv_url, publications } = body;
+
+      if (name !== undefined) {
+        await db.run(
+          `UPDATE faculty SET
+            name = ?, qualifications = ?, designation = ?, specialization = ?, email = ?,
+            department_id = ?, is_teaching = ?, photo_url = ?, cv_url = ?, publications = ?
+          WHERE id = ?`,
+          [
+            name, qualifications || null, designation || null, specialization || null, email || null,
+            department_id || null, is_teaching, photo_url || null, cv_url || null, publications || null, id
+          ]
+        );
+        await logAudit(db, session.username, 'Update', 'Faculty Directory', `Updated profile for faculty ID #${id}`);
+      } else {
+        await db.run('UPDATE faculty SET sort_order = ? WHERE id = ?', [sort_order, id]);
+        await logAudit(db, session.username, 'Update', 'Faculty Directory', `Updated sort order for faculty ID #${id}`);
+      }
       return NextResponse.json({ success: true });
     }
 
@@ -56,9 +75,9 @@ export async function PATCH(req: NextRequest, { params }: { params: { module: st
     if (mod === 'hero_slides' && id) {
       const { image_url, title, subtitle, cta_text, cta_link, sort_order, enabled } = body;
       await db.run(
-        `UPDATE hero_slides SET 
-          image_url = ?, title = ?, subtitle = ?, 
-          cta_text = ?, cta_link = ?, sort_order = ?, enabled = ? 
+        `UPDATE hero_slides SET
+          image_url = ?, title = ?, subtitle = ?,
+          cta_text = ?, cta_link = ?, sort_order = ?, enabled = ?
         WHERE id = ?`,
         [image_url, title, subtitle || null, cta_text || null, cta_link || null, sort_order || 0, enabled, id]
       );
@@ -70,8 +89,8 @@ export async function PATCH(req: NextRequest, { params }: { params: { module: st
     if (mod === 'announcements' && id) {
       const { title, link, category, is_new, enabled } = body;
       await db.run(
-        `UPDATE announcements SET 
-          title = ?, link = ?, category = ?, is_new = ?, enabled = ? 
+        `UPDATE announcements SET
+          title = ?, link = ?, category = ?, is_new = ?, enabled = ?
         WHERE id = ?`,
         [title, link || null, category, is_new, enabled, id]
       );
@@ -83,8 +102,8 @@ export async function PATCH(req: NextRequest, { params }: { params: { module: st
     if (mod === 'stats' && id) {
       const { label, value, icon, sort_order } = body;
       await db.run(
-        `UPDATE stats SET 
-          label = ?, value = ?, icon = ?, sort_order = ? 
+        `UPDATE stats SET
+          label = ?, value = ?, icon = ?, sort_order = ?
         WHERE id = ?`,
         [label, value, icon || null, sort_order || 0, id]
       );
@@ -94,23 +113,23 @@ export async function PATCH(req: NextRequest, { params }: { params: { module: st
 
     // Clinical Departments update
     if (mod === 'departments' && id) {
-      const { 
-        name, banner_image, about, 
-        hod_name, hod_qualifications, hod_designation, hod_photo, 
-        infrastructure, clinical_services, research_activities, 
-        contact_email, contact_phone 
+      const {
+        name, banner_image, about,
+        hod_name, hod_qualifications, hod_designation, hod_photo,
+        infrastructure, clinical_services, research_activities,
+        contact_email, contact_phone
       } = body;
       await db.run(
-        `UPDATE departments SET 
-          name = ?, banner_image = ?, about = ?, 
-          hod_name = ?, hod_qualifications = ?, hod_designation = ?, hod_photo = ?, 
-          infrastructure = ?, clinical_services = ?, research_activities = ?, 
-          contact_email = ?, contact_phone = ? 
+        `UPDATE departments SET
+          name = ?, banner_image = ?, about = ?,
+          hod_name = ?, hod_qualifications = ?, hod_designation = ?, hod_photo = ?,
+          infrastructure = ?, clinical_services = ?, research_activities = ?,
+          contact_email = ?, contact_phone = ?
         WHERE id = ?`,
         [
-          name, banner_image || null, about || null, 
-          hod_name || null, hod_qualifications || null, hod_designation || null, hod_photo || null, 
-          infrastructure || null, clinical_services || null, research_activities || null, 
+          name, banner_image || null, about || null,
+          hod_name || null, hod_qualifications || null, hod_designation || null, hod_photo || null,
+          infrastructure || null, clinical_services || null, research_activities || null,
           contact_email || null, contact_phone || null, id
         ]
       );
@@ -163,19 +182,28 @@ export async function DELETE(req: NextRequest, { params }: { params: { module: s
     }
 
     if (mod === 'downloads') {
+      const existing = await db.get('SELECT file_url FROM downloads WHERE id = ?', [id]);
       await db.run('DELETE FROM downloads WHERE id = ?', [id]);
+      if (existing) await deleteFileByUrl(existing.file_url);
       await logAudit(db, session.username, 'Delete', 'Downloads', `Deleted file library ID #${id}`);
       return NextResponse.json({ success: true });
     }
 
     if (mod === 'faculty') {
+      const existing = await db.get('SELECT photo_url, cv_url FROM faculty WHERE id = ?', [id]);
       await db.run('DELETE FROM faculty WHERE id = ?', [id]);
+      if (existing) {
+        await deleteFileByUrl(existing.photo_url);
+        await deleteFileByUrl(existing.cv_url);
+      }
       await logAudit(db, session.username, 'Delete', 'Faculty', `Removed faculty member ID #${id}`);
       return NextResponse.json({ success: true });
     }
 
     if (mod === 'hero_slides') {
+      const existing = await db.get('SELECT image_url FROM hero_slides WHERE id = ?', [id]);
       await db.run('DELETE FROM hero_slides WHERE id = ?', [id]);
+      if (existing) await deleteFileByUrl(existing.image_url);
       await logAudit(db, session.username, 'Delete', 'Homepage Sliders', `Removed hero slide ID #${id}`);
       return NextResponse.json({ success: true });
     }
@@ -193,7 +221,9 @@ export async function DELETE(req: NextRequest, { params }: { params: { module: s
     }
 
     if (mod === 'gallery') {
+      const existing = await db.get('SELECT image_url FROM gallery WHERE id = ?', [id]);
       await db.run('DELETE FROM gallery WHERE id = ?', [id]);
+      if (existing) await deleteFileByUrl(existing.image_url);
       await logAudit(db, session.username, 'Delete', 'Gallery Manager', `Removed gallery media ID #${id}`);
       return NextResponse.json({ success: true });
     }
@@ -250,12 +280,12 @@ export async function POST(req: NextRequest, { params }: { params: { module: str
     }
 
     if (mod === 'faculty') {
-      const { name, qualifications, designation, specialization, email, department_id, is_teaching } = body;
+      const { name, qualifications, designation, specialization, email, department_id, is_teaching, photo_url, cv_url, publications } = body;
       const res = await db.run(
         `INSERT INTO faculty (
-          name, qualifications, designation, specialization, email, department_id, is_teaching, sort_order
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, 0)`,
-        [name, qualifications, designation, specialization || null, email || null, department_id || null, is_teaching]
+          name, qualifications, designation, specialization, email, department_id, is_teaching, photo_url, cv_url, publications, sort_order
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)`,
+        [name, qualifications, designation, specialization || null, email || null, department_id || null, is_teaching, photo_url || null, cv_url || null, publications || null]
       );
       await logAudit(db, session.username, 'Create', 'Faculty', `Added roster profile: ${name}`);
       return NextResponse.json({ success: true, id: res.lastID });

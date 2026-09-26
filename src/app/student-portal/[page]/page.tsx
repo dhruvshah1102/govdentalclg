@@ -176,20 +176,20 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
                       </thead>
                       <tbody className="divide-y divide-gray-100 text-[#2D2D2D] font-medium">
                         <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-3 font-bold text-[#0A1F44]">Dr. Ramesh Chandra Das</td>
+                          <td className="px-6 py-3 font-bold text-[#0A1F44]">{settings.dean_name || 'Dr. Ramesh Chandra Das'}</td>
                           <td className="px-6 py-3 text-gray-600">Principal & Dean</td>
                           <td className="px-6 py-3 text-[#D4870A] font-bold">Chairman</td>
                           <td className="px-6 py-3">+91 373 2300123</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-3 font-bold text-[#0A1F44]">Dr. Pranab Jyoti Baruah</td>
-                          <td className="px-6 py-3 text-gray-600">Associate Professor</td>
+                          <td className="px-6 py-3 font-bold text-[#0A1F44]">Dr. Liza Pathak</td>
+                          <td className="px-6 py-3 text-gray-600">Professor & HOD, Periodontics & Oral Implantology</td>
                           <td className="px-6 py-3">Member Secretary</td>
                           <td className="px-6 py-3">+91 373 2300124</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-3 font-bold text-[#0A1F44]">Dr. Swapna Dutta</td>
-                          <td className="px-6 py-3 text-gray-600">Professor & HOD</td>
+                          <td className="px-6 py-3 font-bold text-[#0A1F44]">Dr. Jahnabi Dutta</td>
+                          <td className="px-6 py-3 text-gray-600">HOD (i/c), Reader, Oral Pathology & Microbiology</td>
                           <td className="px-6 py-3">Student Welfare Officer</td>
                           <td className="px-6 py-3">+91 373 2300125</td>
                         </tr>

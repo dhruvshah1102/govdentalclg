@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { 
-  Save, CheckCircle, AlertCircle, Users, 
-  Stethoscope, Settings, Layers, Calendar, 
-  Info, Mail, Phone, Image as ImageIcon
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  Save, CheckCircle, AlertCircle, Users,
+  Stethoscope, Settings, Layers, Calendar,
+  Info, Mail, Phone, UploadCloud
 } from 'lucide-react';
 
 interface Department {
@@ -36,16 +36,23 @@ export const DepartmentsEditorClient: React.FC<DepartmentsEditorClientProps> = (
   // Form Fields States
   const [name, setName] = useState('');
   const [bannerImage, setBannerImage] = useState('');
+  const [bannerImageFile, setBannerImageFile] = useState<File | null>(null);
+  const [bannerImagePreview, setBannerImagePreview] = useState('');
   const [about, setAbout] = useState('');
   const [hodName, setHodName] = useState('');
   const [hodQualifications, setHodQualifications] = useState('');
   const [hodDesignation, setHodDesignation] = useState('');
   const [hodPhoto, setHodPhoto] = useState('');
+  const [hodPhotoFile, setHodPhotoFile] = useState<File | null>(null);
+  const [hodPhotoPreview, setHodPhotoPreview] = useState('');
   const [infrastructure, setInfrastructure] = useState('');
   const [clinicalServices, setClinicalServices] = useState('');
   const [researchActivities, setResearchActivities] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
+
+  const bannerFileInputRef = useRef<HTMLInputElement>(null);
+  const hodPhotoFileInputRef = useRef<HTMLInputElement>(null);
 
   // Find the selected department
   const currentDept = departments.find((d) => d.id === selectedId);
@@ -66,25 +73,74 @@ export const DepartmentsEditorClient: React.FC<DepartmentsEditorClientProps> = (
       setContactEmail(currentDept.contact_email || '');
       setContactPhone(currentDept.contact_phone || '');
       setStatus('idle');
+
+      // Clear any pending (unsaved) file selections/previews from the previous department
+      setBannerImageFile(null);
+      if (bannerImagePreview) URL.revokeObjectURL(bannerImagePreview);
+      setBannerImagePreview('');
+      if (bannerFileInputRef.current) bannerFileInputRef.current.value = '';
+
+      setHodPhotoFile(null);
+      if (hodPhotoPreview) URL.revokeObjectURL(hodPhotoPreview);
+      setHodPhotoPreview('');
+      if (hodPhotoFileInputRef.current) hodPhotoFileInputRef.current.value = '';
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedId, departments, currentDept]);
+
+  const handleBannerFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    if (bannerImagePreview) URL.revokeObjectURL(bannerImagePreview);
+    setBannerImageFile(file);
+    setBannerImagePreview(file ? URL.createObjectURL(file) : '');
+  };
+
+  const handleHodPhotoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    if (hodPhotoPreview) URL.revokeObjectURL(hodPhotoPreview);
+    setHodPhotoFile(file);
+    setHodPhotoPreview(file ? URL.createObjectURL(file) : '');
+  };
+
+  const uploadDepartmentImage = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('folder', 'departments');
+    const res = await fetch('/api/admin/upload', { method: 'POST', body: formData });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || 'Image upload failed.');
+    }
+    return data.url;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
 
     try {
+      // Only upload files that were newly selected; otherwise keep the existing saved URL.
+      let finalBannerImage = bannerImage;
+      if (bannerImageFile) {
+        finalBannerImage = await uploadDepartmentImage(bannerImageFile);
+      }
+
+      let finalHodPhoto = hodPhoto;
+      if (hodPhotoFile) {
+        finalHodPhoto = await uploadDepartmentImage(hodPhotoFile);
+      }
+
       const response = await fetch(`/api/admin/departments?id=${selectedId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name,
-          banner_image: bannerImage,
+          banner_image: finalBannerImage,
           about,
           hod_name: hodName,
           hod_qualifications: hodQualifications,
           hod_designation: hodDesignation,
-          hod_photo: hodPhoto,
+          hod_photo: finalHodPhoto,
           infrastructure,
           clinical_services: clinicalServices,
           research_activities: researchActivities,
@@ -98,12 +154,12 @@ export const DepartmentsEditorClient: React.FC<DepartmentsEditorClientProps> = (
         const updatedDept: Department = {
           id: selectedId,
           name,
-          banner_image: bannerImage || null,
+          banner_image: finalBannerImage || null,
           about: about || null,
           hod_name: hodName || null,
           hod_qualifications: hodQualifications || null,
           hod_designation: hodDesignation || null,
-          hod_photo: hodPhoto || null,
+          hod_photo: finalHodPhoto || null,
           infrastructure: infrastructure || null,
           clinical_services: clinicalServices || null,
           research_activities: researchActivities || null,
@@ -111,6 +167,19 @@ export const DepartmentsEditorClient: React.FC<DepartmentsEditorClientProps> = (
           contact_phone: contactPhone || null
         };
         setDepartments((prev) => prev.map((d) => d.id === selectedId ? updatedDept : d));
+        setBannerImage(finalBannerImage);
+        setHodPhoto(finalHodPhoto);
+
+        setBannerImageFile(null);
+        if (bannerImagePreview) URL.revokeObjectURL(bannerImagePreview);
+        setBannerImagePreview('');
+        if (bannerFileInputRef.current) bannerFileInputRef.current.value = '';
+
+        setHodPhotoFile(null);
+        if (hodPhotoPreview) URL.revokeObjectURL(hodPhotoPreview);
+        setHodPhotoPreview('');
+        if (hodPhotoFileInputRef.current) hodPhotoFileInputRef.current.value = '';
+
         setStatus('success');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
@@ -247,14 +316,28 @@ export const DepartmentsEditorClient: React.FC<DepartmentsEditorClientProps> = (
                   />
                 </div>
                 <div>
-                  <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">HOD Profile Photograph URL</label>
+                  <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">HOD Profile Photograph</label>
                   <input
-                    type="text"
-                    value={hodPhoto}
-                    onChange={(e) => setHodPhoto(e.target.value)}
-                    placeholder="e.g. /assets/placeholders/faculty/omfs_hod.jpg"
-                    className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition"
+                    ref={hodPhotoFileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleHodPhotoFileChange}
+                    className="w-full bg-[#F8F9FA] text-[11px] border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2 rounded transition cursor-pointer file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-[#0A1F44] file:text-white file:text-[9px] file:font-bold file:uppercase file:cursor-pointer"
                   />
+                  <div className="mt-2 flex items-center gap-3">
+                    {hodPhoto && !hodPhotoPreview && (
+                      <div className="flex items-center gap-1.5">
+                        <img src={hodPhoto} alt="Current HOD photo" className="h-16 w-16 object-cover rounded border border-gray-200 bg-gray-100" />
+                        <span className="text-[9px] text-gray-400">Current</span>
+                      </div>
+                    )}
+                    {hodPhotoPreview && (
+                      <div className="flex items-center gap-1.5">
+                        <img src={hodPhotoPreview} alt="New HOD photo preview" className="h-16 w-16 object-cover rounded border border-[#D4870A] bg-gray-100" />
+                        <span className="text-[9px] text-[#D4870A] font-bold flex items-center gap-1"><UploadCloud size={11} /> New (unsaved)</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -370,18 +453,27 @@ export const DepartmentsEditorClient: React.FC<DepartmentsEditorClientProps> = (
                   </div>
                 </div>
                 <div className="md:col-span-2">
-                  <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">Department landing Banner Image URL</label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                      <ImageIcon size={13} />
-                    </span>
-                    <input
-                      type="text"
-                      value={bannerImage}
-                      onChange={(e) => setBannerImage(e.target.value)}
-                      placeholder="e.g. /assets/placeholders/depts/omfs_banner.jpg"
-                      className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none pl-9 pr-2.5 py-2.5 rounded transition"
-                    />
+                  <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">Department Landing Banner Image</label>
+                  <input
+                    ref={bannerFileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleBannerFileChange}
+                    className="w-full bg-[#F8F9FA] text-[11px] border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2 rounded transition cursor-pointer file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-[#0A1F44] file:text-white file:text-[9px] file:font-bold file:uppercase file:cursor-pointer"
+                  />
+                  <div className="mt-2 flex items-center gap-3">
+                    {bannerImage && !bannerImagePreview && (
+                      <div className="flex items-center gap-1.5">
+                        <img src={bannerImage} alt="Current banner" className="h-16 w-28 object-cover rounded border border-gray-200 bg-gray-100" />
+                        <span className="text-[9px] text-gray-400">Current</span>
+                      </div>
+                    )}
+                    {bannerImagePreview && (
+                      <div className="flex items-center gap-1.5">
+                        <img src={bannerImagePreview} alt="New banner preview" className="h-16 w-28 object-cover rounded border border-[#D4870A] bg-gray-100" />
+                        <span className="text-[9px] text-[#D4870A] font-bold flex items-center gap-1"><UploadCloud size={11} /> New (unsaved)</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

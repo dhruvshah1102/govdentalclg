@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
-import { 
-  Plus, Trash2, CheckCircle, AlertCircle, 
+import React, { useState, useRef, useEffect } from 'react';
+import {
+  Plus, Trash2, CheckCircle, AlertCircle,
   Image as ImageIcon, Video, Layers, ClipboardList,
-  Eye, Play
+  Eye, Play, Loader2
 } from 'lucide-react';
 
 interface GalleryItem {
@@ -28,32 +28,73 @@ export const GalleryManagerClient: React.FC<GalleryManagerClientProps> = ({ init
   // Add Form states
   const [albumName, setAlbumName] = useState('');
   const [category, setCategory] = useState('Academic');
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
   const [isVideo, setIsVideo] = useState(0);
   const [videoUrl, setVideoUrl] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const categories = ['Academic', 'Clinical', 'Infrastructure', 'Cultural', 'Events'];
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
+    setImageFile(file);
+    setImagePreviewUrl((prev) => {
+      if (prev) URL.revokeObjectURL(prev);
+      return file ? URL.createObjectURL(file) : null;
+    });
+  };
+
+  // Revoke the object URL when the component unmounts or the preview changes
+  useEffect(() => {
+    return () => {
+      if (imagePreviewUrl) URL.revokeObjectURL(imagePreviewUrl);
+    };
+  }, [imagePreviewUrl]);
+
   const handleAddMedia = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!albumName || !imageUrl) {
-      alert('Please fill in required fields (Album/Event name and Image/Thumbnail URL).');
+    setErrorMessage('');
+
+    if (!albumName || !imageFile) {
+      setErrorMessage('Please fill in required fields (Album/Event name and Image/Thumbnail file).');
+      setStatus('error');
       return;
     }
     if (isVideo === 1 && !videoUrl) {
-      alert('Please provide the YouTube play link for video assets.');
+      setErrorMessage('Please provide the YouTube play link for video assets.');
+      setStatus('error');
       return;
     }
 
     setStatus('loading');
     try {
+      // 1. Upload the image file to Supabase storage first
+      const formData = new FormData();
+      formData.append('file', imageFile);
+      formData.append('folder', 'gallery');
+
+      const uploadRes = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: formData
+      });
+      const uploadData = await uploadRes.json();
+
+      if (!uploadRes.ok) {
+        throw new Error(uploadData.error || 'Image upload failed.');
+      }
+
+      const uploadedImageUrl: string = uploadData.url;
+
+      // 2. Create the gallery record with the uploaded image URL
       const response = await fetch('/api/admin/gallery', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           album_name: albumName,
           category,
-          image_url: imageUrl,
+          image_url: uploadedImageUrl,
           is_video: isVideo,
           video_url: isVideo === 1 ? videoUrl : null
         })
@@ -65,24 +106,31 @@ export const GalleryManagerClient: React.FC<GalleryManagerClientProps> = ({ init
           id: data.id,
           album_name: albumName,
           category,
-          image_url: imageUrl,
+          image_url: uploadedImageUrl,
           is_video: isVideo,
           video_url: isVideo === 1 ? videoUrl : null
         };
         setItems((prev) => [newMedia, ...prev]);
         setStatus('success');
-        
+
         // Reset form
         setAlbumName('');
         setCategory('Academic');
-        setImageUrl('');
+        setImageFile(null);
+        setImagePreviewUrl((prev) => {
+          if (prev) URL.revokeObjectURL(prev);
+          return null;
+        });
+        if (fileInputRef.current) fileInputRef.current.value = '';
         setIsVideo(0);
         setVideoUrl('');
         setActiveTab('list');
       } else {
-        setStatus('error');
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error || 'Failed to publish gallery asset.');
       }
     } catch (err) {
+      setErrorMessage(err instanceof Error ? err.message : 'An unexpected error occurred.');
       setStatus('error');
     }
   };
@@ -137,7 +185,7 @@ export const GalleryManagerClient: React.FC<GalleryManagerClientProps> = ({ init
         {status === 'error' && (
           <div className="bg-rose-50 border border-rose-200 text-rose-700 p-3.5 rounded flex items-center gap-2 mb-4 font-sans font-semibold">
             <AlertCircle size={16} />
-            <span>Operation failed. Please verify inputs or database permissions.</span>
+            <span>{errorMessage || 'Operation failed. Please verify inputs or database permissions.'}</span>
           </div>
         )}
 
@@ -200,16 +248,25 @@ export const GalleryManagerClient: React.FC<GalleryManagerClientProps> = ({ init
               </div>
               <div>
                 <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">
-                  {isVideo === 1 ? 'Backdrop Thumbnail Image URL (Required)' : 'Photograph Image URL (Required)'}
+                  {isVideo === 1 ? 'Backdrop Thumbnail Image (Required)' : 'Photograph Image (Required)'}
                 </label>
-                <input
-                  type="text"
-                  placeholder="e.g. /assets/images/gallery/campus_1.jpg..."
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                  className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition font-mono"
-                  required
-                />
+                <div className="flex items-center gap-3">
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition font-mono file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:bg-[#0A1F44] file:text-white file:text-[10px] file:font-bold file:uppercase cursor-pointer"
+                    required
+                  />
+                  {imagePreviewUrl && (
+                    <img
+                      src={imagePreviewUrl}
+                      alt="Preview"
+                      className="w-12 h-12 object-cover rounded border border-gray-300 shrink-0"
+                    />
+                  )}
+                </div>
               </div>
             </div>
 
@@ -234,9 +291,17 @@ export const GalleryManagerClient: React.FC<GalleryManagerClientProps> = ({ init
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="bg-[#0A1F44] hover:bg-[#162E5B] text-white text-xs font-bold py-3 px-6 rounded uppercase tracking-wider transition shadow-sm flex items-center gap-1.5"
+                className="bg-[#0A1F44] hover:bg-[#162E5B] disabled:opacity-60 disabled:cursor-not-allowed text-white text-xs font-bold py-3 px-6 rounded uppercase tracking-wider transition shadow-sm flex items-center gap-1.5"
               >
-                <Plus size={14} /> {status === 'loading' ? 'Publishing asset...' : 'Publish Media Asset'}
+                {status === 'loading' ? (
+                  <>
+                    <Loader2 size={14} className="animate-spin" /> Uploading &amp; publishing...
+                  </>
+                ) : (
+                  <>
+                    <Plus size={14} /> Publish Media Asset
+                  </>
+                )}
               </button>
             </div>
           </form>

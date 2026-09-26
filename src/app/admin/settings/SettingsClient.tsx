@@ -206,6 +206,7 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
   const pageKeys = [
     { key: 'about_college_html', label: 'About Us — About the College' },
     { key: 'about_hospital_html', label: 'About Us — About the Hospital' },
+    { key: 'rti_html', label: 'About Us — Right to Information (RTI)' },
     { key: 'bds_curriculum_html', label: 'Academics — BDS Programme details' },
     { key: 'mds_curriculum_html', label: 'Academics — MDS Programme details' },
     { key: 'scholarships_html', label: 'Academics — Scholarships & Aid' },
@@ -411,6 +412,49 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
                 required
               />
             </div>
+            <div>
+              <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">Tele-Consultation Helpline</label>
+              <input
+                type="text"
+                name="helpline_tele"
+                value={formData.helpline_tele || ''}
+                onChange={handleChange}
+                className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition"
+              />
+            </div>
+            <div>
+              <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">WhatsApp Helpline Number (digits only, with country code, e.g. 913732300123)</label>
+              <input
+                type="text"
+                name="whatsapp_number"
+                value={formData.whatsapp_number || ''}
+                onChange={handleChange}
+                className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition"
+              />
+            </div>
+          </div>
+
+          <div className="pt-2">
+            <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">Google Maps Embed URL (used in footer &amp; Contact Us page)</label>
+            <input
+              type="text"
+              name="google_map_embed"
+              value={formData.google_map_embed || ''}
+              onChange={handleChange}
+              placeholder="https://www.google.com/maps?q=LAT,LONG&output=embed"
+              className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition"
+            />
+          </div>
+
+          <div className="pt-2">
+            <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">Short Footer Description (appears under the college crest in the site footer)</label>
+            <textarea
+              name="about_summary_en"
+              value={formData.about_summary_en || ''}
+              onChange={handleChange}
+              rows={3}
+              className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition"
+            />
           </div>
         </div>
       )}
