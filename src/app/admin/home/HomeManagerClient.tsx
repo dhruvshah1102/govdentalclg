@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
-import { 
-  ClipboardList, Plus, Trash2, CheckCircle, 
-  AlertCircle, Save, Settings, Layers, Calendar, 
+import React, { useState, useRef } from 'react';
+import {
+  ClipboardList, Plus, Trash2, CheckCircle,
+  AlertCircle, Save, Settings, Layers, Calendar,
   HelpCircle, Eye, EyeOff, Sparkles, Smile, Star,
-  Megaphone
+  Megaphone, UploadCloud
 } from 'lucide-react';
 
 interface Slide {
@@ -72,6 +72,9 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
   const [slideCtaText, setSlideCtaText] = useState('');
   const [slideCtaLink, setSlideCtaLink] = useState('');
   const [slideSort, setSlideSort] = useState('0');
+  const [slideImageFile, setSlideImageFile] = useState<File | null>(null);
+  const [slideImagePreview, setSlideImagePreview] = useState('');
+  const slideFileInputRef = useRef<HTMLInputElement>(null);
 
   // Announcements Form
   const [annTitle, setAnnTitle] = useState('');
@@ -115,6 +118,18 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
     setSlideCtaText('');
     setSlideCtaLink('');
     setSlideSort('0');
+    if (slideImagePreview) URL.revokeObjectURL(slideImagePreview);
+    setSlideImagePreview('');
+    setSlideImageFile(null);
+    if (slideFileInputRef.current) slideFileInputRef.current.value = '';
+  };
+
+  const handleSlideFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (slideImagePreview) URL.revokeObjectURL(slideImagePreview);
+    setSlideImageFile(file);
+    setSlideImagePreview(URL.createObjectURL(file));
   };
 
   const startEditAnnouncement = (ann: Announcement) => {
