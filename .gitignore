@@ -40,3 +40,8 @@ GDCH-Dibrugarh-Website-Status-Report.docx
 GDC_Dibrugarh_Faculty_List-3.xlsx
 Superform_ College Information Collection Form Submissions.xlsx
 Superform_ Department Details Submission Submissions.xlsx
+ACTUAL_INFO_MISMATCH_REPORT.md
+AI_SLOP_REPORT.md
+LOCAL_FALLBACK_DATA.md
+*.md
+!README.md

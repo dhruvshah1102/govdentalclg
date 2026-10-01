@@ -12,11 +12,6 @@ export const revalidate = 0;
 export default async function AlumniPage() {
   const db = await getDb();
 
-  // Seed default notable alumni
-  const notableAlumni = [
-    { name: 'Dr. Amitav Baruah, MDS', batch: 'BDS Batch of 2018', role: 'Senior Resident, OMFS (AMCH Dibrugarh)', desc: 'Secured Top Rank in State PG NEET examinations and contributes back as visiting clinical supervisor.' },
-    { name: 'Dr. Pallabi Gogoi, BDS', batch: 'BDS Batch of 2019', role: 'Chief Dental Officer, Smile Care Centre', desc: 'Pioneered advanced pediatric dentistry outreach clinics across Upper Assam rural blocks.' }
-  ];
 
   return (
     <div className="bg-gray-50 min-h-screen py-10 px-4 md:px-8 font-sans">
@@ -66,17 +61,17 @@ export default async function AlumniPage() {
           {/* Side column: Notable graduates & newsletters (1 Column) */}
           <div className="space-y-6">
             
-            {/* Notable Alumni cards */}
+            {/* Alumni Network Overview */}
             <div className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
-              <h4 className="font-serif text-base font-bold text-[#0A1F44] border-b border-gray-100 pb-2 mb-4">Notable Alumni</h4>
-              <div className="space-y-4">
-                {notableAlumni.map((al, idx) => (
-                  <div key={idx} className="border-b border-gray-100 pb-3 last:border-b-0 last:pb-0 text-xs">
-                    <strong className="text-[#0A1F44] block font-serif text-sm">{al.name}</strong>
-                    <span className="text-[10px] text-[#1B5E3B] font-bold block mb-1">{al.batch} &bull; {al.role}</span>
-                    <p className="text-gray-500 font-sans leading-relaxed">{al.desc}</p>
-                  </div>
-                ))}
+              <h4 className="font-serif text-base font-bold text-[#0A1F44] border-b border-gray-100 pb-2 mb-4">Alumni Network</h4>
+              <div className="space-y-3 text-xs text-gray-600 font-sans leading-relaxed">
+                <div className="bg-[#1B5E3B]/10 p-4 rounded text-center">
+                  <span className="text-2xl font-bold text-[#1B5E3B] font-serif block">150+</span>
+                  <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Graduated Dental Surgeons</span>
+                </div>
+                <p>
+                  Since its establishment in 2018, Government Dental College & Hospital, Dibrugarh has graduated over 150+ BDS dental surgeons serving across healthcare establishments, public health services, and higher specialties nationwide.
+                </p>
               </div>
             </div>
 

@@ -33,7 +33,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Header Tagline
     tagline: 'Government Dental College & Hospital, Dibrugarh, Assam',
-    aff_rec: 'Affiliated to Dibrugarh University & Recognized by Dental Council of India',
+    aff_rec: 'Affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati & Recognised by National Dental Commission',
     
     // Mega Menu
     home: 'Home',
@@ -119,7 +119,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Header Tagline
     tagline: 'চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয় আৰু চিকিৎসালয়, ডিব্ৰুগড়, অসম',
-    aff_rec: 'ডিব্ৰুগড় বিশ্ববিদ্যালয়ৰ সৈতে অনুমোদিত আৰু ভাৰতীয় দন্ত পৰিষদ (DCI) ৰ দ্বাৰা স্বীকৃত',
+    aff_rec: 'শ্ৰীমন্ত শংকৰদেৱ স্বাস্থ্য বিজ্ঞান বিশ্ববিদ্যালয়, গুৱাহাটীৰ সৈতে সংযুক্ত আৰু ৰাষ্ট্ৰীয় দন্ত আয়োগ (NDC) ৰ দ্বাৰা স্বীকৃত',
     
     // Mega Menu
     home: 'মুখ্য পৃষ্ঠা',
@@ -205,7 +205,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Header Tagline
     tagline: 'सरकारी दंत चिकित्सा महाविद्यालय और अस्पताल, डिब्रूगढ़, असम',
-    aff_rec: 'डिब्रूगढ़ विश्वविद्यालय से संबद्ध और भारतीय दंत परिषद (DCI) द्वारा मान्यता प्राप्त',
+    aff_rec: 'श्रीमंत शंकरदेव स्वास्थ्य विज्ञान विश्वविद्यालय, गुवाहाटी से संबद्ध और राष्ट्रीय दंत आयोग (NDC) द्वारा मान्यता प्राप्त',
     
     // Mega Menu
     home: 'मुख्य पृष्ठ',

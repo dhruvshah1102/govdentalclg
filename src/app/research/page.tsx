@@ -80,67 +80,17 @@ export default async function ResearchPage() {
               )}
             </div>
 
-            {/* ongoing research projects */}
+            {/* Research Initiatives */}
             <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-8 shadow-sm">
               <h3 className="font-serif text-xl font-bold text-[#0A1F44] border-b border-gray-100 pb-2 mb-4 flex items-center gap-2">
-                <Layers className="text-[#1B5E3B]" size={20} /> Active Research Projects
+                <Layers className="text-[#1B5E3B]" size={20} /> Research & Clinical Investigations
               </h3>
-              <p className="text-xs md:text-sm text-gray-600 leading-relaxed mb-6 font-sans">
-                Our clinical departments run dynamic investigations funded by national and state agencies:
+              <p className="text-xs md:text-sm text-gray-600 leading-relaxed font-sans mb-4">
+                Faculty members and BDS scholars participate in academic investigations, epidemiological surveys, and clinical studies. Research initiatives focus on public dental health, oral diagnostics, and restorative methodologies tailored to North-East India.
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="border border-gray-100 p-4 rounded bg-[#F8F9FA] text-xs">
-                  <span className="inline-block bg-[#1B5E3B]/10 text-[#1B5E3B] text-[8px] font-bold py-0.5 px-2 rounded-full mb-2 uppercase">
-                    Epidemiology
-                  </span>
-                  <strong className="text-[#0A1F44] block mb-1 font-serif text-sm">Oral Health Screenings in Tea Gardens</strong>
-                  - <strong>Principal Investigator</strong>: Dr. Deepjyoti Gogoi (Public Health)<br />
-                  - <strong>Objective</strong>: Evaluation of periodontal conditions and mucosal lesions in Upper Assam garden workers.<br />
-                  <strong className="text-gray-500 block mt-2 text-[10px]">Funding Agency: State Health Mission</strong>
-                </div>
-                <div className="border border-gray-100 p-4 rounded bg-[#F8F9FA] text-xs">
-                  <span className="inline-block bg-[#D4870A]/10 text-[#D4870A] text-[8px] font-bold py-0.5 px-2 rounded-full mb-2 uppercase">
-                    Therapeutics
-                  </span>
-                  <strong className="text-[#0A1F44] block mb-1 font-serif text-sm">Efficacy of Laser Periodontal Debridement</strong>
-                  - <strong>Principal Investigator</strong>: Dr. Ranjit Konwar (Periodontics)<br />
-                  - <strong>Objective</strong>: Comparative trial evaluating laser-assisted pocket curettage vs conventional scaling.<br />
-                  <strong className="text-gray-500 block mt-2 text-[10px]">Funding Agency: Institutional Research Cell</strong>
-                </div>
-              </div>
-            </div>
-
-            {/* MOUs & Collaborations */}
-            <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-8 shadow-sm">
-              <h3 className="font-serif text-xl font-bold text-[#0A1F44] border-b border-gray-100 pb-2 mb-4 flex items-center gap-2">
-                <CheckCircle className="text-[#0A1F44]" size={20} /> Academic MOUs & Collaborations
-              </h3>
-              <p className="text-xs md:text-sm text-gray-600 leading-relaxed mb-4 font-sans">
-                Fostering inter-disciplinary clinical studies and postgraduate training exchanges:
-              </p>
-              <div className="overflow-x-auto border border-gray-200 rounded-lg text-xs md:text-sm">
-                <table className="w-full text-left">
-                  <thead className="bg-[#0A1F44] text-white font-ui uppercase tracking-wider text-[10px] font-semibold">
-                    <tr>
-                      <th className="px-6 py-3.5">Institution Name</th>
-                      <th className="px-6 py-3.5">Purpose of Collaboration</th>
-                      <th className="px-6 py-3.5">Date of Sign</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 text-[#2D2D2D] font-medium">
-                    <tr className="hover:bg-gray-50/50">
-                      <td className="px-6 py-3 font-bold text-[#0A1F44]">Assam Medical College (AMCH)</td>
-                      <td className="px-6 py-3 text-gray-600">Inter-disciplinary Maxillofacial Trauma & Surgical Rotations</td>
-                      <td className="px-6 py-3 text-[#1B5E3B]">September 2024</td>
-                    </tr>
-                    <tr className="hover:bg-gray-50/50">
-                      <td className="px-6 py-3 font-bold text-[#0A1F44]">Dibrugarh University Science Dept</td>
-                      <td className="px-6 py-3 text-gray-600">Molecular Oral Microbiological Assays & Histopath research</td>
-                      <td className="px-6 py-3 text-[#1B5E3B]">March 2025</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="bg-[#F8F9FA] border border-gray-200 p-4 rounded text-xs text-gray-600 font-sans leading-relaxed">
+                Ongoing clinical trial protocols, departmental publications, and academic collaborative initiatives are published periodically following Institutional Ethical Committee reviews.
               </div>
             </div>
 
@@ -159,24 +109,15 @@ export default async function ResearchPage() {
                   dangerouslySetInnerHTML={{ __html: ethicalHtml }}
                 />
               ) : (
-                <ul className="space-y-3.5 text-xs text-gray-600">
-                  <li>
+                <div className="space-y-3 text-xs text-gray-600 font-sans">
+                  <p>
                     <strong className="text-gray-800 block">Chairman:</strong>
-                    Dr. Ramesh Chandra Das, MDS
-                  </li>
-                  <li>
-                    <strong className="text-gray-800 block">External Expert Jurist:</strong>
-                    Advocate Sri Nabajyoti Baruah
-                  </li>
-                  <li>
-                    <strong className="text-gray-800 block">Member Secretary:</strong>
-                    Dr. Ananya Sarma (HOD, OMR)
-                  </li>
-                  <li>
-                    <strong className="text-gray-800 block">Basic Medical Scientist:</strong>
-                    Dr. Pranab Jyoti Baruah
-                  </li>
-                </ul>
+                    Dr. Ramesh Chandra Das (Principal & Dean)
+                  </p>
+                  <p className="text-gray-500 text-[11px]">
+                    Institutional Ethical Committee members and constitution orders are notified by the administration as per ICMR regulations.
+                  </p>
+                </div>
               )}
             </div>
 

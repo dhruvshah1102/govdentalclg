@@ -100,7 +100,7 @@ export default async function AcademicsSubPage({ params }: PageProps) {
               {page === 'bds' && (
                 <div className="space-y-6 font-sans text-xs md:text-sm text-gray-700 leading-relaxed">
                   <p>
-                    The **Bachelor of Dental Surgery (BDS)** is a premier undergraduate professional program of 5 years' duration (4 years academic coursework + 1 year mandatory rotating internship). It is affiliated with **Dibrugarh University** and recognized by the **Dental Council of India (DCI)**.
+                    The **Bachelor of Dental Surgery (BDS)** is an undergraduate professional degree program of 5 years' duration (4 years academic coursework + 1 year compulsory rotating paid internship). It is affiliated with **Srimanta Sankardeva University of Health Sciences, Guwahati** and recognised by the **Ministry of Health and Family Welfare, Govt of India & National Dental Commission, New Delhi**.
                   </p>
 
                   <div className="bg-emerald-50 border border-emerald-200 p-4 rounded text-xs flex gap-3 text-[#2D2D2D]">
@@ -109,7 +109,8 @@ export default async function AcademicsSubPage({ params }: PageProps) {
                       <strong className="text-[#0A1F44] block mb-0.5 font-serif text-sm">Key Facts: BDS Program</strong>
                       - <strong>Annual Intake Capacity</strong>: 63 Students<br />
                       - <strong>Admission Channel</strong>: NEET-UG State & All India Counselling<br />
-                      - <strong>Course Duration</strong>: 4 Years Academics + 1 Year Internship
+                      - <strong>Course Duration</strong>: 4 Years Academics + 1 Year Rotating Internship<br />
+                      - <strong>Internship Stipend</strong>: Official stipend is offered to rotating interns
                     </div>
                   </div>
 
@@ -122,16 +123,21 @@ export default async function AcademicsSubPage({ params }: PageProps) {
 
                   <h3 className="font-serif text-lg font-bold text-[#0A1F44] pt-4">BDS Syllabus Overview</h3>
                   <p>
-                    The curriculum follows the strict guidelines of the DCI, covering basic medical sciences (Anatomy, Physiology, Biochemistry, Pharmacology, General Pathology, Microbiology) alongside dental sciences (Dental Anatomy, Histology, Oral Pathology, Conservative Dentistry, Prosthodontics, Orthodontics, Periodontics, Pedodontics, and Oral & Maxillofacial Surgery) inside extensive preclinical laboratories and clinical postings.
+                    The curriculum follows the statutory guidelines of the National Dental Commission (NDC) / DCI Revised BDS Course Regulations, covering basic medical sciences alongside dental operative specialties across comprehensive preclinical laboratories and hospital clinical postings.
                   </p>
 
                   <div className="pt-6 border-t border-gray-100 flex flex-wrap gap-4">
                     <Link href="/admissions" className="bg-[#D4870A] hover:bg-[#EAA023] text-white text-xs font-bold font-ui py-2.5 px-6 rounded uppercase tracking-wider transition shadow-sm">
                       Admission Guidelines
                     </Link>
-                    <Link href="/downloads" className="border-2 border-gray-300 hover:border-[#1B5E3B] text-gray-600 hover:text-[#1B5E3B] text-xs font-bold font-ui py-2 px-5 rounded uppercase tracking-wider transition">
-                      Download BDS Curriculum PDF
-                    </Link>
+                    <a 
+                      href="https://dciindia.gov.in/Rule_Regulation/Revised_BDS_Course_Regulation_2007.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="border-2 border-gray-300 hover:border-[#1B5E3B] text-gray-600 hover:text-[#1B5E3B] text-xs font-bold font-ui py-2 px-5 rounded uppercase tracking-wider transition inline-flex items-center gap-1.5"
+                    >
+                      Revised BDS Course Regulation PDF &raquo;
+                    </a>
                   </div>
                 </div>
               )}
@@ -189,57 +195,18 @@ export default async function AcademicsSubPage({ params }: PageProps) {
               {/* 4. Timetables specific */}
               {page === 'timetable' && (
                 <div className="space-y-6">
-                  <p className="text-xs md:text-sm text-gray-600">
-                    Classes schedules, preclinical lab rosters, and hospital clinical rotation boards for BDS 1st, 2nd, 3rd, and 4th years are published below.
+                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed font-sans">
+                    Class schedules, preclinical laboratory rosters, and hospital clinical rotation boards for BDS professional batches are published through the Academic Office and posted on respective departmental notice boards.
                   </p>
-                  <div className="overflow-x-auto border border-gray-200 rounded-lg text-xs md:text-sm mt-4">
-                    <table className="w-full text-left">
-                      <thead className="bg-[#0A1F44] text-white font-ui uppercase text-[10px] font-semibold tracking-wider">
-                        <tr>
-                          <th className="px-6 py-4">BDS Professional Year</th>
-                          <th className="px-6 py-4">Current Session Timetable</th>
-                          <th className="px-6 py-4">Last Updated</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-100 text-[#2D2D2D]">
-                        <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-semibold">BDS 1st Year (Batch 2025-26)</td>
-                          <td className="px-6 py-4">
-                            <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
-                              <Download size={12} /> Download PDF (1.2 MB)
-                            </Link>
-                          </td>
-                          <td className="px-6 py-4 text-gray-400">March 2026</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-semibold">BDS 2nd Year (Batch 2024-25)</td>
-                          <td className="px-6 py-4">
-                            <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
-                              <Download size={12} /> Download PDF (1.1 MB)
-                            </Link>
-                          </td>
-                          <td className="px-6 py-4 text-gray-400">February 2026</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-semibold">BDS 3rd Year (Batch 2023-24)</td>
-                          <td className="px-6 py-4">
-                            <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
-                              <Download size={12} /> Download PDF (1.4 MB)
-                            </Link>
-                          </td>
-                          <td className="px-6 py-4 text-gray-400">April 2026</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-semibold">BDS 4th Year & Interns</td>
-                          <td className="px-6 py-4">
-                            <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
-                              <Download size={12} /> Download PDF (1.5 MB)
-                            </Link>
-                          </td>
-                          <td className="px-6 py-4 text-gray-400">May 2026</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <div className="bg-[#F8F9FA] border border-gray-200 rounded-lg p-6 text-center text-xs md:text-sm text-gray-600 font-sans space-y-3">
+                    <FileText className="mx-auto text-[#1B5E3B]" size={28} />
+                    <h4 className="font-serif font-bold text-[#0A1F44] text-base">Academic Session Timetables</h4>
+                    <p className="max-w-md mx-auto text-gray-500 text-xs">
+                      Official schedules for current academic sessions are notified as per college and university calendars. Please check the Downloads repository or consult the Academic Branch.
+                    </p>
+                    <Link href="/downloads" className="inline-block bg-[#0A1F44] hover:bg-[#162E5B] text-white text-xs font-bold font-ui py-2 px-4 rounded uppercase tracking-wider transition">
+                      Check Downloads Section &raquo;
+                    </Link>
                   </div>
                 </div>
               )}

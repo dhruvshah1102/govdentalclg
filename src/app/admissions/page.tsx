@@ -21,9 +21,9 @@ export default async function AdmissionsPage() {
 
   const faqs = [
     { q: 'What is the annual intake capacity for BDS at GDC Dibrugarh?', a: 'The college has a recognized annual intake capacity of 63 students for the BDS programme.' },
-    { q: 'Is the college recognized by the Dental Council of India (DCI)?', a: 'Yes, Government Dental College & Hospital, Dibrugarh is fully recognized by the Dental Council of India, New Delhi and affiliated with Dibrugarh University.' },
+    { q: 'What is the institutional affiliation and regulatory recognition?', a: 'Government Dental College & Hospital, Dibrugarh is affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the Ministry of Health and Family Welfare, Govt of India & National Dental Commission, New Delhi.' },
     { q: 'What are the eligibility criteria for BDS admissions?', a: 'Candidates must qualify the national level NEET-UG conducted by NTA and secure a seat through the state level counselling conducted by the DME, Assam or through the All India Quota.' },
-    { q: 'Are hostel facilities available for students?', a: 'Yes, fully-equipped separate boys and girls hostels are available on the campus, backed by safe dining mess halls, security wardrobes, and recreation yards.' }
+    { q: 'Are hostel facilities available for students?', a: 'Yes, fully-equipped separate boys and girls hostels are available on the campus with a combined capacity of 110 seats.' }
   ];
 
   const admissionsHtml = settings['bds_admissions_html'];
@@ -123,27 +123,14 @@ export default async function AdmissionsPage() {
             {/* Fee Matrix details */}
             <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-8 shadow-sm">
               <h3 className="font-serif text-xl font-bold text-[#0A1F44] border-b border-gray-100 pb-2 mb-4 flex items-center gap-2">
-                <DollarSign className="text-[#1B5E3B]" size={20} /> Subsidized Course Fee Matrices
+                <DollarSign className="text-[#1B5E3B]" size={20} /> Course & Hostel Fee Structure
               </h3>
-              <p className="text-xs md:text-sm text-gray-600 leading-relaxed mb-6 font-sans">
-                As a state medical institution, tuition fees are heavily subsidized by the government, ensuring equitable dental training access.
+              <p className="text-xs md:text-sm text-gray-600 leading-relaxed mb-4 font-sans">
+                As a state government institution, tuition and hostel fees are strictly regulated as per the Government of Assam and Directorate of Medical Education (DME) directives.
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="border border-gray-100 p-4 rounded bg-[#F8F9FA] text-xs">
-                  <strong className="text-[#0A1F44] block mb-1 font-serif text-sm">Admission Session Fees</strong>
-                  - Annual Admission & Tuition: ₹20,000<br />
-                  - Library & Preclinical Lab Fee: ₹4,000<br />
-                  - Student Association Funds: ₹2,000<br />
-                  <strong className="text-gray-600 block mt-2">Total Annual Fee: ₹26,000</strong>
-                </div>
-                <div className="border border-gray-100 p-4 rounded bg-[#F8F9FA] text-xs">
-                  <strong className="text-[#0A1F44] block mb-1 font-serif text-sm">Caution Deposits (Refundable)</strong>
-                  - Laboratory Caution Deposit: ₹5,000<br />
-                  - College Library Deposit: ₹2,000<br />
-                  - Hostel Security Deposit: ₹3,000<br />
-                  <strong className="text-[#1B5E3B] block mt-2">Refundable Total: ₹10,000</strong>
-                </div>
+              <div className="bg-[#F8F9FA] border border-gray-200 p-4 rounded text-xs leading-relaxed text-gray-600 font-sans">
+                Official academic session fees, admission charges, and refundable caution deposits are notified during state and All-India counselling rounds. Candidates are advised to refer to the official counselling prospectus published by DME Assam or consult the College Academic Office for current session fee particulars.
               </div>
             </div>
 

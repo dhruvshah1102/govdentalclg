@@ -21,25 +21,7 @@ export default async function TendersPage() {
   const activeTenders = tenders.filter(t => t.last_date >= today && t.status === 'Active');
   const archivedTenders = tenders.filter(t => t.last_date < today || t.status === 'Archived');
 
-  // Hardcode fallback seeds if none added
-  const finalActive = activeTenders.length > 0 ? activeTenders : [
-    {
-      id: 1,
-      title: 'Tender Notice: Procurement of High-End Clinical Dental Chairs and Operative Equipment',
-      published_date: new Date().toISOString().split('T')[0],
-      last_date: new Date(Date.now() + 86400000 * 15).toISOString().split('T')[0], // 15 Days from now
-      document_url: '/downloads',
-      is_new: 1
-    },
-    {
-      id: 2,
-      title: 'Supply, Testing & Commissioning of Orthopantomogram (OPG) & CBCT Dental Imaging Systems',
-      published_date: new Date().toISOString().split('T')[0],
-      last_date: new Date(Date.now() + 86400000 * 10).toISOString().split('T')[0], // 10 Days from now
-      document_url: '/downloads',
-      is_new: 1
-    }
-  ];
+  const finalActive = activeTenders;
 
   return (
     <div className="bg-gray-50 min-h-screen py-10 px-4 md:px-8 font-sans">
@@ -74,43 +56,49 @@ export default async function TendersPage() {
               <CheckCircle className="text-[#1B5E3B]" size={20} /> Live Bids & Active Tenders
             </h3>
             
-            <div className="overflow-x-auto border border-gray-200 rounded-lg text-xs md:text-sm mt-4">
-              <table className="w-full text-left">
-                <thead className="bg-[#0A1F44] text-white font-ui uppercase tracking-wider text-[10px] font-semibold">
-                  <tr>
-                    <th className="px-6 py-4">Tender Specifications</th>
-                    <th className="px-6 py-4">Publish Date</th>
-                    <th className="px-6 py-4">Closing Date / Time</th>
-                    <th className="px-6 py-4">Bid Document</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100 text-[#2D2D2D] font-medium">
-                  {finalActive.map((t) => (
-                    <tr key={t.id} className="hover:bg-gray-50/50">
-                      <td className="px-6 py-4 leading-relaxed font-sans max-w-md">
-                        <div className="flex items-start gap-2 flex-wrap md:flex-nowrap">
-                          {t.is_new === 1 && (
-                            <span className="bg-red-600 text-white text-[8px] px-1.5 py-0.5 rounded-sm font-bold uppercase tracking-wider animate-pulse-fast mt-0.5 shrink-0">NEW</span>
-                          )}
-                          <span>{t.title}</span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-gray-500 font-sans">{t.published_date}</td>
-                      <td className="px-6 py-4 text-red-600 font-bold font-sans">{t.last_date} &bull; 2:00 PM</td>
-                      <td className="px-6 py-4">
-                        <Link 
-                          href={t.document_url || '/downloads'} 
-                          className="text-[#1B5E3B] hover:text-[#247C4E] hover:underline font-bold flex items-center gap-1"
-                          target="_blank"
-                        >
-                          <Download size={14} /> Spec.PDF
-                        </Link>
-                      </td>
+            {finalActive.length === 0 ? (
+              <div className="bg-[#F8F9FA] border border-gray-200 rounded-lg p-8 text-center text-gray-500 text-xs md:text-sm font-sans mt-4">
+                No active procurement tenders or empanelment bids are currently open.
+              </div>
+            ) : (
+              <div className="overflow-x-auto border border-gray-200 rounded-lg text-xs md:text-sm mt-4">
+                <table className="w-full text-left">
+                  <thead className="bg-[#0A1F44] text-white font-ui uppercase tracking-wider text-[10px] font-semibold">
+                    <tr>
+                      <th className="px-6 py-4">Tender Specifications</th>
+                      <th className="px-6 py-4">Publish Date</th>
+                      <th className="px-6 py-4">Closing Date / Time</th>
+                      <th className="px-6 py-4">Bid Document</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 text-[#2D2D2D] font-medium">
+                    {finalActive.map((t) => (
+                      <tr key={t.id} className="hover:bg-gray-50/50">
+                        <td className="px-6 py-4 leading-relaxed font-sans max-w-md">
+                          <div className="flex items-start gap-2 flex-wrap md:flex-nowrap">
+                            {t.is_new === 1 && (
+                              <span className="bg-red-600 text-white text-[8px] px-1.5 py-0.5 rounded-sm font-bold uppercase tracking-wider animate-pulse-fast mt-0.5 shrink-0">NEW</span>
+                            )}
+                            <span>{t.title}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-gray-500 font-sans">{t.published_date}</td>
+                        <td className="px-6 py-4 text-red-600 font-bold font-sans">{t.last_date} &bull; 2:00 PM</td>
+                        <td className="px-6 py-4">
+                          <Link 
+                            href={t.document_url || '/downloads'} 
+                            className="text-[#1B5E3B] hover:text-[#247C4E] hover:underline font-bold flex items-center gap-1"
+                            target="_blank"
+                          >
+                            <Download size={14} /> Spec.PDF
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
 
           {/* Institutional GeM Portal Box */}

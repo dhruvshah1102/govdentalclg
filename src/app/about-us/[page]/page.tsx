@@ -184,14 +184,14 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                       It is a matter of profound pride to welcome you all to the digital portal of **Government Dental College & Hospital, Dibrugarh**. Since our founding in 2018, our journey has been defined by academic excellence, state-of-the-art infrastructure, and compassionate patient care.
                     </p>
                     <p>
-                      As a government institution affiliated with Dibrugarh University and recognized by the Dental Council of India, we are committed to building highly skilled, ethical, and community-conscious dental surgeons. Our students learn in advanced, fully-equipped clinics, utilizing state-of-the-art diagnostic imaging, CBCT scans, and surgical endodontics.
+                      As a government institution affiliated with Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the National Dental Commission, New Delhi, we are committed to building highly skilled, ethical, and community-conscious dental surgeons. Our students learn in advanced, fully-equipped clinics, utilizing state-of-the-art diagnostic imaging, preclinical skill laboratories, and surgical suites.
                     </p>
                     <p>
                       Our tertiary hospital caters to Upper Assam with highly subsidized, high-quality dental surgeries. We remain committed to rural community outreach, screening camps, and scientific research. I invite you to explore our portals for admissions, notifications, and clinical services.
                     </p>
                     <div className="pt-4 italic font-serif text-xs text-gray-400">
                       Warm regards,<br />
-                      <strong className="text-gray-600 block mt-1">{settings.dean_name || 'Dr. Ramesh Chandra Das, MDS'}</strong>
+                      <strong className="text-gray-600 block mt-1">{settings.dean_name || 'Dr. Ramesh Chandra Das'}</strong>
                     </div>
                   </div>
                 </div>
@@ -246,12 +246,11 @@ export default async function AboutUsSubPage({ params }: PageProps) {
 
               {/* 5. Administration */}
               {page === 'administration' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {[
-                    { name: settings.dean_name || 'Dr. Ramesh Chandra Das', role: 'Principal & Dean', icon: UserCheck, desc: 'Administrative and Academic supreme head of the college.' },
-                    { name: 'To be Notified', role: 'Medical Superintendent', icon: Users, desc: 'Manages clinical operations, diagnostics, and patient welfare.' },
+                    { name: settings.dean_name || 'Dr. Ramesh Chandra Das', role: 'Principal & Dean', icon: UserCheck, desc: 'Administrative and Academic head of the institution.' },
                     { name: 'Dr. Lalit Chandra Boruah', role: 'Government Nodal Officer', icon: BookOpen, desc: 'Reader, Department of Conservative Dentistry & Endodontics. Coordinates official communication with the Government of Assam.' },
-                    { name: 'To be Notified', role: 'Administrative Head Clerk', icon: Clock, desc: 'Manages administrative operations, tenders documentation, and official records.' }
+                    { name: 'Dr. Liza Pathak', role: 'RTI Officer (PIO)', icon: Shield, desc: 'Professor & HOD, Department of Periodontology & Oral Implantology. Official Public Information Officer.' }
                   ].map((admin, idx) => (
                     <div key={idx} className="border border-gray-200 rounded-lg p-5 text-center bg-[#F8F9FA] hover:shadow-md transition">
                       <div className="h-12 w-12 rounded-full bg-[#1B5E3B]/10 text-[#1B5E3B] flex items-center justify-center mx-auto mb-4">
@@ -269,7 +268,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
               {page === 'disclosure' && (
                 <div className="space-y-6">
                   <p className="text-xs md:text-sm text-gray-600">
-                    In compliance with the Dental Council of India (DCI) mandatory guidelines, Government Dental College & Hospital, Dibrugarh hosts its official performance charts, structural tables, and recognitions certificates here.
+                    In compliance with statutory regulatory guidelines, Government Dental College & Hospital, Dibrugarh hosts its official institutional parameters and regulatory approvals here.
                   </p>
                   
                   <div className="bg-amber-50 border border-amber-200 rounded p-4 text-xs flex gap-3 text-[#2D2D2D]">
@@ -295,7 +294,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                       <tbody className="divide-y divide-gray-100 text-[#2D2D2D]">
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-4 font-semibold">Affiliating University</td>
-                          <td className="px-6 py-4">Dibrugarh University, Assam</td>
+                          <td className="px-6 py-4">Srimanta Sankardeva University of Health Sciences, Guwahati</td>
                           <td className="px-6 py-4">
                             <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
                               <Download size={12} /> View Certificate
@@ -303,11 +302,11 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                           </td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-semibold">DCI Recognition Status</td>
-                          <td className="px-6 py-4">Fully Recognized for BDS (63 Annual Seats)</td>
+                          <td className="px-6 py-4 font-semibold">Regulatory Recognition Status</td>
+                          <td className="px-6 py-4">Recognised by MoHFW, Govt of India & National Dental Commission (63 BDS Seats)</td>
                           <td className="px-6 py-4">
                             <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
-                              <Download size={12} /> DCI Order
+                              <Download size={12} /> Recognition Order
                             </Link>
                           </td>
                         </tr>

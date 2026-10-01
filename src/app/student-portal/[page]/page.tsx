@@ -154,11 +154,11 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
                     <div>
                       <strong className="text-[#0A1F44] block mb-1">National Anti-Ragging Helpline:</strong>
                       <span className="text-base font-bold text-red-600">1800-180-5522</span>
-                      <span className="text-[10px] text-gray-400 block font-sans">Toll-free / 24 Hours active support</span>
+                      <span className="text-[10px] text-gray-400 block font-sans">Toll-free / 24 Hours active statutory support</span>
                     </div>
                     <div>
-                      <strong className="text-[#0A1F44] block mb-1">GDC Dibrugarh Safe Helpline:</strong>
-                      <span className="text-base font-bold text-[#1B5E3B]">+91 373 2300123 ext 9</span>
+                      <strong className="text-[#0A1F44] block mb-1">Institutional Contact:</strong>
+                      <span className="text-base font-bold text-[#1B5E3B]">gdcdibrugarh@gmail.com</span>
                       <span className="text-[10px] text-gray-400 block font-sans">Student Welfare Cell / Principal Office</span>
                     </div>
                   </div>
@@ -171,7 +171,7 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
                           <th className="px-6 py-3.5">Name</th>
                           <th className="px-6 py-3.5">Designation</th>
                           <th className="px-6 py-3.5">Role in Committee</th>
-                          <th className="px-6 py-3.5">Contact Helpline</th>
+                          <th className="px-6 py-3.5">Campus Department</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-100 text-[#2D2D2D] font-medium">
@@ -179,19 +179,19 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
                           <td className="px-6 py-3 font-bold text-[#0A1F44]">{settings.dean_name || 'Dr. Ramesh Chandra Das'}</td>
                           <td className="px-6 py-3 text-gray-600">Principal & Dean</td>
                           <td className="px-6 py-3 text-[#D4870A] font-bold">Chairman</td>
-                          <td className="px-6 py-3">+91 373 2300123</td>
+                          <td className="px-6 py-3">Office of the Principal</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-3 font-bold text-[#0A1F44]">Dr. Liza Pathak</td>
                           <td className="px-6 py-3 text-gray-600">Professor & HOD, Periodontics & Oral Implantology</td>
                           <td className="px-6 py-3">Member Secretary</td>
-                          <td className="px-6 py-3">+91 373 2300124</td>
+                          <td className="px-6 py-3">Dept. of Periodontics</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-3 font-bold text-[#0A1F44]">Dr. Jahnabi Dutta</td>
                           <td className="px-6 py-3 text-gray-600">HOD (i/c), Reader, Oral Pathology & Microbiology</td>
                           <td className="px-6 py-3">Student Welfare Officer</td>
-                          <td className="px-6 py-3">+91 373 2300125</td>
+                          <td className="px-6 py-3">Dept. of Oral Pathology</td>
                         </tr>
                       </tbody>
                     </table>
@@ -203,24 +203,15 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
               {page === 'student-council' && (
                 <div className="space-y-6 font-sans text-xs md:text-sm text-gray-700 leading-relaxed">
                   <p>
-                    The **Student Council** is an elected student union body coordinating cultural weeks, scientific forums, sports tournaments, and representing student interests in campus academic dialogues.
+                    The **Student Council** is an elected student body coordinating academic seminars, cultural activities, sports events, and representing student interests across campus committees.
                   </p>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {[
-                      { name: 'Satyajit Saikia', role: 'President (BDS 4th Year)', desc: 'Coordinates union meetings, student events, and represents the student body.' },
-                      { name: 'Nayanmoni Borah', role: 'General Secretary (BDS 3rd Year)', desc: 'Supervises college sports festivals, student publications, and cultural activities.' },
-                      { name: 'Juri Gogoi', role: 'Academic Secretary (BDS 2nd Year)', desc: 'Organizes academic seminars and acts as a liaison with the library committee.' }
-                    ].map((council, idx) => (
-                      <div key={idx} className="border border-gray-200 rounded-lg p-5 text-center bg-[#F8F9FA] hover:shadow-md transition">
-                        <div className="h-10 w-10 rounded-full bg-[#1B5E3B]/10 text-[#1B5E3B] flex items-center justify-center mx-auto mb-3">
-                          <UserCheck size={18} />
-                        </div>
-                        <h4 className="font-serif font-bold text-sm text-[#0A1F44]">{council.name}</h4>
-                        <span className="text-[10px] text-[#D4870A] font-bold uppercase tracking-wider block mt-1 mb-2 font-ui">{council.role}</span>
-                        <p className="text-[11px] text-gray-500 leading-normal font-sans">{council.desc}</p>
-                      </div>
-                    ))}
+                  <div className="bg-[#F8F9FA] border border-gray-200 rounded-lg p-6 text-center text-xs md:text-sm text-gray-600 font-sans space-y-3">
+                    <UserCheck className="mx-auto text-[#1B5E3B]" size={28} />
+                    <h4 className="font-serif font-bold text-[#0A1F44] text-base">Student Council Office Bearers</h4>
+                    <p className="max-w-md mx-auto text-gray-500 text-xs">
+                      Official notifications regarding the constitution of the Student Council for the current academic session will be notified by the college administration and published on campus notice boards.
+                    </p>
                   </div>
                 </div>
               )}

@@ -86,7 +86,7 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
               </h3>
               <div 
                 className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans space-y-4"
-                dangerouslySetInnerHTML={{ __html: department.about || 'Content to be seeded.' }}
+                dangerouslySetInnerHTML={{ __html: department.about || `Dedicated to providing clinical dental care and professional undergraduate training in ${department.name}.` }}
               />
             </div>
 
@@ -96,7 +96,7 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
                 <Layers className="text-[#1B5E3B]" size={20} /> Infrastructure & Advanced Facilities
               </h3>
               <div className="text-xs md:text-sm text-gray-700 leading-relaxed space-y-4 font-sans">
-                <div dangerouslySetInnerHTML={{ __html: department.infrastructure || 'Equipment checklist details.' }} />
+                <div dangerouslySetInnerHTML={{ __html: department.infrastructure || 'Equipped with operational dental chairs, specialized diagnostic instruments, and clinical demonstration units.' }} />
               </div>
             </div>
 
@@ -190,12 +190,14 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
               <ul className="space-y-3.5 text-xs text-gray-600">
                 <li className="flex items-center gap-2">
                   <Mail size={14} className="text-[#1B5E3B] shrink-0" />
-                  <span className="truncate" title={department.contact_email}>{department.contact_email || `dept.${deptId}@gdcdibrugarh.edu.in`}</span>
+                  <span className="truncate" title={department.contact_email || 'gdcdibrugarh@gmail.com'}>{department.contact_email || 'gdcdibrugarh@gmail.com'}</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Phone size={14} className="text-[#D4870A] shrink-0" />
-                  <span>{department.contact_phone || '+91 373 2300123'}</span>
-                </li>
+                {department.contact_phone && (
+                  <li className="flex items-center gap-2">
+                    <Phone size={14} className="text-[#D4870A] shrink-0" />
+                    <span>{department.contact_phone}</span>
+                  </li>
+                )}
                 <li className="flex items-start gap-2">
                   <MapPin size={14} className="text-[#0A1F44] shrink-0 mt-0.5" />
                   <span className="leading-tight">GDC & Hospital Campus,<br />Dibrugarh, Assam.</span>

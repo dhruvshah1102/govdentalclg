@@ -19,13 +19,6 @@ export default async function ContactUsPage() {
     settings[row.key] = row.value;
   });
 
-  const deptContacts = [
-    { name: 'Principal & Dean Office', phone: '+91 373 2300123 ext 1', email: 'dean.gdcdibrugarh@gov.in' },
-    { name: 'Oral & Maxillofacial Surgery', phone: '+91 373 2300123 ext 102', email: 'dept.omfs@gdcdibrugarh.edu.in' },
-    { name: 'Oral Medicine & Radiology', phone: '+91 373 2300123 ext 101', email: 'dept.omr@gdcdibrugarh.edu.in' },
-    { name: 'Conservative Dentistry', phone: '+91 373 2300123 ext 106', email: 'dept.conservative@gdcdibrugarh.edu.in' },
-    { name: 'Grievance Cell Registrar', phone: '+91 373 2300123 ext 9', email: 'grievance.gdcd@gov.in' }
-  ];
 
   return (
     <div className="bg-gray-50 min-h-screen py-10 px-4 md:px-8 font-sans">
@@ -81,14 +74,15 @@ export default async function ContactUsPage() {
                     {settings.address || 'I Lane, AMCH Campus, Borbari, Dibrugarh, Assam - 786002'}, India.
                   </div>
                 </li>
-                <li className="flex items-start gap-2.5">
-                  <Phone size={16} className="text-[#D4870A] shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-gray-800 block">General Office Lines:</strong>
-                    OPD Inquiries: {settings.phone || '+91 373 2300123'}<br />
-                    Principal Desk: +91 373 2300124
-                  </div>
-                </li>
+                {settings.phone && (
+                  <li className="flex items-start gap-2.5">
+                    <Phone size={16} className="text-[#D4870A] shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-gray-800 block">Office Phone:</strong>
+                      {settings.phone}
+                    </div>
+                  </li>
+                )}
                 <li className="flex items-start gap-2.5">
                   <Mail size={16} className="text-[#0A1F44] shrink-0 mt-0.5" />
                   <div>
@@ -99,17 +93,23 @@ export default async function ContactUsPage() {
               </ul>
             </div>
 
-            {/* Department helplines extension tables */}
+            {/* Working Hours & Institutional Officers */}
             <div className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
-              <h4 className="font-serif text-base font-bold text-[#0A1F44] border-b border-gray-100 pb-2 mb-4">Department Extensions</h4>
-              <div className="space-y-4">
-                {deptContacts.map((dc, idx) => (
-                  <div key={idx} className="border-b border-gray-100 pb-2.5 last:border-b-0 last:pb-0 text-xs">
-                    <strong className="text-gray-800 block font-sans font-semibold">{dc.name}</strong>
-                    <span className="text-gray-500 block mt-0.5">Phone: {dc.phone}</span>
-                    <span className="text-[10px] text-gray-400 block font-sans truncate" title={dc.email}>Email: {dc.email}</span>
-                  </div>
-                ))}
+              <h4 className="font-serif text-base font-bold text-[#0A1F44] border-b border-gray-100 pb-2 mb-4">Official Hours & Authorities</h4>
+              <div className="space-y-3.5 text-xs text-gray-600 font-sans">
+                <div>
+                  <strong className="text-gray-800 block mb-0.5">OPD & Hospital Timings:</strong>
+                  <span>9:00 AM &ndash; 3:10 PM (Mon &ndash; Sat)</span>
+                  <span className="block text-[10px] text-gray-400">Closed Sundays & Select Govt Holidays</span>
+                </div>
+                <div className="pt-2 border-t border-gray-100">
+                  <strong className="text-gray-800 block mb-0.5">Government Nodal Officer:</strong>
+                  <span>Dr. Lalit Chandra Boruah (Reader, Conservative Dentistry)</span>
+                </div>
+                <div className="pt-2 border-t border-gray-100">
+                  <strong className="text-gray-800 block mb-0.5">Public Information Officer (RTI):</strong>
+                  <span>Dr. Liza Pathak (Prof & HOD, Periodontics)</span>
+                </div>
               </div>
             </div>
 

@@ -192,8 +192,8 @@ export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ sett
                 <div className="bg-amber-50 border border-amber-200 rounded p-4 text-xs flex gap-3 text-[#2D2D2D]">
                   <ShieldAlert className="text-[#D4870A] shrink-0" size={20} />
                   <div>
-                    <strong className="text-[#0A1F44] block mb-0.5 font-serif text-sm">Emergency Dental Services Available 24/7</strong>
-                    In cases of acute facial trauma, fractures, or severe tooth infections, our Emergency Trauma Suite operates round-the-clock inside the AMCH Dibrugarh hospital wings. Call <strong>+91 373 2300999</strong>.
+                    <strong className="text-[#0A1F44] block mb-0.5 font-serif text-sm">Emergency Dental & Trauma Services</strong>
+                    In cases of acute facial trauma, maxillofacial fractures, or severe infections, emergency services operate round-the-clock inside the Assam Medical College & Hospital (AMCH) casualty complex adjacent to the campus.
                   </div>
                 </div>
               </>
@@ -366,36 +366,17 @@ export const HospitalPortalClient: React.FC<HospitalPortalClientProps> = ({ sett
             ) : (
               <>
                 <p className="text-xs md:text-sm text-gray-600 leading-relaxed font-sans">
-                  As a public health institution, basic diagnostic consultations and clinical treatments are delivered free-of-cost to students and highly subsidized for other citizens.
+                  As a premier state government healthcare institution, diagnostic consultations, restorative procedures, and specialized surgeries are delivered at heavily subsidized rates under Government of Assam public health guidelines.
                 </p>
 
-                <div className="overflow-x-auto border border-gray-200 rounded-lg text-xs md:text-sm">
-                  <table className="w-full text-left">
-                    <thead className="bg-[#0A1F44] text-white font-ui uppercase tracking-wider text-[10px] font-semibold">
-                      <tr>
-                        <th className="px-6 py-4">Treatment Category</th>
-                        <th className="px-6 py-4">Subsidized Fee (INR)</th>
-                        <th className="px-6 py-4">Duration</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100 text-[#2D2D2D]">
-                      {[
-                        { cat: 'General Diagnostics & OPD Consultation Ticket', price: '₹10 (Valid 15 Days)', time: '1st Visit' },
-                        { cat: 'Full Mouth Scaling & Polishing (Prophylaxis)', price: '₹100', time: '1 Session' },
-                        { cat: 'Simple Tooth Extraction (Exodontia)', price: '₹50', time: '1 Session' },
-                        { cat: 'Root Canal Treatment (Micro-Endodontic - RCT)', price: '₹400', time: '2-3 Sessions' },
-                        { cat: 'Complete Acrylic Denture Set (Prosthetics)', price: '₹1,500', time: '4 Sessions' },
-                        { cat: 'Metal Ceramic Dental Crown & Bridge (Per Unit)', price: '₹500', time: '2 Sessions' },
-                        { cat: 'Orthodontic Braces Alignment Therapy', price: '₹5,000 (Subsidized)', time: '12-18 Months' }
-                      ].map((fee, idx) => (
-                        <tr key={idx} className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-semibold text-[#0A1F44]">{fee.cat}</td>
-                          <td className="px-6 py-4 text-[#1B5E3B] font-bold">{fee.price}</td>
-                          <td className="px-6 py-4 text-gray-500 italic">{fee.time}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="bg-[#F8F9FA] border border-gray-200 rounded-lg p-6 text-xs md:text-sm text-gray-600 font-sans space-y-3">
+                  <h4 className="font-serif font-bold text-[#0A1F44] text-base">Hospital Treatment Rate Information</h4>
+                  <p className="leading-relaxed">
+                    Patient ticket registration and diagnostic consultation are provided at nominal government rates. Subsidized charges for clinical procedures (including scaling, extractions, restorative endodontics, prosthetics, and orthodontics) are administered through the hospital counter.
+                  </p>
+                  <p className="text-gray-500 text-xs italic">
+                    Please visit the Hospital OPD Registration Counter on-site for the comprehensive schedule of subsidized procedure charges.
+                  </p>
                 </div>
               </>
             )}

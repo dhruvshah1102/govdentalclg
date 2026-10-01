@@ -27,27 +27,27 @@ export default async function HomePage() {
   const finalSlides = slides.length > 0 ? slides : [
     {
       id: 1,
-      image_url: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=80',
-      title: 'Excellence in Dental Pedagogy & Tertiary Healthcare',
-      subtitle: 'Recognized by the Dental Council of India (DCI) and providing clinical teaching for advanced oral surgeries and conservative dentistry.',
-      cta_text: 'Explore Academics',
+      image_url: '/images/Infrastructure/01.jpeg',
+      title: 'Delivering Dental and Oral Healthcare in Eastern Assam',
+      subtitle: 'Affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the National Dental Commission.',
+      cta_text: 'Explore BDS Programme',
       cta_link: '/academics/bds'
     },
     {
       id: 2,
-      image_url: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1600&q=80',
+      image_url: '/images/Clinical/03.jpeg',
       title: 'Advanced Diagnostic & Clinical Patient OPD Care',
-      subtitle: 'Equipped with digital radiography, specialized cosmetic clinics, and trauma surgeries serving Upper Assam.',
+      subtitle: 'Equipped with 100+ operational dental chairs, specialized clinical departments, and subsidized restorative care.',
       cta_text: 'OPD Schedule & Registration',
       cta_link: '/hospital'
     },
     {
       id: 3,
-      image_url: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80',
-      title: 'State of the Art Research & Outreach Programs',
-      subtitle: 'Empowering communities through rural dental health programs, clinical diagnostic research, and collaborative studies.',
-      cta_text: 'Active Tenders & News',
-      cta_link: '/tenders'
+      image_url: '/images/Infrastructure/04.jpeg',
+      title: 'Academic Excellence & Preclinical Training',
+      subtitle: 'State-of-the-art preclinical Phantom Head Skill Lab and Central Library with 250+ volumes and journals.',
+      cta_text: 'About the College',
+      cta_link: '/about-us/college'
     }
   ];
 
@@ -153,10 +153,10 @@ export default async function HomePage() {
               A Beacon of Advanced Dental Science in Upper Assam
             </h2>
             <p className="text-xs md:text-sm text-[#2D2D2D] leading-relaxed mb-6 font-sans">
-              {settings.about_summary_en || 'Government Dental College & Hospital, Dibrugarh is a leading dental health establishment of the Govt of Assam, affiliated to Dibrugarh University and recognized by the Dental Council of India.'}
+              {settings.about_summary_en || 'Government Dental College & Hospital, Dibrugarh is a leading dental health establishment of the Govt of Assam, affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the National Dental Commission, New Delhi.'}
             </p>
             <p className="text-xs md:text-sm text-gray-500 leading-relaxed font-sans mb-6">
-              Located on the sprawling institutional campus near Assam Medical College (AMCH), the college educates BDS scholars in comprehensive, multidisciplinary clinical contexts. With 9 specialist departments running tertiary outpatient department (OPD) facilities, GDC Dibrugarh caters to thousands of patients month-on-month with utmost engineering precision.
+              Located on the institutional campus adjacent to Assam Medical College & Hospital (AMCH), the college educates BDS scholars in comprehensive multidisciplinary clinical contexts across 9 specialist departments running tertiary outpatient department (OPD) facilities.
             </p>
           </div>
           <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-100">
@@ -164,7 +164,7 @@ export default async function HomePage() {
               Read Our History
             </Link>
             <Link href="/about-us/disclosure" className="border-2 border-gray-300 hover:border-[#1B5E3B] text-gray-600 hover:text-[#1B5E3B] text-xs font-bold font-ui py-2 px-5 rounded uppercase tracking-wider transition">
-              Mandatory DCI Fields
+              Mandatory Disclosures
             </Link>
           </div>
         </div>
@@ -343,20 +343,20 @@ export default async function HomePage() {
           <span className="text-[10px] bg-gray-100 text-gray-400 font-bold uppercase tracking-widest px-3 py-1 rounded">Regulatory Certifications</span>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 mt-8 opacity-65 hover:opacity-100 transition duration-300">
             
-            {/* Seal 1: DCI */}
+            {/* Seal 1: NDC */}
             <div className="flex flex-col items-center gap-2">
               <div className="h-14 w-14 rounded-full bg-[#0A1F44]/5 flex items-center justify-center text-xs font-bold border border-gray-200 hover:border-[#D4870A] transition">
-                DCI
+                NDC
               </div>
-              <span className="text-[10px] font-bold text-[#0A1F44] tracking-wider uppercase font-ui">Dental Council India</span>
+              <span className="text-[10px] font-bold text-[#0A1F44] tracking-wider uppercase font-ui">National Dental Commission</span>
             </div>
 
-            {/* Seal 2: DU */}
+            {/* Seal 2: SSUHS */}
             <div className="flex flex-col items-center gap-2">
               <div className="h-14 w-14 rounded-full bg-[#1B5E3B]/5 flex items-center justify-center text-xs font-bold border border-gray-200 hover:border-[#1B5E3B] transition">
-                DU
+                SSUHS
               </div>
-              <span className="text-[10px] font-bold text-[#1B5E3B] tracking-wider uppercase font-ui">Dibrugarh University</span>
+              <span className="text-[10px] font-bold text-[#1B5E3B] tracking-wider uppercase font-ui">SSUHS Guwahati</span>
             </div>
 
             {/* Seal 3: NAAC */}

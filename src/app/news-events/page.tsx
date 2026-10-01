@@ -16,33 +16,7 @@ export default async function NewsEventsPage() {
     "SELECT * FROM news_events WHERE status = 'Published' ORDER BY date DESC"
   );
 
-  // If no news seeded, pre-populate default layout with clinical and cultural happenings
-  const finalPosts = posts.length > 0 ? posts : [
-    {
-      id: 1,
-      title: 'Free Mega Dental Camp Organized on World Oral Health Day',
-      slug: 'free-mega-dental-camp',
-      content: '<p>The Department of Public Health Dentistry of Government Dental College, Dibrugarh organized a free clinical dental diagnosis and therapeutic camp in collaboration with local rural health clinics in Dibrugarh district.</p><p>Over 350 patients were screened and treated for common dental caries, periodontal diseases, and received free oral hygiene kits.</p>',
-      date: new Date().toISOString().split('T')[0],
-      time: '9:00 AM - 3:00 PM',
-      venue: 'Barbaruah Primary Health Center, Dibrugarh',
-      category: 'News',
-      image_url: null,
-      attachment_url: null
-    },
-    {
-      id: 2,
-      title: 'National Workshop on Maxillofacial Reconstructions & Implants',
-      slug: 'maxillofacial-reconstruction-workshop',
-      content: '<p>The Department of Oral & Maxillofacial Surgery organized a 2-day hands-on clinical workshop covering modern dental implants, sinus lifts, and facial trauma reconstructions, hosting expert speakers from across India.</p>',
-      date: new Date().toISOString().split('T')[0],
-      time: '10:00 AM',
-      venue: 'College Conference Hall, GDC Campus',
-      category: 'Event',
-      image_url: null,
-      attachment_url: null
-    }
-  ];
+  const finalPosts = posts;
 
   return (
     <div className="bg-gray-50 min-h-screen py-10 px-4 md:px-8 font-sans">
@@ -70,7 +44,12 @@ export default async function NewsEventsPage() {
           
           {/* Main news feed (2 Columns) */}
           <div className="lg:col-span-2 space-y-6">
-            {finalPosts.map((post) => (
+            {finalPosts.length === 0 ? (
+              <div className="bg-white border border-gray-200 rounded-lg p-10 text-center text-gray-500 text-xs md:text-sm font-sans">
+                No campus news circulars or upcoming academic events are currently published.
+              </div>
+            ) : (
+              finalPosts.map((post) => (
               <div 
                 key={post.id} 
                 id={post.slug}
@@ -128,7 +107,7 @@ export default async function NewsEventsPage() {
                   </div>
                 )}
               </div>
-            ))}
+            )))}
           </div>
 
           {/* Right sidebar: General Announcements notices board (1 Column) */}
@@ -146,17 +125,17 @@ export default async function NewsEventsPage() {
               </Link>
             </div>
 
-            {/* Emergency Helplines quick contacts */}
+            {/* Campus Inquiries quick contacts */}
             <div className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm text-xs text-gray-600">
               <h4 className="font-serif text-base font-bold text-[#0A1F44] border-b border-gray-150 pb-2 mb-3">Campus Inquiries</h4>
               <ul className="space-y-3">
                 <li>
                   <strong className="text-gray-800 block">Principal Office Email:</strong>
-                  gdchdibrugarh@gmail.com
+                  gdcdibrugarh@gmail.com
                 </li>
                 <li>
-                  <strong className="text-gray-800 block">Registrar Phone:</strong>
-                  +91 373 2300123 ext 4
+                  <strong className="text-gray-800 block">Location:</strong>
+                  AMCH Campus, Borbari, Dibrugarh
                 </li>
               </ul>
             </div>

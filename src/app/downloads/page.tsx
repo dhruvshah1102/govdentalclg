@@ -14,13 +14,15 @@ export default async function DownloadsPage() {
   // 1. Fetch Downloads from SQLite
   const downloads = await db.all('SELECT * FROM downloads WHERE enabled = 1 ORDER BY upload_date DESC');
 
-  // Classified Seed fallbacks if empty
+  // Classified Seed fallbacks if empty (uses verified regulatory document from official submission)
   const defaultDownloads = downloads.length > 0 ? downloads : [
-    { id: 1, title: 'BDS Academic Prospectus 2026-2027', category: 'Prospectus', file_url: '#', upload_date: 'March 2026' },
-    { id: 2, title: 'Medical Fitness Certificate Prescribed Format', category: 'Forms', file_url: '#', upload_date: 'April 2026' },
-    { id: 3, title: 'BDS 1st Year Theory & Preclinical Timetable Session 2026', category: 'Schedules', file_url: '#', upload_date: 'May 2026' },
-    { id: 4, title: 'Anti-Ragging Committee Safe Declaration and Helpline Board', category: 'Circulars', file_url: '#', upload_date: 'May 2026' },
-    { id: 5, title: 'Institutional Ethical Committee (IEC) Project Proposal Template', category: 'Forms', file_url: '#', upload_date: 'April 2026' }
+    { 
+      id: 1, 
+      title: 'Revised BDS Course Regulation (National Dental Commission / DCI)', 
+      category: 'Prospectus', 
+      file_url: 'https://dciindia.gov.in/Rule_Regulation/Revised_BDS_Course_Regulation_2007.pdf', 
+      upload_date: 'June 2026' 
+    }
   ];
 
   const categories = ['Forms', 'Prospectus', 'Schedules', 'Circulars'];
@@ -42,7 +44,7 @@ export default async function DownloadsPage() {
             Downloads & Documents Library
           </h1>
           <p className="text-xs text-gray-500 mt-1">
-            Search, preview, and download official institutional forms, timetables, syllabus files, and DCI certifications.
+            Search, preview, and download official institutional forms, timetables, syllabus files, and regulatory documents.
           </p>
         </div>
 
