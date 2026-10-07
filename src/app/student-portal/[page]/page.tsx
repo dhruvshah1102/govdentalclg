@@ -186,18 +186,6 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
                           <td className="px-6 py-3 text-[#D4870A] font-bold">Chairman</td>
                           <td className="px-6 py-3">Office of the Principal</td>
                         </tr>
-                        <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-3 font-bold text-[#0A1F44]">Dr. Liza Pathak</td>
-                          <td className="px-6 py-3 text-gray-600">Professor & HOD, Periodontics & Oral Implantology</td>
-                          <td className="px-6 py-3">Member Secretary</td>
-                          <td className="px-6 py-3">Dept. of Periodontics</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-3 font-bold text-[#0A1F44]">Dr. Jahnabi Dutta</td>
-                          <td className="px-6 py-3 text-gray-600">HOD (i/c), Reader, Oral Pathology & Microbiology</td>
-                          <td className="px-6 py-3">Student Welfare Officer</td>
-                          <td className="px-6 py-3">Dept. of Oral Pathology</td>
-                        </tr>
                       </tbody>
                     </table>
                   </div>
