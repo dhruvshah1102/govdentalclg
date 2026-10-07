@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { AlumniRegistrationClient } from './AlumniRegistrationClient';
 
-export const revalidate = 0;
+export const revalidate = 900;
 
 export default async function AlumniPage() {
   const db = await getDb();

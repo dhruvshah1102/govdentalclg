@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { getDb } from '@/lib/db';
 import { 
@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { ContactFormClient } from './ContactFormClient';
 
-export const revalidate = 0;
+export const revalidate = 900;
 
 export default async function ContactUsPage() {
   const db = await getDb();
@@ -38,7 +38,9 @@ export default async function ContactUsPage() {
           <div className="lg:col-span-2 space-y-6">
             
             {/* Interactive Forms Client Component */}
-            <ContactFormClient />
+            <Suspense fallback={null}>
+              <ContactFormClient />
+            </Suspense>
 
             {/* Google Map Card */}
             <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">

@@ -10,7 +10,10 @@ function getPool(): Pool {
   }
   pool = new Pool({
     connectionString,
-    ssl: { rejectUnauthorized: false }
+    ssl: { rejectUnauthorized: false },
+    max: 3,
+    idleTimeoutMillis: 10000,
+    connectionTimeoutMillis: 10000
   });
   return pool;
 }

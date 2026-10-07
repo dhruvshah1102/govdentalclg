@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ShieldAlert, BookOpen, Stethoscope, AlertTriangle } from 'lucide-react';
 
-export const revalidate = 0;
+export const revalidate = 900;
 
 export default function DisclaimerPage() {
   return (

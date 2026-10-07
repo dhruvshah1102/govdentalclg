@@ -6,7 +6,7 @@ import {
   ExternalLink, CheckCircle, Info 
 } from 'lucide-react';
 
-export const revalidate = 0;
+export const revalidate = 900;
 
 export default async function TendersPage() {
   const db = await getDb();

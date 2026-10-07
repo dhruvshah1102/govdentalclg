@@ -7,7 +7,12 @@ import {
   Download, FileText, CheckCircle, ArrowRight
 } from 'lucide-react';
 
-export const revalidate = 0;
+export const revalidate = 900;
+
+// Render each param on first request, then cache it (ISR) instead of querying the database every time.
+export function generateStaticParams() {
+  return [];
+}
 
 interface PageProps {
   params: {

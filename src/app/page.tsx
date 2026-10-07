@@ -8,7 +8,7 @@ import {
   ExternalLink, Stethoscope, HelpCircle, Shield, Award, Users, BookOpen
 } from 'lucide-react';
 
-export const revalidate = 0; // Fresh DB reads on every request
+export const revalidate = 900;
 
 export default async function HomePage() {
   const db = await getDb();

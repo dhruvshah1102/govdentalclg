@@ -6,7 +6,7 @@ import {
   ExternalLink, Search, FileDown, ShieldAlert
 } from 'lucide-react';
 
-export const revalidate = 0;
+export const revalidate = 900;
 
 export default async function DownloadsPage() {
   const db = await getDb();

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getDb } from '@/lib/db';
 import { FacultyDirectoryClient } from './FacultyDirectoryClient';
 
-export const revalidate = 0;
+export const revalidate = 900;
 
 export default async function FacultyPage() {
   const db = await getDb();

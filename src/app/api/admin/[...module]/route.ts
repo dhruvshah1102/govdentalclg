@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getSession } from '@/lib/auth';
 import { getDb } from '@/lib/db';
 import { deleteFileByUrl } from '@/lib/storage';
@@ -14,7 +15,7 @@ async function logAudit(db: any, username: string, action: string, section: stri
 }
 
 // 1. PATCH: Update operations
-export async function PATCH(req: NextRequest, { params }: { params: { module: string[] } }) {
+async function handlePATCH(req: NextRequest, { params }: { params: { module: string[] } }) {
   try {
     const session = await getSession();
     if (!session) {
@@ -146,7 +147,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { module: st
 }
 
 // 2. DELETE: Deletion operations
-export async function DELETE(req: NextRequest, { params }: { params: { module: string[] } }) {
+async function handleDELETE(req: NextRequest, { params }: { params: { module: string[] } }) {
   try {
     const session = await getSession();
     if (!session) {
@@ -237,7 +238,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { module: s
 }
 
 // 3. POST: Additions operations
-export async function POST(req: NextRequest, { params }: { params: { module: string[] } }) {
+async function handlePOST(req: NextRequest, { params }: { params: { module: string[] } }) {
   try {
     const session = await getSession();
     if (!session) {
@@ -342,3 +343,18 @@ export async function POST(req: NextRequest, { params }: { params: { module: str
     return NextResponse.json({ error: 'Failed to create content.' }, { status: 500 });
   }
 }
+
+
+// Public pages are cached (ISR) so visitors don't hit the database on every request.
+// Any successful admin write clears that cache so edits show up immediately.
+type RouteCtx = { params: { module: string[] } };
+
+async function withRevalidate(handler: (req: NextRequest, ctx: RouteCtx) => Promise<NextResponse>, req: NextRequest, ctx: RouteCtx) {
+  const res = await handler(req, ctx);
+  if (res.ok) revalidatePath('/', 'layout');
+  return res;
+}
+
+export const PATCH = (req: NextRequest, ctx: RouteCtx) => withRevalidate(handlePATCH, req, ctx);
+export const POST = (req: NextRequest, ctx: RouteCtx) => withRevalidate(handlePOST, req, ctx);
+export const DELETE = (req: NextRequest, ctx: RouteCtx) => withRevalidate(handleDELETE, req, ctx);

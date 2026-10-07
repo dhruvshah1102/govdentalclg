@@ -6,7 +6,7 @@ import {
   BookOpen, Megaphone, ArrowRight 
 } from 'lucide-react';
 
-export const revalidate = 0;
+export const revalidate = 900;
 
 export default async function NewsEventsPage() {
   const db = await getDb();

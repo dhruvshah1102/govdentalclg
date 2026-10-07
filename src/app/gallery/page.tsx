@@ -5,7 +5,7 @@ import path from 'path';
 import { getDb } from '@/lib/db';
 import { GalleryClient } from './GalleryClient';
 
-export const revalidate = 0;
+export const revalidate = 900;
 
 interface GalleryItem {
   id: number;

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { getDb } from '@/lib/db';
 import { HospitalPortalClient } from './HospitalPortalClient';
 
-export const revalidate = 0;
+export const revalidate = 900;
 
 export default async function HospitalPage() {
   const db = await getDb();
@@ -49,7 +49,9 @@ export default async function HospitalPage() {
         </div>
 
         {/* Mounting Interactive Client portal */}
-        <HospitalPortalClient settings={settings} departments={departments} />
+        <Suspense fallback={null}>
+          <HospitalPortalClient settings={settings} departments={departments} />
+        </Suspense>
 
       </div>
     </div>
