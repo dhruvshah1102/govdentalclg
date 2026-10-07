@@ -201,7 +201,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                   {[
                     { name: settings.dean_name || 'Prof (Dr.) Chandana Kalita', role: settings.dean_designation || 'Principal (i/c)', icon: UserCheck, desc: 'Administrative and Academic head of the institution.' },
                     { name: 'Dr. Lalit Chandra Boruah', role: 'Government Nodal Officer', icon: BookOpen, desc: 'Reader, Department of Conservative Dentistry & Endodontics. Coordinates official communication with the Government of Assam.' },
-                    { name: 'Dr. Liza Pathak', role: 'RTI Officer (PIO)', icon: Shield, desc: 'Professor & HOD, Department of Periodontology & Oral Implantology. Official Public Information Officer.' }
+                    { name: settings.rti_officer || 'To be notified', role: 'RTI Officer (PIO)', icon: Shield, desc: 'Official Public Information Officer under the Right to Information Act.' }
                   ].map((admin, idx) => (
                     <div key={idx} className="border border-gray-200 rounded-lg p-5 text-center bg-[#F8F9FA] hover:shadow-md transition">
                       <div className="h-12 w-12 rounded-full bg-[#1B5E3B]/10 text-[#1B5E3B] flex items-center justify-center mx-auto mb-4">
@@ -302,8 +302,8 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                   </div>
                   <div>
                     <strong className="text-gray-500 block">Public Information Officer (RTI Officer):</strong>
-                    <span className="font-bold text-[#2D2D2D]">Dr. Liza Pathak</span>
-                    <span className="text-xs block text-gray-400">Professor & HOD, Department of Periodontics & Oral Implantology</span>
+                    <span className="font-bold text-[#2D2D2D]">{settings.rti_officer || 'To be notified'}</span>
+                    <span className="text-xs block text-gray-400">GDC Dibrugarh</span>
                   </div>
                 </div>
               </div>

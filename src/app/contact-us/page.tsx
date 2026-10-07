@@ -110,7 +110,7 @@ export default async function ContactUsPage() {
                 </div>
                 <div className="pt-2 border-t border-gray-100">
                   <strong className="text-gray-800 block mb-0.5">Public Information Officer (RTI):</strong>
-                  <span>Dr. Liza Pathak (Prof & HOD, Periodontics)</span>
+                  <span>{settings.rti_officer || 'To be notified'}</span>
                 </div>
               </div>
             </div>
