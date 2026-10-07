@@ -252,7 +252,6 @@ const NavbarContent: React.FC<{ settings: SiteSettings; departments: DepartmentL
                 <Link href="/about-us/college" className="block px-5 py-2 text-xs hover:bg-[#F8F9FA] hover:text-[#0A1F44] transition">{t('about_college')}</Link>
                 <Link href="/about-us/hospital" className="block px-5 py-2 text-xs hover:bg-[#F8F9FA] hover:text-[#0A1F44] transition">{t('about_hospital')}</Link>
                 <Link href="/about-us/principal-message" className="block px-5 py-2 text-xs hover:bg-[#F8F9FA] hover:text-[#0A1F44] transition">{t('dean_msg')}</Link>
-                <Link href="/about-us/governing-body" className="block px-5 py-2 text-xs hover:bg-[#F8F9FA] hover:text-[#0A1F44] transition">{t('governing_body')}</Link>
                 <Link href="/about-us/administration" className="block px-5 py-2 text-xs hover:bg-[#F8F9FA] hover:text-[#0A1F44] transition">{t('administration')}</Link>
                 <Link href="/about-us/disclosure" className="block px-5 py-2 text-xs hover:bg-[#F8F9FA] hover:text-[#0A1F44] transition">{t('disclosure')}</Link>
                 <Link href="/about-us/rti" className="block px-5 py-2 text-xs hover:bg-[#F8F9FA] hover:text-[#0A1F44] transition">{t('rti')}</Link>
@@ -390,7 +389,6 @@ const NavbarContent: React.FC<{ settings: SiteSettings; departments: DepartmentL
                   <Link href="/about-us/college" className="py-1 hover:text-white">{t('about_college')}</Link>
                   <Link href="/about-us/hospital" className="py-1 hover:text-white">{t('about_hospital')}</Link>
                   <Link href="/about-us/principal-message" className="py-1 hover:text-white">{t('dean_msg')}</Link>
-                  <Link href="/about-us/governing-body" className="py-1 hover:text-white">{t('governing_body')}</Link>
                   <Link href="/about-us/administration" className="py-1 hover:text-white">{t('administration')}</Link>
                   <Link href="/about-us/disclosure" className="py-1 hover:text-white">{t('disclosure')}</Link>
                   <Link href="/about-us/rti" className="py-1 hover:text-white">{t('rti')}</Link>

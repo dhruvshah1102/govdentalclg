@@ -41,9 +41,6 @@ export default async function AboutUsSubPage({ params }: PageProps) {
     case 'principal-message': 
       pageTitle = "Principal's Message"; 
       break;
-    case 'governing-body': 
-      pageTitle = 'Governing Body / College Council'; 
-      break;
     case 'administration': 
       pageTitle = 'Administrative Officers'; 
       break;
@@ -89,7 +86,6 @@ export default async function AboutUsSubPage({ params }: PageProps) {
             {page === 'college' && <Building className="text-[#D4870A]" />}
             {page === 'hospital' && <Heart className="text-[#1B5E3B]" />}
             {page === 'principal-message' && <Award className="text-[#D4870A]" />}
-            {page === 'governing-body' && <Users className="text-[#0A1F44]" />}
             {page === 'administration' && <UserCheck className="text-[#1B5E3B]" />}
             {page === 'disclosure' && <Shield className="text-[#D4870A]" />}
             {page === 'rti' && <HelpCircle className="text-[#0A1F44]" />}
@@ -193,52 +189,6 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                 </div>
               )}
 
-              {/* 4. Governing Body */}
-              {page === 'governing-body' && (
-                <div className="space-y-6">
-                  <p className="text-xs md:text-sm text-gray-600">
-                    The College Council / Governing Body supervises academic audits, financial approvals, infrastructure expansions, and strict code-of-conduct enforcement at GDC Dibrugarh.
-                  </p>
-                  <div className="overflow-x-auto border border-gray-200 rounded-lg">
-                    <table className="w-full text-left text-xs md:text-sm">
-                      <thead className="bg-[#0A1F44] text-white font-ui font-semibold uppercase tracking-wider text-[10px]">
-                        <tr>
-                          <th className="px-6 py-4">Name</th>
-                          <th className="px-6 py-4">Designation</th>
-                          <th className="px-6 py-4">Role in Council</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-100 text-[#2D2D2D]">
-                        <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-bold">{settings.dean_name || 'Prof (Dr.) Chandana Kalita'}</td>
-                          <td className="px-6 py-4">{settings.dean_designation || 'Principal (i/c)'}</td>
-                          <td className="px-6 py-4 text-[#D4870A] font-bold">Chairman</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-bold">To be Notified</td>
-                          <td className="px-6 py-4">Medical Superintendent</td>
-                          <td className="px-6 py-4">Member Secretary</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-bold">Dr. Swarnasmita Pathak</td>
-                          <td className="px-6 py-4">HOD (i/c), Reader, Oral Medicine & Radiology</td>
-                          <td className="px-6 py-4">Member</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-bold">Dr. Liza Pathak</td>
-                          <td className="px-6 py-4">Professor & HOD, Periodontics & Oral Implantology</td>
-                          <td className="px-6 py-4">Member</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-bold">Dr. Jahnabi Dutta</td>
-                          <td className="px-6 py-4">HOD (i/c), Reader, Oral Pathology & Microbiology</td>
-                          <td className="px-6 py-4">Member</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              )}
 
               {/* 5. Administration */}
               {page === 'administration' && (
