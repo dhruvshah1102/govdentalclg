@@ -408,7 +408,8 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
         body: JSON.stringify({
           dean_name: settings.dean_name,
           dean_designation: settings.dean_designation,
-          dean_message: settings.dean_message
+          dean_message: settings.dean_message,
+          dean_message_full: settings.dean_message_full
         })
       });
       if (response.ok) {
@@ -880,7 +881,7 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
         {activeTab === 'dean' && (
           <form onSubmit={handleSaveDean} className="space-y-4">
             <h3 className="font-serif text-base font-bold text-[#0A1F44] border-b border-gray-100 pb-2 mb-4 flex items-center gap-1">
-              <Smile size={16} className="text-[#D4870A]" /> Principal & Dean Welcome Details
+              <Smile size={16} className="text-[#D4870A]" /> Principal Welcome Details
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -917,6 +918,17 @@ export const HomeManagerClient: React.FC<HomeManagerClientProps> = ({
                 rows={6}
                 className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition font-sans"
                 required
+              ></textarea>
+            </div>
+
+            <div>
+              <label className="text-gray-500 font-bold uppercase text-[9px] block mb-1">Full Principal&apos;s Message (separate paragraphs with a blank line)</label>
+              <textarea
+                name="dean_message_full"
+                value={settings.dean_message_full || ''}
+                onChange={handleDeanChange}
+                rows={16}
+                className="w-full bg-[#F8F9FA] text-xs border border-gray-300 focus:border-[#0A1F44] focus:outline-none p-2.5 rounded transition font-sans"
               ></textarea>
             </div>
 

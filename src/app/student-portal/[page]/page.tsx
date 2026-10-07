@@ -176,8 +176,8 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
                       </thead>
                       <tbody className="divide-y divide-gray-100 text-[#2D2D2D] font-medium">
                         <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-3 font-bold text-[#0A1F44]">{settings.dean_name || 'Dr. Ramesh Chandra Das'}</td>
-                          <td className="px-6 py-3 text-gray-600">Principal & Dean</td>
+                          <td className="px-6 py-3 font-bold text-[#0A1F44]">{settings.dean_name || 'Prof (Dr.) Chandana Kalita'}</td>
+                          <td className="px-6 py-3 text-gray-600">{settings.dean_designation || 'Principal (i/c)'}</td>
                           <td className="px-6 py-3 text-[#D4870A] font-bold">Chairman</td>
                           <td className="px-6 py-3">Office of the Principal</td>
                         </tr>

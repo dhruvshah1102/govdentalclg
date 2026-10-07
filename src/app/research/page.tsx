@@ -112,7 +112,7 @@ export default async function ResearchPage() {
                 <div className="space-y-3 text-xs text-gray-600 font-sans">
                   <p>
                     <strong className="text-gray-800 block">Chairman:</strong>
-                    Dr. Ramesh Chandra Das (Principal & Dean)
+                    Prof (Dr.) Chandana Kalita (Principal)
                   </p>
                   <p className="text-gray-500 text-[11px]">
                     Institutional Ethical Committee members and constitution orders are notified by the administration as per ICMR regulations.

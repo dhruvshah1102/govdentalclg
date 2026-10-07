@@ -34,15 +34,15 @@
     },
     {
       "key": "dean_name",
-      "value": "Dr. Ramesh Chandra Das"
+      "value": "Prof (Dr.) Chandana Kalita"
     },
     {
       "key": "dean_designation",
-      "value": "Principal & Dean"
+      "value": "Principal (i/c)"
     },
     {
       "key": "dean_qualifications",
-      "value": "BDS, MDS, PhD"
+      "value": ""
     },
     {
       "key": "tagline_en",
@@ -123,6 +123,14 @@
     {
       "key": "opd_timings",
       "value": "9:00 AM to 3:10 PM (Monday to Saturday, Closed on Sundays & Select Govt Holidays)"
+    },
+    {
+      "key": "dean_message",
+      "value": "Welcome to the official website of Government Dental College, Dibrugarh. As the Principal, it is my distinct privilege to welcome you to our institution—a premier centre for dental education, patient care, and research in the region."
+    },
+    {
+      "key": "dean_message_full",
+      "value": "Welcome to the official website of Government Dental College, Dibrugarh.\n\nAs the Principal, it is my distinct privilege to welcome you to our institution—a premier centre for dental education, patient care, and research in the region.\n\nOur college is deeply committed to nurturing the next generation of dental professionals. Since its establishment in 2018, this institution has provided rigorous academic training paired with hands-on clinical experience, ensuring our students graduate with the skills, empathy, and ethical foundation required to excel in the field of oral healthcare. Supported by a team of highly qualified faculty members, modern laboratories, and a dynamic clinical facility, we provide an environment where innovation and learning thrives.\n\nBeyond academic excellence, we are dedicated to serving our community. Government Dental College, Dibrugarh provides accessible, state-of-the-art dental treatment to a diverse population, fulfilling the mission of improving public health and wellness.\n\nAt our institution, education extends far beyond textbooks, lecture halls, laboratories and clinics. We believe in nurturing well-rounded individuals, and nothing showcases this commitment better than our students who excel in cultural activities while maintaining academic excellence. Students in this institution are not just pursuing degrees; they are keeping traditions of this region alive, breaking creative boundaries, and shaping the heartbeat of our campus community through the annual event ‘Crescendo’, a cultural delight to witness. Concurrently, from time to time, the students have shown active participation and success in numerous other inter-institutional socio-cultural events.\n\nFor a prospective student embarking on your professional journey, a patient seeking quality care, or an alumnus reconnecting with your roots, I invite you to explore our website and learn more about our programs, achievements, and services.\n\nTogether, let us continue to smile, heal, and excel."
     }
   ],
   "hero_slides": [

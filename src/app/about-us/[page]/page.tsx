@@ -39,7 +39,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
       dbHtmlKey = 'about_hospital_html';
       break;
     case 'principal-message': 
-      pageTitle = "Principal & Dean's Message"; 
+      pageTitle = "Principal's Message"; 
       break;
     case 'governing-body': 
       pageTitle = 'Governing Body / College Council'; 
@@ -169,29 +169,25 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                   <div className="md:col-span-1 text-center bg-gray-50 p-4 rounded-lg border border-gray-100">
                     <div className="h-48 w-48 rounded-full bg-gradient-to-tr from-[#0A1F44] to-[#1B5E3B] mx-auto overflow-hidden shadow border-4 border-white mb-4 flex items-center justify-center text-white font-serif font-bold text-3xl">
                       {settings.dean_photo && !settings.dean_photo.includes('placeholders') ? (
-                        <img src={settings.dean_photo} alt="Principal & Dean" className="h-full w-full object-cover" />
+                        <img src={settings.dean_photo} alt="Principal" className="h-full w-full object-cover" />
                       ) : (
                         'DEAN'
                       )}
                     </div>
-                    <h4 className="font-serif text-base font-bold text-[#0A1F44]">{settings.dean_name || 'Dr. Ramesh Chandra Das, MDS'}</h4>
-                    <p className="text-[10px] text-[#1B5E3B] font-bold uppercase tracking-wider font-ui mt-1">Principal & Dean</p>
+                    <h4 className="font-serif text-base font-bold text-[#0A1F44]">{settings.dean_name || 'Prof (Dr.) Chandana Kalita'}</h4>
+                    <p className="text-[10px] text-[#1B5E3B] font-bold uppercase tracking-wider font-ui mt-1">{settings.dean_designation || 'Principal (i/c)'}</p>
                     <p className="text-[9px] text-gray-400 mt-2">Government Dental College, Dibrugarh</p>
                   </div>
                   <div className="md:col-span-2 space-y-4 font-sans text-xs md:text-sm text-gray-700 leading-relaxed">
-                    <p className="font-semibold text-[#0A1F44]">Dear Students, Scholars, Patients, and Well-wishers,</p>
-                    <p>
-                      It is a matter of profound pride to welcome you all to the digital portal of **Government Dental College & Hospital, Dibrugarh**. Since our founding in 2018, our journey has been defined by academic excellence, state-of-the-art infrastructure, and compassionate patient care.
-                    </p>
-                    <p>
-                      As a government institution affiliated with Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the National Dental Commission, New Delhi, we are committed to building highly skilled, ethical, and community-conscious dental surgeons. Our students learn in advanced, fully-equipped clinics, utilizing state-of-the-art diagnostic imaging, preclinical skill laboratories, and surgical suites.
-                    </p>
-                    <p>
-                      Our tertiary hospital caters to Upper Assam with highly subsidized, high-quality dental surgeries. We remain committed to rural community outreach, screening camps, and scientific research. I invite you to explore our portals for admissions, notifications, and clinical services.
-                    </p>
+                    {(settings.dean_message_full || '').split(/\n\s*\n/).map((para: string) => para.trim()).filter(Boolean).map((para: string, i: number) => (
+                      <p key={i}>{para}</p>
+                    ))}
                     <div className="pt-4 italic font-serif text-xs text-gray-400">
                       Warm regards,<br />
-                      <strong className="text-gray-600 block mt-1">{settings.dean_name || 'Dr. Ramesh Chandra Das'}</strong>
+                      <strong className="text-gray-600 block mt-1">{settings.dean_name || 'Prof (Dr.) Chandana Kalita'}</strong>
+                      <span className="not-italic block text-gray-500">{settings.dean_designation || 'Principal (i/c)'}</span>
+                      <span className="not-italic block text-gray-500">Government Dental College, Dibrugarh</span>
+                      <span className="not-italic block text-gray-500">Assam, India</span>
                     </div>
                   </div>
                 </div>
@@ -214,8 +210,8 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                       </thead>
                       <tbody className="divide-y divide-gray-100 text-[#2D2D2D]">
                         <tr className="hover:bg-gray-50/50">
-                          <td className="px-6 py-4 font-bold">{settings.dean_name || 'Dr. Ramesh Chandra Das'}</td>
-                          <td className="px-6 py-4">Principal & Dean</td>
+                          <td className="px-6 py-4 font-bold">{settings.dean_name || 'Prof (Dr.) Chandana Kalita'}</td>
+                          <td className="px-6 py-4">{settings.dean_designation || 'Principal (i/c)'}</td>
                           <td className="px-6 py-4 text-[#D4870A] font-bold">Chairman</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
@@ -248,7 +244,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
               {page === 'administration' && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {[
-                    { name: settings.dean_name || 'Dr. Ramesh Chandra Das', role: 'Principal & Dean', icon: UserCheck, desc: 'Administrative and Academic head of the institution.' },
+                    { name: settings.dean_name || 'Prof (Dr.) Chandana Kalita', role: settings.dean_designation || 'Principal (i/c)', icon: UserCheck, desc: 'Administrative and Academic head of the institution.' },
                     { name: 'Dr. Lalit Chandra Boruah', role: 'Government Nodal Officer', icon: BookOpen, desc: 'Reader, Department of Conservative Dentistry & Endodontics. Coordinates official communication with the Government of Assam.' },
                     { name: 'Dr. Liza Pathak', role: 'RTI Officer (PIO)', icon: Shield, desc: 'Professor & HOD, Department of Periodontology & Oral Implantology. Official Public Information Officer.' }
                   ].map((admin, idx) => (
@@ -346,8 +342,8 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
                   <div>
                     <strong className="text-gray-500 block">First Appellate Authority:</strong>
-                    <span className="font-bold text-[#2D2D2D]">{settings.dean_name || 'Dr. Ramesh Chandra Das'}</span>
-                    <span className="text-xs block text-gray-400">Principal & Dean, GDC Dibrugarh</span>
+                    <span className="font-bold text-[#2D2D2D]">{settings.dean_name || 'Prof (Dr.) Chandana Kalita'}</span>
+                    <span className="text-xs block text-gray-400">{settings.dean_designation || 'Principal (i/c)'}, GDC Dibrugarh</span>
                   </div>
                   <div>
                     <strong className="text-gray-500 block">Public Information Officer (RTI Officer):</strong>

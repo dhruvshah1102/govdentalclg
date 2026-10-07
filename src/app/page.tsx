@@ -122,8 +122,8 @@ export default async function HomePage() {
         <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition">
           <div>
             <span className="text-[10px] bg-[#0A1F44]/5 text-[#0A1F44] font-bold uppercase tracking-widest px-3 py-1 rounded">Principal Desk</span>
-            <h3 className="font-serif text-xl font-bold text-[#0A1F44] mt-3.5 mb-1.5">{settings.dean_name || 'Dean GDC Dibrugarh'}</h3>
-            <p className="text-xs text-[#1B5E3B] font-bold uppercase tracking-wider font-ui mb-4">{settings.dean_designation || 'Principal & Dean'}</p>
+            <h3 className="font-serif text-xl font-bold text-[#0A1F44] mt-3.5 mb-1.5">{settings.dean_name || 'Prof (Dr.) Chandana Kalita'}</h3>
+            <p className="text-xs text-[#1B5E3B] font-bold uppercase tracking-wider font-ui mb-4">{settings.dean_designation || 'Principal (i/c)'}</p>
             <div className="relative border-l-4 border-[#D4870A] pl-4 italic text-xs leading-relaxed text-[#2D2D2D]/90 my-4 font-serif">
               &ldquo;{settings.dean_message || 'Welcome to Government Dental College, Dibrugarh. We strive for excellence in dental education and compassionate tertiary oral healthcare.'}&rdquo;
             </div>
@@ -131,7 +131,7 @@ export default async function HomePage() {
           <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
             <div className="h-12 w-12 rounded-full bg-gradient-to-tr from-[#0A1F44] to-[#1B5E3B] overflow-hidden border border-gray-200 shadow-sm flex items-center justify-center text-white font-serif font-bold text-xs">
               {settings.dean_photo && !settings.dean_photo.includes('placeholders') ? (
-                <img src={settings.dean_photo} alt="Principal & Dean" className="h-full w-full object-cover" />
+                <img src={settings.dean_photo} alt="Principal" className="h-full w-full object-cover" />
               ) : (
                 'DEAN'
               )}

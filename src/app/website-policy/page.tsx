@@ -77,7 +77,7 @@ export default function WebsitePolicyPage() {
                 4. Content Contribution, Moderation & Approval Policy (CMAP)
               </h3>
               <p>
-                All content presented on this official portal goes through a structured verification process before publication. Academic notices, tender records, and fee modifications are authored by authorized administrative staff, verified by the respective Head of Department (HOD) or Academic Coordinator, and approved by the Principal & Dean before being uploaded via the administrative dashboard.
+                All content presented on this official portal goes through a structured verification process before publication. Academic notices, tender records, and fee modifications are authored by authorized administrative staff, verified by the respective Head of Department (HOD) or Academic Coordinator, and approved by the Principal before being uploaded via the administrative dashboard.
               </p>
             </section>
 
