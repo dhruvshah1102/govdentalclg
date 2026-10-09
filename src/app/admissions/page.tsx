@@ -23,7 +23,7 @@ export default async function AdmissionsPage() {
     { q: 'What is the annual intake capacity for BDS at GDC Dibrugarh?', a: 'The college has a recognized annual intake capacity of 63 students for the BDS programme.' },
     { q: 'What is the institutional affiliation and regulatory recognition?', a: 'Government Dental College, Dibrugarh is affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the Ministry of Health and Family Welfare, Govt of India & National Dental Commission, New Delhi.' },
     { q: 'What are the eligibility criteria for BDS admissions?', a: 'Candidates must qualify the national level NEET-UG conducted by NTA and secure a seat through the state level counselling conducted by the DME, Assam or through the All India Quota.' },
-    { q: 'Are hostel facilities available for students?', a: 'Yes, fully-equipped separate boys and girls hostels are available on the campus with a combined capacity of 110 seats.' }
+    { q: 'Are hostel facilities available for students?', a: 'Yes, fully-equipped separate boys and girls hostels are available on the campus, with 110 seats each (220 seats combined).' }
   ];
 
   const admissionsHtml = settings['bds_admissions_html'];
@@ -148,7 +148,7 @@ export default async function AdmissionsPage() {
               ) : (
                 <>
                   <p className="text-xs md:text-sm text-gray-600 leading-relaxed font-sans mb-4">
-                    Separate residential hostel accommodation is available for both boys and girls, with a combined capacity of 110 seats. Each hostel possesses study halls, dining tables, water filtering setups, and recreation amenities.
+                    Separate residential hostel accommodation is available for both boys and girls, with 110 seats in each hostel (220 seats combined). Each hostel possesses study halls, dining tables, water filtering setups, and recreation amenities.
                   </p>
                   <ul className="space-y-2.5 text-xs text-gray-500 list-disc pl-5">
                     <li>Hostel allocations are processed based on state merit rankings upon admissions validation.</li>

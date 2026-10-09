@@ -78,7 +78,7 @@
     },
     {
       "key": "hostel_capacity",
-      "value": "110"
+      "value": "220"
     },
     {
       "key": "hospital_bed_strength",
@@ -217,7 +217,7 @@
     {
       "id": 6,
       "label": "Hostel Capacity",
-      "value": "110",
+      "value": "220",
       "icon": "Star",
       "sort_order": 6
     }
