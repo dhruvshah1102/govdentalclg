@@ -199,12 +199,41 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
                     The **Student Council** is an elected student body coordinating academic seminars, cultural activities, sports events, and representing student interests across campus committees.
                   </p>
 
-                  <div className="bg-[#F8F9FA] border border-gray-200 rounded-lg p-6 text-center text-xs md:text-sm text-gray-600 font-sans space-y-3">
-                    <UserCheck className="mx-auto text-[#1B5E3B]" size={28} />
-                    <h4 className="font-serif font-bold text-[#0A1F44] text-base">Student Council Office Bearers</h4>
-                    <p className="max-w-md mx-auto text-gray-500 text-xs">
-                      Official notifications regarding the constitution of the Student Council for the current academic session will be notified by the college administration and published on campus notice boards.
-                    </p>
+                  <h3 className="font-serif text-lg font-bold text-[#0A1F44] pt-2">Student Council Office Bearers</h3>
+                  <div className="overflow-x-auto border border-gray-200 rounded-lg text-xs md:text-sm">
+                    <table className="w-full text-left">
+                      <thead className="bg-[#0A1F44] text-white font-ui uppercase tracking-wider text-[10px] font-semibold">
+                        <tr>
+                          <th className="px-6 py-3.5 w-16">Sl. No.</th>
+                          <th className="px-6 py-3.5">Post</th>
+                          <th className="px-6 py-3.5">Name</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-100 text-[#2D2D2D] font-medium">
+                        {[
+                          ['President', 'Akash Maucham Kalita'],
+                          ['Vice President', 'Lakhyadeep Mohan'],
+                          ['General Secretary', 'Dhruv Pathak'],
+                          ['Asst. General Secretary', 'Sadikur Hussain'],
+                          ['Cultural Secretary', 'Deepraj Shyam'],
+                          ['Cultural Secretary', 'Anindita Parashar'],
+                          ['Major Sports Secretary', 'Aftab Hazarika'],
+                          ['Minor Sports Secretary', 'Manash Doley'],
+                          ['Sports Secretary Girls', 'Sanjana Limbu'],
+                          ['Treasurer', 'Birdaw Narzary'],
+                          ['Social Service Secretary', 'Bhargav Baruah'],
+                          ['Literary Secretary', 'Fardeen Ahmad'],
+                          ['Magazine Editor', 'Mehbub Hasan Nagori'],
+                          ['Ladies Representative', 'Nimisha Borah'],
+                        ].map(([post, name], i) => (
+                          <tr key={i} className="hover:bg-gray-50/50">
+                            <td className="px-6 py-3 text-gray-500">{i + 1}</td>
+                            <td className="px-6 py-3 text-[#D4870A] font-bold">{post}</td>
+                            <td className="px-6 py-3 font-bold text-[#0A1F44]">{name}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               )}

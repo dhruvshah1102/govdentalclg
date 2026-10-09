@@ -52,17 +52,8 @@ const AssamGovSVG = () => (
 
 // Institutional Crest SVG
 const CollegeCrestSVG = () => (
-  <svg viewBox="0 0 100 100" className="h-14 w-auto" fill="none" stroke="currentColor">
-    <path d="M50,5 L90,25 L90,65 Q50,95 10,65 L10,25 Z" fill="#0A1F44" stroke="#D4870A" strokeWidth="2" />
-    <path d="M50,15 L78,31 L78,60 Q50,83 22,60 L22,31 Z" fill="#1B5E3B" />
-    <circle cx="50" cy="45" r="14" fill="#F8F9FA" stroke="#D4870A" strokeWidth="2" />
-    {/* Dental Tooth drawing */}
-    <path d="M45,40 Q50,35 55,40 Q58,45 54,50 Q50,53 50,55 Q50,53 46,50 Q42,45 45,40 Z" fill="#0A1F44" />
-    <path d="M47,51 L44,57 Q43,60 45,61 Q47,60 48,55 Z" fill="#0A1F44" />
-    <path d="M53,51 L56,57 Q57,60 55,61 Q53,60 52,55 Z" fill="#0A1F44" />
-    <text x="50" y="75" fontSize="8" fontWeight="bold" fill="#F8F9FA" textAnchor="middle">GDC</text>
-    <text x="50" y="81" fontSize="5" fill="#D4870A" textAnchor="middle">DIBRUGARH</text>
-  </svg>
+  // eslint-disable-next-line @next/next/no-img-element
+  <img src="/images/logo.png" alt="Government Dental College, Dibrugarh logo" className="h-14 w-14 object-contain" />
 );
 
 interface SiteSettings {
