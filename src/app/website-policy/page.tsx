@@ -46,7 +46,7 @@ export default function WebsitePolicyPage() {
                 2. Privacy Policy
               </h3>
               <p>
-                Government Dental College & Hospital, Dibrugarh website does not automatically capture any specific personal information from you (like name, phone number or email address), that allows us to identify you individually.
+                Government Dental College, Dibrugarh website does not automatically capture any specific personal information from you (like name, phone number or email address), that allows us to identify you individually.
               </p>
               <p>
                 If the website requests you to provide personal information (such as for online OPD registration, feedback, or grievance lodging), you will be informed for what particular purpose the information is gathered and adequate security measures will be taken to protect your personal information.
@@ -63,7 +63,7 @@ export default function WebsitePolicyPage() {
                 3. Hyperlinking Policy
               </h3>
               <p>
-                <strong>Links to External Websites/Portals:</strong> At many places in this website, you may find links to other websites/portals (e.g. Directorate of Medical Education, Medical Counseling Committee, Dibrugarh University). These links have been placed for your convenience. Government Dental College & Hospital, Dibrugarh is not responsible for the contents and reliability of the linked websites and does not necessarily endorse the views expressed in them. Mere presence of the link or its listing on this website should not be assumed as endorsement of any kind.
+                <strong>Links to External Websites/Portals:</strong> At many places in this website, you may find links to other websites/portals (e.g. Directorate of Medical Education, Medical Counseling Committee, Dibrugarh University). These links have been placed for your convenience. Government Dental College, Dibrugarh is not responsible for the contents and reliability of the linked websites and does not necessarily endorse the views expressed in them. Mere presence of the link or its listing on this website should not be assumed as endorsement of any kind.
               </p>
               <p>
                 <strong>Links to GDC Dibrugarh Website by Other Websites:</strong> We do not object to you linking directly to the information that is hosted on this website and no prior permission is required for the same. However, we do not permit our pages to be loaded into frames on your site. The pages belonging to this website must load into a newly opened browser window of the user.

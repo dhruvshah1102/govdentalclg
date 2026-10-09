@@ -32,7 +32,7 @@ const translations: Record<Language, Record<string, string>> = {
     font_size: 'Font Size',
     
     // Header Tagline
-    tagline: 'Government Dental College & Hospital, Dibrugarh, Assam',
+    tagline: 'Government Dental College, Dibrugarh, Assam',
     aff_rec: 'Affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati & Recognised by National Dental Commission',
     
     // Mega Menu
@@ -96,7 +96,7 @@ const translations: Record<Language, Record<string, string>> = {
     submit: 'Submit',
     reset: 'Reset',
     last_updated: 'Last Updated',
-    copyright: 'Copyright © 2026 Government Dental College & Hospital, Dibrugarh. All Rights Reserved.',
+    copyright: 'Copyright © 2026 Government Dental College, Dibrugarh. All Rights Reserved.',
     govt_assam: 'Government of Assam',
     dci_rec: 'Recognized by DCI, New Delhi',
     website_policy: 'Website Policy',
@@ -117,7 +117,7 @@ const translations: Record<Language, Record<string, string>> = {
     font_size: 'ফন্টৰ আকাৰ',
     
     // Header Tagline
-    tagline: 'চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয় আৰু চিকিৎসালয়, ডিব্ৰুগড়, অসম',
+    tagline: 'চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয়, ডিব্ৰুগড়, অসম',
     aff_rec: 'শ্ৰীমন্ত শংকৰদেৱ স্বাস্থ্য বিজ্ঞান বিশ্ববিদ্যালয়, গুৱাহাটীৰ সৈতে সংযুক্ত আৰু ৰাষ্ট্ৰীয় দন্ত আয়োগ (NDC) ৰ দ্বাৰা স্বীকৃত',
     
     // Mega Menu
@@ -181,7 +181,7 @@ const translations: Record<Language, Record<string, string>> = {
     submit: 'প্ৰেৰণ কৰক',
     reset: 'পুনৰ ছেট কৰক',
     last_updated: 'শেহতীয়া উন্নীতকৰণ',
-    copyright: 'স্বত্বাধিকাৰ © ২০২৬ চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয় আৰু চিকিৎসালয়, ডিব্ৰুগড়। সৰ্বস্বত্ব সংৰক্ষিত।',
+    copyright: 'স্বত্বাধিকাৰ © ২০২৬ চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয়, ডিব্ৰুগড়। সৰ্বস্বত্ব সংৰক্ষিত।',
     govt_assam: 'অসম চৰকাৰ',
     dci_rec: 'DCI, নতুন দিল্লীৰ দ্বাৰা স্বীকৃত',
     website_policy: 'ৱেবছাইট নীতি',
@@ -202,7 +202,7 @@ const translations: Record<Language, Record<string, string>> = {
     font_size: 'फ़ॉन्ट आकार',
     
     // Header Tagline
-    tagline: 'सरकारी दंत चिकित्सा महाविद्यालय और अस्पताल, डिब्रूगढ़, असम',
+    tagline: 'सरकारी दंत चिकित्सा महाविद्यालय, डिब्रूगढ़, असम',
     aff_rec: 'श्रीमंत शंकरदेव स्वास्थ्य विज्ञान विश्वविद्यालय, गुवाहाटी से संबद्ध और राष्ट्रीय दंत आयोग (NDC) द्वारा मान्यता प्राप्त',
     
     // Mega Menu
@@ -266,7 +266,7 @@ const translations: Record<Language, Record<string, string>> = {
     submit: 'जमा करें',
     reset: 'रीसेट करें',
     last_updated: 'अंतिम अपडेट',
-    copyright: 'कॉपीराइट © २०२६ सरकारी दंत चिकित्सा महाविद्यालय और अस्पताल, डिब्रूगढ़। सर्वाधिकार सुरक्षित।',
+    copyright: 'कॉपीराइट © २०२६ सरकारी दंत चिकित्सा महाविद्यालय, डिब्रूगढ़। सर्वाधिकार सुरक्षित।',
     govt_assam: 'असम सरकार',
     dci_rec: 'DCI, नई दिल्ली द्वारा मान्यता प्राप्त',
     website_policy: 'वेबसाइट नीति',

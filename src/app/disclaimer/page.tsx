@@ -32,7 +32,7 @@ export default function DisclaimerPage() {
                 1. General Information
               </h3>
               <p>
-                The information contained in this website is for general information and educational purposes only. The information is provided by <strong>Government Dental College & Hospital, Dibrugarh</strong> and while we endeavor to keep the information up-to-date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk.
+                The information contained in this website is for general information and educational purposes only. The information is provided by <strong>Government Dental College, Dibrugarh</strong> and while we endeavor to keep the information up-to-date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk.
               </p>
             </section>
 
@@ -61,7 +61,7 @@ export default function DisclaimerPage() {
                 3. External Links and Outages
               </h3>
               <p>
-                Through this website, you are able to link to other websites which are not under the control of Government Dental College & Hospital, Dibrugarh. We have no control over the nature, content, and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.
+                Through this website, you are able to link to other websites which are not under the control of Government Dental College, Dibrugarh. We have no control over the nature, content, and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.
               </p>
               <p>
                 Every effort is made to keep the website up and running smoothly. However, the college takes no responsibility for, and will not be liable for, the website being temporarily unavailable due to technical issues beyond our control.

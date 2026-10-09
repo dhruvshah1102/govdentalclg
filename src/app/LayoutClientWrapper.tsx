@@ -60,7 +60,7 @@ const CollegeCrestSVG = () => (
     <path d="M45,40 Q50,35 55,40 Q58,45 54,50 Q50,53 50,55 Q50,53 46,50 Q42,45 45,40 Z" fill="#0A1F44" />
     <path d="M47,51 L44,57 Q43,60 45,61 Q47,60 48,55 Z" fill="#0A1F44" />
     <path d="M53,51 L56,57 Q57,60 55,61 Q53,60 52,55 Z" fill="#0A1F44" />
-    <text x="50" y="75" fontSize="8" fontWeight="bold" fill="#F8F9FA" textAnchor="middle">GDCH</text>
+    <text x="50" y="75" fontSize="8" fontWeight="bold" fill="#F8F9FA" textAnchor="middle">GDC</text>
     <text x="50" y="81" fontSize="5" fill="#D4870A" textAnchor="middle">DIBRUGARH</text>
   </svg>
 );
@@ -203,9 +203,9 @@ const NavbarContent: React.FC<{ settings: SiteSettings; departments: DepartmentL
             <CollegeCrestSVG />
             <div>
               <h1 className="font-serif text-lg md:text-xl xl:text-2xl font-bold text-[#0A1F44] tracking-tight leading-tight">
-                {language === 'en' && (settings.site_name_en || 'Government Dental College & Hospital, Dibrugarh')}
-                {language === 'as' && (settings.site_name_as || 'চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয় আৰু চিকিৎসালয়, ডিব্ৰুগড়')}
-                {language === 'hi' && (settings.site_name_hi || 'सरकारी दंत चिकित्सा महाविद्यालय और अस्पताल, डिब्रूगढ़')}
+                {language === 'en' && (settings.site_name_en || 'Government Dental College, Dibrugarh')}
+                {language === 'as' && (settings.site_name_as || 'চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয়, ডিব্ৰুগড়')}
+                {language === 'hi' && (settings.site_name_hi || 'सरकारी दंत चिकित्सा महाविद्यालय, डिब्रूगढ़')}
               </h1>
               <p className="text-xs text-[#1B5E3B] font-bold font-ui uppercase mt-0.5 tracking-wider flex items-center gap-1.5">
                 <span className="inline-block h-2 w-2 rounded-full bg-[#D4870A]"></span>
@@ -593,7 +593,7 @@ export const LayoutClientWrapper: React.FC<{
           {/* Lower Footer */}
           <div className="max-w-7xl mx-auto px-4 md:px-8 border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
             <div className="text-center md:text-left leading-relaxed">
-              <p>Copyright &copy; 2026 Government Dental College & Hospital, Dibrugarh. All Rights Reserved.</p>
+              <p>Copyright &copy; 2026 Government Dental College, Dibrugarh. All Rights Reserved.</p>
               <p className="mt-0.5 text-[10px] text-gray-500 font-sans">Developed in compliance with WCAG 2.1 AA and National Emblem utilization standards.</p>
             </div>
             
@@ -601,8 +601,6 @@ export const LayoutClientWrapper: React.FC<{
               <Link href="/website-policy" className="hover:text-white transition">Website Policy</Link>
               <span className="h-3 w-px bg-white/10"></span>
               <Link href="/disclaimer" className="hover:text-white transition">Disclaimer</Link>
-              <span className="h-3 w-px bg-white/10"></span>
-              <Link href="/admin/login" className="text-[#D4870A] hover:underline font-bold transition">Admin Portal Access</Link>
             </div>
           </div>
         </footer>

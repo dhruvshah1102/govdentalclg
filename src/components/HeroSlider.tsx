@@ -44,7 +44,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
         <div className="max-w-3xl text-white">
           <GraduationCap size={48} className="mx-auto text-[#D4870A] mb-4 animate-bounce" />
           <h2 className="font-serif text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            Government Dental College & Hospital
+            Government Dental College
           </h2>
           <p className="text-sm md:text-lg text-gray-200 font-sans max-w-xl mx-auto mb-6">
             Pioneering excellence in professional dental medicine and compassionate public tertiary healthcare services in Upper Assam.

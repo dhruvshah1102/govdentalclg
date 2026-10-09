@@ -70,7 +70,7 @@ export default async function AlumniPage() {
                   <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Graduated Dental Surgeons</span>
                 </div>
                 <p>
-                  Since its establishment in 2018, Government Dental College & Hospital, Dibrugarh has graduated over 150+ BDS dental surgeons serving across healthcare establishments, public health services, and higher specialties nationwide.
+                  Since its establishment in 2018, Government Dental College, Dibrugarh has graduated over 150+ BDS dental surgeons serving across healthcare establishments, public health services, and higher specialties nationwide.
                 </p>
               </div>
             </div>

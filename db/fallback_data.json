@@ -2,23 +2,23 @@
   "settings": [
     {
       "key": "site_name_en",
-      "value": "Government Dental College & Hospital, Dibrugarh"
+      "value": "Government Dental College, Dibrugarh"
     },
     {
       "key": "site_name_as",
-      "value": "চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয় আৰু চিকিৎসালয়, ডিব্ৰুগড়"
+      "value": "চৰকাৰী দন্ত চিকিৎসা মহাবিদ্যালয়, ডিব্ৰুগড়"
     },
     {
       "key": "site_name_hi",
-      "value": "सरकारी दंत चिकित्सा महाविद्यालय और अस्पताल, डिब्रूगढ़"
+      "value": "सरकारी दंत चिकित्सा महाविद्यालय, डिब्रूगढ़"
     },
     {
       "key": "seo_title",
-      "value": "Government Dental College & Hospital, Dibrugarh - Assam"
+      "value": "Government Dental College, Dibrugarh - Assam"
     },
     {
       "key": "seo_description",
-      "value": "Official portal of Government Dental College and Hospital, Dibrugarh. Affiliated to SSUHS Guwahati and recognised by National Dental Commission."
+      "value": "Official portal of Government Dental College, Dibrugarh. Affiliated to SSUHS Guwahati and recognised by National Dental Commission."
     },
     {
       "key": "seo_keywords",
@@ -26,7 +26,7 @@
     },
     {
       "key": "about_summary_en",
-      "value": "Government Dental College & Hospital, Dibrugarh was established in 2018 under the Department of Health & Family Welfare, Government of Assam. Affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the Ministry of Health and Family Welfare, Govt of India & National Dental Commission, New Delhi."
+      "value": "Government Dental College, Dibrugarh was established in 2018 under the Department of Health & Family Welfare, Government of Assam. Affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the Ministry of Health and Family Welfare, Govt of India & National Dental Commission, New Delhi."
     },
     {
       "key": "new_badge_days",
@@ -150,7 +150,7 @@
       "id": 1,
       "image_url": "/images/Infrastructure/01.jpeg",
       "title": "Delivering Dental and Oral Healthcare in Eastern Assam",
-      "subtitle": "Government Dental College & Hospital, Dibrugarh — Affiliated to SSUHS Guwahati & Recognised by National Dental Commission.",
+      "subtitle": "Government Dental College, Dibrugarh — Affiliated to SSUHS Guwahati & Recognised by National Dental Commission.",
       "cta_text": "Explore BDS Programme",
       "cta_link": "/academics/bds",
       "sort_order": 1,

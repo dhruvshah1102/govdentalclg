@@ -205,7 +205,7 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
                 )}
                 <li className="flex items-start gap-2">
                   <MapPin size={14} className="text-[#0A1F44] shrink-0 mt-0.5" />
-                  <span className="leading-tight">GDC & Hospital Campus,<br />Dibrugarh, Assam.</span>
+                  <span className="leading-tight">GDC Campus,<br />Dibrugarh, Assam.</span>
                 </li>
               </ul>
             </div>

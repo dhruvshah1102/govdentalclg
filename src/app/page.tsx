@@ -153,7 +153,7 @@ export default async function HomePage() {
               A Beacon of Advanced Dental Science in Upper Assam
             </h2>
             <p className="text-xs md:text-sm text-[#2D2D2D] leading-relaxed mb-6 font-sans">
-              {settings.about_summary_en || 'Government Dental College & Hospital, Dibrugarh is a leading dental health establishment of the Govt of Assam, affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the National Dental Commission, New Delhi.'}
+              {settings.about_summary_en || 'Government Dental College, Dibrugarh is a leading dental health establishment of the Govt of Assam, affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the National Dental Commission, New Delhi.'}
             </p>
             <p className="text-xs md:text-sm text-gray-500 leading-relaxed font-sans mb-6">
               Located on the institutional campus adjacent to Assam Medical College & Hospital (AMCH), the college educates BDS scholars in comprehensive multidisciplinary clinical contexts across 9 specialist departments running tertiary outpatient department (OPD) facilities.

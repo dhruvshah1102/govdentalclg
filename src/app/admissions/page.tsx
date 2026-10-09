@@ -21,7 +21,7 @@ export default async function AdmissionsPage() {
 
   const faqs = [
     { q: 'What is the annual intake capacity for BDS at GDC Dibrugarh?', a: 'The college has a recognized annual intake capacity of 63 students for the BDS programme.' },
-    { q: 'What is the institutional affiliation and regulatory recognition?', a: 'Government Dental College & Hospital, Dibrugarh is affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the Ministry of Health and Family Welfare, Govt of India & National Dental Commission, New Delhi.' },
+    { q: 'What is the institutional affiliation and regulatory recognition?', a: 'Government Dental College, Dibrugarh is affiliated to Srimanta Sankardeva University of Health Sciences, Guwahati and recognised by the Ministry of Health and Family Welfare, Govt of India & National Dental Commission, New Delhi.' },
     { q: 'What are the eligibility criteria for BDS admissions?', a: 'Candidates must qualify the national level NEET-UG conducted by NTA and secure a seat through the state level counselling conducted by the DME, Assam or through the All India Quota.' },
     { q: 'Are hostel facilities available for students?', a: 'Yes, fully-equipped separate boys and girls hostels are available on the campus with a combined capacity of 110 seats.' }
   ];

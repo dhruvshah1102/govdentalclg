@@ -111,7 +111,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
               {page === 'college' && (
                 <div className="space-y-6 font-sans text-xs md:text-sm text-gray-700 leading-relaxed">
                   <p>
-                    <strong>Government Dental College & Hospital, Dibrugarh</strong> was established in the year 2018 under the aegis of the Department of Health & Family Welfare, Government of Assam. It stands as a pinnacle of professional clinical excellence in North-East India, catering to advanced dental pedagogy and premium tertiary level healthcare.
+                    <strong>Government Dental College, Dibrugarh</strong> was established in the year 2018 under the aegis of the Department of Health & Family Welfare, Government of Assam. It stands as a pinnacle of professional clinical excellence in North-East India, catering to advanced dental pedagogy and premium tertiary level healthcare.
                   </p>
                   
                   <div className="bg-[#F8F9FA] border-l-4 border-[#1B5E3B] p-4 rounded-r my-6">
@@ -219,7 +219,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
               {page === 'disclosure' && (
                 <div className="space-y-6">
                   <p className="text-xs md:text-sm text-gray-600">
-                    In compliance with statutory regulatory guidelines, Government Dental College & Hospital, Dibrugarh hosts its official institutional parameters and regulatory approvals here.
+                    In compliance with statutory regulatory guidelines, Government Dental College, Dibrugarh hosts its official institutional parameters and regulatory approvals here.
                   </p>
                   
                   <div className="bg-amber-50 border border-amber-200 rounded p-4 text-xs flex gap-3 text-[#2D2D2D]">
