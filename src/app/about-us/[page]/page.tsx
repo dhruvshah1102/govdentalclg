@@ -31,6 +31,25 @@ export default async function AboutUsSubPage({ params }: PageProps) {
     settings[row.key] = row.value;
   });
 
+  // Anti-ragging committee list PDF (uploaded via Downloads) for the disclosure table
+  let antiRaggingPdfUrl = '';
+  if (page === 'disclosure') {
+    const doc = await db.get(
+      "SELECT file_url FROM downloads WHERE enabled = 1 AND title ILIKE '%anti-ragging%' ORDER BY id DESC LIMIT 1"
+    );
+    antiRaggingPdfUrl = doc?.file_url || '';
+  }
+
+  // Direct-to-document link for the disclosure table; renders nothing until a document is available
+  const docLink = (url: string | undefined, label: string) =>
+    url ? (
+      <a href={url} target="_blank" rel="noopener noreferrer" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
+        <Download size={12} /> {label}
+      </a>
+    ) : (
+      <span className="text-gray-400">&mdash;</span>
+    );
+
   // Breadcrumbs title helper
   let pageTitle = '';
   let dbHtmlKey = '';
@@ -246,44 +265,22 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-4 font-semibold">Affiliating University</td>
                           <td className="px-6 py-4">Srimanta Sankardeva University of Health Sciences, Guwahati</td>
-                          <td className="px-6 py-4">
-                            {settings.coa_pdf_url ? (
-                              <a href={settings.coa_pdf_url} target="_blank" rel="noopener noreferrer" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
-                                <Download size={12} /> Consent of Affiliation
-                              </a>
-                            ) : (
-                              <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
-                                <Download size={12} /> View Certificate
-                              </Link>
-                            )}
-                          </td>
+                          <td className="px-6 py-4">{docLink(settings.coa_pdf_url, 'Consent of Affiliation')}</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-4 font-semibold">Regulatory Recognition Status</td>
                           <td className="px-6 py-4">Recognised by MoHFW, Govt of India & National Dental Commission (63 BDS Seats)</td>
-                          <td className="px-6 py-4">
-                            <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
-                              <Download size={12} /> Recognition Order
-                            </Link>
-                          </td>
+                          <td className="px-6 py-4">{docLink(settings.recognition_order_url, 'Recognition Order')}</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-4 font-semibold">Annual Admission Capacity</td>
                           <td className="px-6 py-4">BDS: 63 | MDS: Applied for Recognition</td>
-                          <td className="px-6 py-4">
-                            <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
-                              <Download size={12} /> Seats Matrix
-                            </Link>
-                          </td>
+                          <td className="px-6 py-4">{docLink(settings.seats_matrix_url, 'Seats Matrix')}</td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">
                           <td className="px-6 py-4 font-semibold">Anti-Ragging Committee</td>
                           <td className="px-6 py-4">Formed & Checked (No incidents reported)</td>
-                          <td className="px-6 py-4">
-                            <Link href="/student-portal/anti-ragging" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
-                              <Download size={12} /> Committee List
-                        </Link>
-                      </td>
+                          <td className="px-6 py-4">{docLink(antiRaggingPdfUrl, 'Committee List')}</td>
                     </tr>
                   </tbody>
                 </table>
