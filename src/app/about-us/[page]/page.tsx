@@ -247,9 +247,15 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                           <td className="px-6 py-4 font-semibold">Affiliating University</td>
                           <td className="px-6 py-4">Srimanta Sankardeva University of Health Sciences, Guwahati</td>
                           <td className="px-6 py-4">
-                            <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
-                              <Download size={12} /> View Certificate
-                            </Link>
+                            {settings.coa_pdf_url ? (
+                              <a href={settings.coa_pdf_url} target="_blank" rel="noopener noreferrer" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
+                                <Download size={12} /> Consent of Affiliation
+                              </a>
+                            ) : (
+                              <Link href="/downloads" className="text-[#1B5E3B] hover:underline font-bold flex items-center gap-1">
+                                <Download size={12} /> View Certificate
+                              </Link>
+                            )}
                           </td>
                         </tr>
                         <tr className="hover:bg-gray-50/50">

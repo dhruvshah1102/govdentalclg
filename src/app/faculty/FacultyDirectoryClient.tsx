@@ -162,9 +162,11 @@ export const FacultyDirectoryClient: React.FC<FacultyDirectoryClientProps> = ({
                   </span>
                 )}
 
-                <p className="text-[11px] text-gray-500 italic mt-3 border-t border-gray-100 pt-2.5 font-sans leading-normal">
-                  {f.qualifications || 'Academic Credentials'}
-                </p>
+                {f.qualifications && f.qualifications.trim() && (
+                  <p className="text-[11px] text-gray-500 italic mt-3 border-t border-gray-100 pt-2.5 font-sans leading-normal">
+                    {f.qualifications}
+                  </p>
+                )}
 
                 {f.specialization && (
                   <p className="text-[10px] text-gray-600 mt-2 font-sans font-medium">
