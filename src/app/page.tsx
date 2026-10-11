@@ -220,12 +220,14 @@ export default async function HomePage() {
                 <h4 className="font-serif text-lg font-bold text-[#0A1F44] hover:text-[#D4870A] transition mb-2">
                   <Link href={`/departments/${d.id}`}>{d.name}</Link>
                 </h4>
-                <p className="text-xs text-gray-500 leading-relaxed font-sans line-clamp-3 mb-4">
-                  {d.about ? d.about.replace(/<[^>]*>/g, '') : 'Providing cutting-edge training and clinical patient care.'}
-                </p>
+                {d.about && d.about.replace(/<[^>]*>/g, '').trim() && (
+                  <p className="text-xs text-gray-500 leading-relaxed font-sans line-clamp-3 mb-4">
+                    {d.about.replace(/<[^>]*>/g, '')}
+                  </p>
+                )}
               </div>
               <div className="flex justify-between items-center pt-3 border-t border-gray-100 text-xs text-gray-400">
-                <span>HOD: <strong className="text-gray-600">{d.hod_name || 'Specialist Professor'}</strong></span>
+                {d.hod_name ? <span>HOD: <strong className="text-gray-600">{d.hod_name}</strong></span> : <span />}
                 <Link href={`/departments/${d.id}`} className="text-[#1B5E3B] hover:text-[#247C4E] font-bold hover:underline flex items-center gap-0.5 transition">
                   Details &raquo;
                 </Link>

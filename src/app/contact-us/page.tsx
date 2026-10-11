@@ -106,7 +106,7 @@ export default async function ContactUsPage() {
                 </div>
                 <div className="pt-2 border-t border-gray-100">
                   <strong className="text-gray-800 block mb-0.5">Government Nodal Officer:</strong>
-                  <span>Dr. Lalit Chandra Boruah (Reader, Conservative Dentistry)</span>
+                  <span>Dr. Lalit Chandra Boruah (Reader, Conservative, Endodontic and Aesthetic Dentistry)</span>
                 </div>
                 <div className="pt-2 border-t border-gray-100">
                   <strong className="text-gray-800 block mb-0.5">Public Information Officer (RTI):</strong>

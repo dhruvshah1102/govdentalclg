@@ -14,6 +14,10 @@ export function generateStaticParams() {
   return [];
 }
 
+// True when an HTML/text field has visible content (ignores empty tags and whitespace)
+const hasContent = (html?: string | null) =>
+  !!html && html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim().length > 0;
+
 interface DeptPageProps {
   params: {
     deptId: string;
@@ -66,9 +70,6 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
             <h1 className="font-serif text-3xl md:text-5xl font-extrabold mb-4 tracking-tight drop-shadow">
               Department of {department.name}
             </h1>
-            <p className="text-xs md:text-base text-gray-200 leading-relaxed max-w-xl font-sans">
-              Deploying state-of-the-art diagnostic protocols, advanced clinical surgeries, and research-led training at GDC Dibrugarh.
-            </p>
           </div>
           {/* Overlay graphics */}
           <div className="absolute inset-0 bg-black/55"></div>
@@ -85,59 +86,64 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
           <div className="lg:col-span-2 space-y-8">
             
             {/* About the Department */}
+            {hasContent(department.about) && (
             <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-8 shadow-sm hover:shadow-md transition">
               <h3 className="font-serif text-xl font-bold text-[#0A1F44] border-b border-gray-100 pb-3 mb-4 flex items-center gap-2">
                 <Info className="text-[#D4870A]" size={20} /> About the Department
               </h3>
               <div 
                 className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans space-y-4"
-                dangerouslySetInnerHTML={{ __html: department.about || `Dedicated to providing clinical dental care and professional undergraduate training in ${department.name}.` }}
+                dangerouslySetInnerHTML={{ __html: department.about }}
               />
             </div>
+            )}
 
             {/* Infrastructure / Equipment List */}
+            {hasContent(department.infrastructure) && (
             <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-8 shadow-sm hover:shadow-md transition">
               <h3 className="font-serif text-xl font-bold text-[#0A1F44] border-b border-gray-100 pb-3 mb-4 flex items-center gap-2">
                 <Layers className="text-[#1B5E3B]" size={20} /> Infrastructure & Advanced Facilities
               </h3>
               <div className="text-xs md:text-sm text-gray-700 leading-relaxed space-y-4 font-sans">
-                <div dangerouslySetInnerHTML={{ __html: department.infrastructure || 'Equipped with operational dental chairs, specialized diagnostic instruments, and clinical demonstration units.' }} />
+                <div dangerouslySetInnerHTML={{ __html: department.infrastructure }} />
               </div>
             </div>
+            )}
 
             {/* Clinical Services */}
+            {hasContent(department.clinical_services) && (
             <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-8 shadow-sm hover:shadow-md transition">
               <h3 className="font-serif text-xl font-bold text-[#0A1F44] border-b border-gray-100 pb-3 mb-4 flex items-center gap-2">
                 <Stethoscope className="text-[#0A1F44]" size={20} /> Clinical Services & Therapeutics Offered
               </h3>
               <div 
                 className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans space-y-4"
-                dangerouslySetInnerHTML={{ __html: department.clinical_services || 'Clinical care procedures.' }}
+                dangerouslySetInnerHTML={{ __html: department.clinical_services }}
               />
             </div>
+            )}
 
             {/* Research and Publications */}
+            {hasContent(department.research_activities) && (
             <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-8 shadow-sm hover:shadow-md transition">
               <h3 className="font-serif text-xl font-bold text-[#0A1F44] border-b border-gray-100 pb-3 mb-4 flex items-center gap-2">
                 <BookOpen className="text-[#D4870A]" size={20} /> Research & Thesis Activities
               </h3>
               <div 
                 className="text-xs md:text-sm text-gray-700 leading-relaxed font-sans space-y-4"
-                dangerouslySetInnerHTML={{ __html: department.research_activities || 'Ongoing clinical investigations and projects.' }}
+                dangerouslySetInnerHTML={{ __html: department.research_activities }}
               />
             </div>
+            )}
 
             {/* Dynamic Faculty List */}
+            {facultyList.length > 0 && (
             <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-8 shadow-sm hover:shadow-md transition">
               <h3 className="font-serif text-xl font-bold text-[#0A1F44] border-b border-gray-100 pb-3 mb-6 flex items-center gap-2">
                 <Users className="text-[#1B5E3B]" size={20} /> Teaching Faculty Directory
               </h3>
               
-              {facultyList.length === 0 ? (
-                <div className="text-center py-6 text-xs text-gray-400 font-sans">
-                  No teaching faculty are assigned to this department yet.
-                </div>
-              ) : (
+              {(
                 <div className="overflow-x-auto border border-gray-200 rounded-lg text-xs md:text-sm">
                   <table className="w-full text-left">
                     <thead className="bg-[#0A1F44] text-white font-ui uppercase text-[10px] font-semibold tracking-wider">
@@ -164,6 +170,7 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
                 </div>
               )}
             </div>
+            )}
 
           </div>
 
@@ -171,6 +178,7 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
           <div className="space-y-6">
             
             {/* HOD Card Widget */}
+            {department.hod_name && (
             <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm text-center hover:shadow-md transition">
               <span className="text-[9px] bg-[#D4870A]/5 text-[#D4870A] font-bold uppercase tracking-widest px-3 py-1 rounded">
                 Head of Department
@@ -182,12 +190,15 @@ export default async function DepartmentDetailPage({ params }: DeptPageProps) {
                   'HOD'
                 )}
               </div>
-              <h4 className="font-serif text-base font-bold text-[#0A1F44]">{department.hod_name || 'Specialist Professor'}</h4>
-              <p className="text-[10px] text-[#1B5E3B] font-bold uppercase tracking-wider font-ui mt-1">{department.hod_designation || 'Professor & Head'}</p>
-              <p className="text-[11px] text-gray-500 italic font-sans max-w-xs mx-auto mt-2 leading-relaxed">
-                {department.hod_qualifications || 'MDS Specialities'}
-              </p>
+              <h4 className="font-serif text-base font-bold text-[#0A1F44]">{department.hod_name}</h4>
+              {department.hod_designation && <p className="text-[10px] text-[#1B5E3B] font-bold uppercase tracking-wider font-ui mt-1">{department.hod_designation}</p>}
+              {department.hod_qualifications && (
+                <p className="text-[11px] text-gray-500 italic font-sans max-w-xs mx-auto mt-2 leading-relaxed">
+                  {department.hod_qualifications}
+                </p>
+              )}
             </div>
+            )}
 
             {/* Department Contact Grid */}
             <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition">

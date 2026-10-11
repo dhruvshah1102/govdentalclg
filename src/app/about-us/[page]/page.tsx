@@ -200,7 +200,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {[
                     { name: settings.dean_name || 'Prof (Dr.) Chandana Kalita', role: settings.dean_designation || 'Principal (i/c)', icon: UserCheck, desc: 'Administrative and Academic head of the institution.' },
-                    { name: 'Dr. Lalit Chandra Boruah', role: 'Government Nodal Officer', icon: BookOpen, desc: 'Reader, Department of Conservative Dentistry & Endodontics. Coordinates official communication with the Government of Assam.' },
+                    { name: 'Dr. Lalit Chandra Boruah', role: 'Government Nodal Officer', icon: BookOpen, desc: 'Reader, Department of Conservative, Endodontic and Aesthetic Dentistry. Coordinates official communication with the Government of Assam.' },
                     { name: settings.rti_officer || 'To be notified', role: 'RTI Officer (PIO)', icon: Shield, desc: 'Official Public Information Officer under the Right to Information Act.' }
                   ].map((admin, idx) => (
                     <div key={idx} className="border border-gray-200 rounded-lg p-5 text-center bg-[#F8F9FA] hover:shadow-md transition">
