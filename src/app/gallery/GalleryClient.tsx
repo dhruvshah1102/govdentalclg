@@ -95,12 +95,13 @@ export const GalleryClient: React.FC<GalleryClientProps> = ({ initialItems }) =>
               key={item.id} 
               className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col justify-between"
             >
-              <div className="relative aspect-video overflow-hidden bg-gray-900">
+              <div className="relative aspect-[4/3] overflow-hidden bg-gray-900">
                 {/* Image backdrop */}
-                <img 
-                  src={item.image_url} 
+                <img
+                  src={item.image_url}
                   alt={item.album_name}
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
                 
                 {/* Dark Hover overlay */}
