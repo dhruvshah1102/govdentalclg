@@ -151,7 +151,7 @@ export default async function StudentPortalSubPage({ params }: PageProps) {
                     <ShieldAlert className="text-red-600 shrink-0" size={24} />
                     <div>
                       <strong className="text-[#0A1F44] block mb-0.5 font-serif text-sm">Strict Zero-Tolerance Anti-Ragging Policy</strong>
-                      As per the mandates of the Supreme Court of India and the DCI, ragging in any form is strictly banned inside college dormitories, clinics, and all campus premises. Offenders face immediate rustication and legal action.
+                      As per the mandates of the Supreme Court of India and the NDC, ragging in any form is strictly banned inside college dormitories, clinics, and all campus premises. Offenders face immediate rustication and legal action.
                     </div>
                   </div>
 

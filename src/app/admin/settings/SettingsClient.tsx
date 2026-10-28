@@ -87,7 +87,7 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
       <div style="background-color: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 8px; padding: 16px; margin: 15px 0;">
         <strong style="color: #991B1B; font-size: 13px;">⚠ Strict Regulatory Warning: Compliance Policy</strong>
         <p style="color: #7F1D1D; margin-top: 6px; font-size: 12px; line-height: 1.5; margin-bottom: 0;">
-          Ragging is completely banned on campus. Under UGC & DCI guidelines, any student found guilty of ragging or abetting ragging is liable for immediate expulsion and legal prosecution.
+          Ragging is completely banned on campus. Under UGC & NDC guidelines, any student found guilty of ragging or abetting ragging is liable for immediate expulsion and legal prosecution.
         </p>
       </div>
     `;
@@ -103,7 +103,7 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
           <strong style="color: #0F172A;">Bachelor of Dental Surgery (BDS)</strong>
         </div>
         <div style="display: flex; justify-content: space-between; font-size: 12px; border-bottom: 1px dashed #E2E8F0; padding: 4px 0;">
-          <span style="color: #64748B;">DCI Approved Intake:</span>
+          <span style="color: #64748B;">NDC Approved Intake:</span>
           <strong style="color: #0F172A;">50 Seats Annually</strong>
         </div>
         <div style="display: flex; justify-content: space-between; font-size: 12px; border-bottom: 1px dashed #E2E8F0; padding: 4px 0;">
@@ -138,7 +138,7 @@ export const SettingsClient: React.FC<SettingsClientProps> = ({ initialSettings 
       <ul style="list-style-type: none; padding-left: 0; margin: 15px 0;">
         <li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 12px; color: #334155;">
           <span style="color: #10B981; font-weight: bold;">✔</span>
-          <span><strong>DCI Accreditation</strong>: Recognized for standard academic practices.</span>
+          <span><strong>NDC Accreditation</strong>: Recognized for standard academic practices.</span>
         </li>
         <li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 12px; color: #334155;">
           <span style="color: #10B981; font-weight: bold;">✔</span>

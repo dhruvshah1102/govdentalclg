@@ -18,7 +18,7 @@ export default async function DownloadsPage() {
   const defaultDownloads = downloads.length > 0 ? downloads : [
     { 
       id: 1, 
-      title: 'Revised BDS Course Regulation (National Dental Commission / DCI)', 
+      title: 'Revised BDS Course Regulation (National Dental Commission / NDC)', 
       category: 'Prospectus', 
       file_url: 'https://dciindia.gov.in/Rule_Regulation/Revised_BDS_Course_Regulation_2007.pdf', 
       upload_date: 'June 2026' 

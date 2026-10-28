@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Government Dental College, Dibrugarh",
     default: "Government Dental College, Dibrugarh | Assam",
   },
-  description: "Official portal of Government Dental College, Dibrugarh, Assam. Affiliated to Dibrugarh University and recognized by the Dental Council of India (DCI), New Delhi.",
+  description: "Official portal of Government Dental College, Dibrugarh, Assam. Affiliated to Dibrugarh University and recognized by the National Dental Commission (NDC), New Delhi.",
   keywords: ["Government Dental College Dibrugarh", "GDC Dibrugarh", "Dental College Assam", "BDS Dibrugarh", "MDS Admission Assam", "Dentistry Dibrugarh University"],
   icons: {
     icon: "/favicon.ico",

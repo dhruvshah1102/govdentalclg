@@ -535,7 +535,7 @@ export const LayoutClientWrapper: React.FC<{
             <div>
               <h3 className="font-serif text-lg font-bold border-b border-[#D4870A] pb-2 mb-4 tracking-wide text-white">Important Links</h3>
               <ul className="space-y-2 text-xs text-gray-300 font-medium">
-                <li><Link href="/about-us/disclosure" className="hover:text-[#D4870A] hover:underline transition">&raquo; DCI Mandatory Disclosure</Link></li>
+                <li><Link href="/about-us/disclosure" className="hover:text-[#D4870A] hover:underline transition">&raquo; NDC Mandatory Disclosure</Link></li>
                 <li><Link href="/about-us/rti" className="hover:text-[#D4870A] hover:underline transition">&raquo; Right to Information (RTI)</Link></li>
                 <li><Link href="/tenders" className="hover:text-[#D4870A] hover:underline transition">&raquo; Tenders & Procurements</Link></li>
                 <li><Link href="/downloads" className="hover:text-[#D4870A] hover:underline transition">&raquo; Circulars & Forms Library</Link></li>

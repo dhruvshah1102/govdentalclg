@@ -128,7 +128,7 @@ export default async function AcademicsSubPage({ params }: PageProps) {
 
                   <h3 className="font-serif text-lg font-bold text-[#0A1F44] pt-4">BDS Syllabus Overview</h3>
                   <p>
-                    The curriculum follows the statutory guidelines of the National Dental Commission (NDC) / DCI Revised BDS Course Regulations, covering basic medical sciences alongside dental operative specialties across comprehensive preclinical laboratories and hospital clinical postings.
+                    The curriculum follows the statutory guidelines of the National Dental Commission (NDC) Revised BDS Course Regulations, covering basic medical sciences alongside dental operative specialties across comprehensive preclinical laboratories and hospital clinical postings.
                   </p>
 
                   <div className="pt-6 border-t border-gray-100 flex flex-wrap gap-4">
@@ -167,7 +167,7 @@ export default async function AcademicsSubPage({ params }: PageProps) {
 
                   <h3 className="font-serif text-lg font-bold text-[#0A1F44] pt-4">Eligibility & Specializations</h3>
                   <p>
-                    Candidates must hold a recognized BDS degree from an Indian University recognized by the DCI, have completed their 1-year rotating internship, and hold active registration with the State Dental Council. Admission is strictly based on NEET-MDS merit.
+                    Candidates must hold a recognized BDS degree from an Indian University recognized by the NDC, have completed their 1-year rotating internship, and hold active registration with the State Dental Council. Admission is strictly based on NEET-MDS merit.
                   </p>
 
                   <h3 className="font-serif text-lg font-bold text-[#0A1F44] pt-4">Residency Requirements</h3>

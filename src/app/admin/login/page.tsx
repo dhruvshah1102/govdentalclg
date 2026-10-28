@@ -78,7 +78,7 @@ export default function AdminLoginPage() {
             Administrative CMS Login
           </span>
           <span className="text-[9px] text-[#1B5E3B] font-bold tracking-widest block uppercase mt-0.5 font-sans leading-none">
-            Govt of Assam &bull; DCI Authorized
+            Govt of Assam &bull; NDC Authorized
           </span>
         </div>
 

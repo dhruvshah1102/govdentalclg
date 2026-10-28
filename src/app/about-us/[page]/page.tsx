@@ -69,7 +69,7 @@ export default async function AboutUsSubPage({ params }: PageProps) {
       pageTitle = 'Administrative Officers'; 
       break;
     case 'disclosure': 
-      pageTitle = 'Mandatory DCI Disclosures'; 
+      pageTitle = 'Mandatory NDC Disclosures'; 
       break;
     case 'rti': 
       pageTitle = 'Right to Information (RTI)'; 
