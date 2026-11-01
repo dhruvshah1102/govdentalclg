@@ -20,6 +20,11 @@ function getPool(): Pool {
 
 // Converts SQLite-style "?" placeholders to Postgres "$1, $2, ..." placeholders
 function toPgSql(sql: string): string {
+  if (/"/.test(sql)) {
+    throw new Error(
+      `SQL contains a double quote. Postgres reads "x" as a column name, not text; use single quotes for values: ${sql}`
+    );
+  }
   let i = 0;
   return sql.replace(/\?/g, () => `$${++i}`);
 }

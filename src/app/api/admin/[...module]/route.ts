@@ -252,7 +252,7 @@ async function handlePOST(req: NextRequest, { params }: { params: { module: stri
     if (mod === 'tenders') {
       const { title, published_date, last_date, document_url } = body;
       const res = await db.run(
-        'INSERT INTO tenders (title, published_date, last_date, document_url, status, is_new) VALUES (?, ?, ?, ?, "Active", 1)',
+        "INSERT INTO tenders (title, published_date, last_date, document_url, status, is_new) VALUES (?, ?, ?, ?, 'Active', 1)",
         [title, published_date, last_date, document_url || null]
       );
       await logAudit(db, session.username, 'Create', 'Tenders', `Added tender notice: "${title.slice(0, 30)}..."`);
@@ -263,7 +263,7 @@ async function handlePOST(req: NextRequest, { params }: { params: { module: stri
       const { title, content, date, time, venue, category, attachment_url } = body;
       const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       const res = await db.run(
-        'INSERT INTO news_events (title, slug, content, date, time, venue, category, attachment_url, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, "Published")',
+        "INSERT INTO news_events (title, slug, content, date, time, venue, category, attachment_url, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Published')",
         [title, slug, content, date, time || null, venue || null, category, attachment_url || null]
       );
       await logAudit(db, session.username, 'Create', 'News Events', `Published campus ${category}: "${title.slice(0, 30)}..."`);
@@ -340,6 +340,9 @@ async function handlePOST(req: NextRequest, { params }: { params: { module: stri
 
   } catch (error) {
     console.error('CMS POST Error:', error);
+    if ((error as any)?.code === '23505') {
+      return NextResponse.json({ error: 'An entry with this title already exists. Please use a different title.' }, { status: 409 });
+    }
     return NextResponse.json({ error: 'Failed to create content.' }, { status: 500 });
   }
 }

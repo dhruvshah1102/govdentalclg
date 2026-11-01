@@ -30,6 +30,7 @@ export const NewsManagerClient: React.FC<NewsManagerClientProps> = ({ initialPos
   const [attachUrl, setAttachUrl] = useState('');
   
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,9 +80,12 @@ export const NewsManagerClient: React.FC<NewsManagerClientProps> = ({ initialPos
         setContent('');
         setAttachUrl('');
       } else {
+        const data = await response.json().catch(() => null);
+        setErrorMsg(data?.error || `Server returned ${response.status}.`);
         setStatus('error');
       }
     } catch (err) {
+      setErrorMsg('Network error. Please check your connection.');
       setStatus('error');
     }
   };
@@ -119,7 +123,7 @@ export const NewsManagerClient: React.FC<NewsManagerClientProps> = ({ initialPos
       {status === 'error' && (
         <div className="bg-rose-50 border border-rose-200 text-rose-700 p-3.5 rounded flex items-center gap-2">
           <AlertCircle size={16} />
-          <span>Failed to publish post. Please verify fields and try again.</span>
+          <span>Failed to publish post. {errorMsg || 'Please verify fields and try again.'}</span>
         </div>
       )}
 

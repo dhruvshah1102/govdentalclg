@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "check:sql": "node scripts/check-sql.mjs",
+    "prebuild": "node scripts/check-sql.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
